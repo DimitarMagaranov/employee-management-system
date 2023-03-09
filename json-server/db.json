@@ -1,13 +1,13 @@
 {
     "employees": [
         {
-            "id": "5bb08c9453e0a859203640fe",
-            "role": "admin",
+            "id": "wRDaCHpGqRXD1s9RZ6qtuYpkq7Y2",
+            "role": "taskManager",
             "fullName": "Dimitar Georgiev Magaranov",
-            "email": "admin@gmail.com",
+            "email": "taskmanager@gmail.com",
             "phoneNumber": "0888888888",
             "dateOfBirth": "1993-03-20",
-            "salary": "1000"
+            "salary": "2000"
         },
         {
             "id": "5bb08c9453e0a859203640fe",

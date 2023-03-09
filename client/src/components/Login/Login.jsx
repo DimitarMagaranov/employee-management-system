@@ -1,3 +1,4 @@
+import './Login.scss';
 import { useNavigate } from "react-router-dom";
 
 import {auth} from '../../utils/firebase';
