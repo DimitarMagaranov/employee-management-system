@@ -1,0 +1,19 @@
+{
+    "employees": [
+        {
+            "id": "5bb08c9453e0a859203640fe",
+            "role": "admin",
+            "fullName": "Dimitar Georgiev Magaranov",
+            "email": "admin@gmail.com",
+            "phoneNumber": "0888888888",
+            "dateOfBirth": "1993-03-20",
+            "salary": "1000",
+            "tasks": [
+                {
+                    "taskName": "taskName",
+                    "process": true
+                }
+            ]
+        }
+    ]
+}
