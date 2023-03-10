@@ -6,7 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import * as taskService from '../../../../services/taskService';
+import * as taskService from '../../../services/taskService';
 import { useState } from 'react';
 
 import './Tasks.scss';

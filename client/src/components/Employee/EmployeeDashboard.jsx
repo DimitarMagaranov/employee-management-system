@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './EmployeeDashboard.scss';
-import Sidebar from './Sidebar/Sidebar';
+import Sidebar from '../Sidebar/Sidebar';
 import PersonalInformation from './PersonalInformation/PersonalInformation';
 import Tasks from './Tasks/Tasks';
 
@@ -13,7 +13,7 @@ const EmployeeDashboard = ({ userInfo, onChangeUserInfo }) => {
 
     return (
         <div className="dashboard">
-            <Sidebar onSelectInfoHandler={onSelectInfoHandler} />
+            <Sidebar isTaskManager={false} onSelectInfoHandler={onSelectInfoHandler} />
             {selectedInfo === 'Personal Information' ? (
                 <PersonalInformation user={userInfo} onChangeUserInfo={onChangeUserInfo} />
             ) : (

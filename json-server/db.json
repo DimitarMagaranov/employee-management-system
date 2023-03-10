@@ -22,7 +22,7 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": true
+          "process": false
         },
         {
           "taskName": "task 2",
