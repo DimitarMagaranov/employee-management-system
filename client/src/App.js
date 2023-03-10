@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
 import Logout from './components/Logout/Logout';
 import * as authService from './services/authService';
-import TaskManagerDashboard from './components/TaskManager/TaskManagerDashboard';
-import EmployeeDashboard from './components/Employee/EmployeeDashboard';
+import TaskManagerDashboard from './components/Dashboard/TaskManager/TaskManagerDashboard';
+import EmployeeDashboard from './components/Dashboard/Employee/EmployeeDashboard';
 
 function App() {
     const [user, setUser] = useState(null);

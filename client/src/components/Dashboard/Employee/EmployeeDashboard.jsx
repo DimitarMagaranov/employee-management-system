@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './EmployeeDashboard.scss';
-import Sidebar from '../Sidebar/Sidebar';
+import Sidebar from '../../Sidebar/Sidebar';
 import PersonalInformation from './PersonalInformation/PersonalInformation';
 import Tasks from './Tasks/Tasks';
 
