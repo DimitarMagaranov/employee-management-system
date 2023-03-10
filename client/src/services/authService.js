@@ -17,3 +17,15 @@ export function getOne(id) {
         .then((res) => res.json())
         .catch((err) => console.log(err));
 }
+
+export const update = (id, userInfo) => {
+    return fetch(`${url}/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInfo),
+    })
+        .then((res) => res.json())
+        .catch((err) => console.log(err));
+};

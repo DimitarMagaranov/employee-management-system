@@ -11,22 +11,30 @@ import * as authService from './services/authService';
 function App() {
     const [user, setUser] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
+    // const [isLoading, setIsLoading] = useState();
 
     useEffect(() => {
         auth.onAuthStateChanged(setUser);
     }, []);
 
     useEffect(() => {
+        // setIsLoading(true);
         authService.getOne(user?._delegate.uid).then((data) => {
             setUserInfo(() => data);
+            // setIsLoading(false);
         });
     }, [user]);
+
+    const onChangeUserInfo = (info) => {
+        console.log(info);
+        setUserInfo(() => info);
+    }
 
     return (
         <div id="container">
             <Header userEmail={user?._delegate.email} isAuthenticated={!!user} />
             <Routes>
-                <Route index element={<Dashboard userInfo={userInfo} />}></Route>
+                <Route index element={<Dashboard userInfo={userInfo} onChangeUserInfo={onChangeUserInfo} />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/logout" element={<Logout />}></Route>
             </Routes>
