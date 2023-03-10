@@ -1,6 +1,21 @@
-const EmployeeDashboard = () => {
+import { useState } from 'react';
+import './EmployeeDashboard.scss';
+import Sidebar from './Sidebar/Sidebar';
+import PersonalInformation from './PersonalInformation/PersonalInformation';
+import Tasks from './Tasks/Tasks';
+
+const EmployeeDashboard = ({userInfo}) => {
+    const [selectedInfo, setSelectedInfo] = useState('Personal Information');
+
+    const onSelectInfoHandler = (info) => {
+        setSelectedInfo(() => info);
+    }
+
     return (
-        <div>Employee Dashboard</div>
+        <div className="dashboard">
+            <Sidebar onSelectInfoHandler={onSelectInfoHandler}/>
+            {selectedInfo === 'Personal Information' ? <PersonalInformation user={userInfo}/> : <Tasks tasks={userInfo?.tasks}/>}
+        </div>
     )
 }
 

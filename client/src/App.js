@@ -10,7 +10,7 @@ import * as authService from './services/authService';
 
 function App() {
     const [user, setUser] = useState(null);
-    const [isTaskManager, setIsTaskManager] = useState(false);
+    const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
         auth.onAuthStateChanged(setUser);
@@ -18,21 +18,15 @@ function App() {
 
     useEffect(() => {
         authService.getOne(user?._delegate.uid).then((data) => {
-            setIsTaskManager(() => data.role === 'taskManager');
+            setUserInfo(() => data);
         });
-    }, [user?._delegate.uid]);
-
-    const authInfo = {
-        isAuthenticated: !!user,
-        userEmail: user?._delegate.email,
-        id: user?._delegate.uid,
-    };
+    }, [user]);
 
     return (
         <div id="container">
-            <Header userEmail={authInfo.userEmail} isAuthenticated={authInfo.isAuthenticated} />
+            <Header userEmail={user?._delegate.email} isAuthenticated={!!user} />
             <Routes>
-                <Route index element={<Dashboard id={user?._delegate.uid} isTaskManager={isTaskManager} />}></Route>
+                <Route index element={<Dashboard userInfo={userInfo} />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/logout" element={<Logout />}></Route>
             </Routes>

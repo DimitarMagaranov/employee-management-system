@@ -1,0 +1,16 @@
+div.dashboard {
+    width: 100vw;
+    height: calc(100vh - 55px);
+    display: flex;
+}
+
+div#sidebar {
+    width: 20%;
+    background-color: rgb(64, 78, 103);
+    color: white;
+    padding-left: 20px;
+}
+
+div#sidebar h2 {
+    margin-bottom: 50px;
+}

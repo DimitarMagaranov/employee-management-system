@@ -20,11 +20,11 @@ function Login() {
         <div className="login">
             <h1>Login</h1>
             <form onSubmit={onLoginFormSUbmitHandler}>
-                <div class="txt_field">
+                <div className="txt_field">
                     <input name="email" id="email" placeholder="Email" type="text" />
                     <span></span>
                 </div>
-                <div class="txt_field">
+                <div className="txt_field">
                     <input name="password" id="password" placeholder="Password" type="password" />
                     <span></span>
                 </div>
