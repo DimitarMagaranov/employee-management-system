@@ -6,7 +6,7 @@ function Logout() {
     const navigate = useNavigate();
 
     auth.signOut()
-        .then(() => navigate('/'))
+        .then(() => navigate('/login'))
 }
 
 export default Logout;

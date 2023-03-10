@@ -1,49 +1,36 @@
 import './Login.scss';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import {auth} from '../../utils/firebase';
+import { auth } from '../../utils/firebase';
 
 function Login() {
     const navigate = useNavigate();
 
     function onLoginFormSUbmitHandler(e) {
         e.preventDefault();
-
-        const username = e.target.username.value;
+        const username = e.target.email.value;
         const password = e.target.password.value;
 
-        auth.signInWithEmailAndPassword(username, password)
-            .then((userCredential) => {
-                // console.log(userCredential);
-                navigate('/');
-            })
+        auth.signInWithEmailAndPassword(username, password).then((userCredential) => {
+            navigate('/');
+        });
     }
 
     return (
-        <section className="login">
+        <div className="login">
+            <h1>Login</h1>
             <form onSubmit={onLoginFormSUbmitHandler}>
-                <fieldset>
-                    <legend>Login</legend>
-                    <p className="field">
-                        <label htmlFor="username">Username</label>
-                        <span className="input">
-                            <input type="text" name="username" id="username" placeholder="Username" />
-                            <span className="actions"></span>
-                            <i className="fas fa-user"></i>
-                        </span>
-                    </p>
-                    <p className="field">
-                        <label htmlFor="password">Password</label>
-                        <span className="input">
-                            <input type="password" name="password" id="password" placeholder="Password" />
-                            <span className="actions"></span>
-                            <i className="fas fa-key"></i>
-                        </span>
-                    </p>
-                    <input className="button submit" type="submit" value="Login" />
-                </fieldset>
+                <div class="txt_field">
+                    <input name="email" id="email" placeholder="Email" type="text" />
+                    <span></span>
+                </div>
+                <div class="txt_field">
+                    <input name="password" id="password" placeholder="Password" type="password" />
+                    <span></span>
+                </div>
+                <input type="submit" value="Login" />
             </form>
-        </section>
+        </div>
     );
 }
 
