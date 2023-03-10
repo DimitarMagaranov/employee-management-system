@@ -27,6 +27,14 @@
         {
           "taskName": "task 2",
           "process": false
+        },
+        {
+          "taskName": "task 3",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": false
         }
       ]
     },
@@ -41,8 +49,20 @@
       "salary": "1200",
       "tasks": [
         {
-          "taskName": "task name",
+          "taskName": "task 1",
           "process": true
+        },
+        {
+          "taskName": "task 2",
+          "process": false
+        },
+        {
+          "taskName": "task 3",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": false
         }
       ]
     },
@@ -57,7 +77,35 @@
       "salary": "1300",
       "tasks": [
         {
-          "taskName": "task name",
+          "taskName": "task 1",
+          "process": true
+        },
+        {
+          "taskName": "task 2",
+          "process": false
+        },
+        {
+          "taskName": "task 3",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
           "process": true
         }
       ]
@@ -73,7 +121,35 @@
       "salary": "1300",
       "tasks": [
         {
-          "taskName": "task name",
+          "taskName": "task 1",
+          "process": true
+        },
+        {
+          "taskName": "task 2",
+          "process": false
+        },
+        {
+          "taskName": "task 3",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
           "process": true
         }
       ]
@@ -89,7 +165,35 @@
       "salary": "1400",
       "tasks": [
         {
-          "taskName": "task name",
+          "taskName": "task 1",
+          "process": true
+        },
+        {
+          "taskName": "task 2",
+          "process": false
+        },
+        {
+          "taskName": "task 3",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
           "process": true
         }
       ]
@@ -105,7 +209,35 @@
       "salary": "1500",
       "tasks": [
         {
-          "taskName": "task name",
+          "taskName": "task 1",
+          "process": true
+        },
+        {
+          "taskName": "task 2",
+          "process": true
+        },
+        {
+          "taskName": "task 3",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
           "process": true
         }
       ]
@@ -121,23 +253,35 @@
       "salary": "1600",
       "tasks": [
         {
-          "taskName": "task name",
+          "taskName": "task 1",
           "process": true
-        }
-      ]
-    },
-    {
-      "id": "tWaZ2LGk3RWUeb2c3OC17iNdUM72",
-      "role": "employee",
-      "firstName": "Joshua",
-      "lastName": "Petty",
-      "email": "employee8@gmail.com",
-      "phoneNumber": "0888888888",
-      "dateOfBirth": "2000-01-01",
-      "salary": "1700",
-      "tasks": [
+        },
         {
-          "taskName": "task name",
+          "taskName": "task 2",
+          "process": false
+        },
+        {
+          "taskName": "task 3",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
           "process": true
         }
       ]
@@ -153,7 +297,67 @@
       "salary": "1800",
       "tasks": [
         {
-          "taskName": "task name",
+          "taskName": "task 1",
+          "process": false
+        },
+        {
+          "taskName": "task 2",
+          "process": false
+        },
+        {
+          "taskName": "task 3",
+          "process": false
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        }
+      ]
+    },
+    {
+      "id": "tWaZ2LGk3RWUeb2c3OC17iNdUM72",
+      "role": "employee",
+      "firstName": "Joshua",
+      "lastName": "Petty",
+      "email": "employee8@gmail.com",
+      "phoneNumber": "0888888888",
+      "dateOfBirth": "2000-01-01",
+      "salary": "1700",
+      "tasks": [
+        {
+          "taskName": "task 1",
+          "process": true
+        },
+        {
+          "taskName": "task 2",
+          "process": true
+        },
+        {
+          "taskName": "task 3",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
           "process": true
         }
       ]
@@ -169,7 +373,23 @@
       "salary": "1900",
       "tasks": [
         {
-          "taskName": "task name",
+          "taskName": "task 1",
+          "process": true
+        },
+        {
+          "taskName": "task 2",
+          "process": true
+        },
+        {
+          "taskName": "task 3",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
+          "process": true
+        },
+        {
+          "taskName": "task 4",
           "process": true
         }
       ]
