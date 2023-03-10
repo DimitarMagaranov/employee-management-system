@@ -4,19 +4,23 @@ import Sidebar from './Sidebar/Sidebar';
 import PersonalInformation from './PersonalInformation/PersonalInformation';
 import Tasks from './Tasks/Tasks';
 
-const EmployeeDashboard = ({userInfo, onChangeUserInfo}) => {
+const EmployeeDashboard = ({ userInfo, onChangeUserInfo }) => {
     const [selectedInfo, setSelectedInfo] = useState('Personal Information');
 
     const onSelectInfoHandler = (info) => {
         setSelectedInfo(() => info);
-    }
+    };
 
     return (
         <div className="dashboard">
-            <Sidebar onSelectInfoHandler={onSelectInfoHandler}/>
-            {selectedInfo === 'Personal Information' ? <PersonalInformation user={userInfo} onChangeUserInfo={onChangeUserInfo}/> : <Tasks userId={userInfo?.id} tasks={userInfo?.tasks}/>}
+            <Sidebar onSelectInfoHandler={onSelectInfoHandler} />
+            {selectedInfo === 'Personal Information' ? (
+                <PersonalInformation user={userInfo} onChangeUserInfo={onChangeUserInfo} />
+            ) : (
+                <Tasks userId={userInfo?.id} tasks={userInfo?.tasks} />
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default EmployeeDashboard;
