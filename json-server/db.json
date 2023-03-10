@@ -21,8 +21,12 @@
       "salary": "1100",
       "tasks": [
         {
-          "taskName": "task name",
+          "taskName": "task 1",
           "process": true
+        },
+        {
+          "taskName": "task 2",
+          "process": false
         }
       ]
     },

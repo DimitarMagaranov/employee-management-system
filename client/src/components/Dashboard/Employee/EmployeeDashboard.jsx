@@ -14,7 +14,7 @@ const EmployeeDashboard = ({userInfo, onChangeUserInfo}) => {
     return (
         <div className="dashboard">
             <Sidebar onSelectInfoHandler={onSelectInfoHandler}/>
-            {selectedInfo === 'Personal Information' ? <PersonalInformation user={userInfo} onChangeUserInfo={onChangeUserInfo}/> : <Tasks tasks={userInfo?.tasks}/>}
+            {selectedInfo === 'Personal Information' ? <PersonalInformation user={userInfo} onChangeUserInfo={onChangeUserInfo}/> : <Tasks userId={userInfo?.id} tasks={userInfo?.tasks}/>}
         </div>
     )
 }
