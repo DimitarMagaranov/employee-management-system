@@ -15,10 +15,9 @@ const Tasks = ({ userId, tasks }) => {
     const [currTasks, setTasks] = useState(tasks);
 
     const onMarkAsReadyHandler = (e, taskName) => {
-        const isReady = e.target.textContent === 'Mark as ready';
         const index = currTasks.findIndex((x) => x.taskName === taskName);
         let tasksToUpdate = currTasks;
-        tasksToUpdate[index].process = !tasksToUpdate[index].process;
+        tasksToUpdate[index].completed = !tasksToUpdate[index].completed;
         taskService.update(userId, { tasks: tasksToUpdate }).then((data) => {
             setTasks(() => data.tasks);
         });
@@ -46,13 +45,13 @@ const Tasks = ({ userId, tasks }) => {
                                     {task.taskName}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <p className={`${task.process === true ? 'inProcess' : 'ready'}`}>
-                                        {task.process === true ? 'In process' : 'Ready'}
+                                    <p className={`${task.completed === true ? 'inProcess' : 'ready'}`}>
+                                        {task.completed === true ? 'In process' : 'Completed'}
                                     </p>
                                 </TableCell>
                                 <TableCell align="right">
-                                    {task.process === true ? (
-                                        <button id='btn-ready' onClick={(e) => onMarkAsReadyHandler(e, task.taskName)}>Mark as ready</button>
+                                    {task.completed === true ? (
+                                        <button id='btn-ready' onClick={(e) => onMarkAsReadyHandler(e, task.taskName)}>Mark as completed</button>
                                     ) : (
                                         ''
                                     )}

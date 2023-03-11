@@ -15,7 +15,7 @@ const TaskManagerDashboard = () => {
 
     const sortTop5Employees = () => {
         const sorted = [...employees]
-        ?.sort((a, b) => a.tasks.filter((x) => x.process === true).length - b.tasks.filter((x) => x.process === true).length)
+        ?.sort((a, b) => a.tasks.filter((x) => x.completed === true).length - b.tasks.filter((x) => x.completed === true).length)
         .slice(0, 5);
         return sorted;
     };
@@ -23,7 +23,7 @@ const TaskManagerDashboard = () => {
     const components = {
         'All Employees': <AllEmployees employees={employees} />,
         'Top 5 Employees': <AllEmployees employees={sortTop5Employees()} />,
-        Tasks: <Tasks />,
+        'Tasks': <Tasks />,
     };
 
     return (

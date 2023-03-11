@@ -1,6 +1,9 @@
 #tasks-ctr {
     width: 60%;
-    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px auto auto auto;
 }
 
 .inProcess {

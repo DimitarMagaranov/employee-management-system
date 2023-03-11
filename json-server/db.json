@@ -22,19 +22,19 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 2",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 3",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         }
       ]
     },
@@ -50,19 +50,19 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 2",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 3",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         }
       ]
     },
@@ -78,35 +78,35 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 2",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 3",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         }
       ]
     },
@@ -122,35 +122,35 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 2",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 3",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         }
       ]
     },
@@ -166,35 +166,35 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 2",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 3",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         }
       ]
     },
@@ -210,35 +210,35 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 2",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 3",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         }
       ]
     },
@@ -254,35 +254,35 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 2",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 3",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         }
       ]
     },
@@ -298,23 +298,23 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 2",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 3",
-          "process": false
+          "completed": false
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         }
       ]
     },
@@ -330,35 +330,35 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 2",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 3",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         }
       ]
     },
@@ -374,23 +374,23 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 2",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 3",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         },
         {
           "taskName": "task 4",
-          "process": true
+          "completed": true
         }
       ]
     }

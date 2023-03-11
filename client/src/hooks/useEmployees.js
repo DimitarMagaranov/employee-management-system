@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import * as taskManagerService from '../services/taskManagerService';
 
 const useEmployees = () => {
-    const [state, setState] = useState();
+    const [state, setState] = useState([]);
     const [isLoading, setIsLoading] = useState();
 
     useEffect(() => {
