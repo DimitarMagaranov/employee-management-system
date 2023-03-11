@@ -8,8 +8,6 @@ function isAuth(WrappedComponent) {
         const {isAuthenticated} = useContext(AuthContext);
         const navigate = useNavigate();
 
-        console.log(isAuthenticated);
-
         if (!isAuthenticated) {
             navigate('/login');
         }

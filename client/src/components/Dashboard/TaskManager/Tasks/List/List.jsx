@@ -9,7 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import './List.scss';
 
 const List = ({ title, tasks }) => {
-    console.log(tasks);
     return (
         <div id='table-ctr'>
             <h2 className='table-title'>{title}</h2>
