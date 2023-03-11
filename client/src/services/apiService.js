@@ -35,3 +35,10 @@ export const updateEmployee = (id, data) => {
         .then((res) => res.json())
         .catch((err) => console.log(err));
 };
+
+export const getTasksByUserId = (id) => {
+    return fetch(`${url}/${id}`)
+        .then((res) => res.json())
+        .then((data) => data.tasks)
+        .catch((err) => console.log(err));
+}

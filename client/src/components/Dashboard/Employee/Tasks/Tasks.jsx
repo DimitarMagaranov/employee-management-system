@@ -7,18 +7,34 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import * as apiService from '../../../../services/apiService';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './Tasks.scss';
 
-const Tasks = ({ userId, tasks }) => {
-    const [currTasks, setTasks] = useState(tasks);
+const Tasks = ({ userInfo, onChangeUserInfo }) => {
+    const [currTasks, setTasks] = useState();
+
+    useEffect(() => {
+        setTasks(() => userInfo?.tasks);
+    }, [userInfo]);
+
+    useEffect(() => {
+        const updateTasksInterval = setInterval(() => {
+            apiService.getOneEmployee(userInfo?.id).then((data) => {
+                onChangeUserInfo(data);
+            });
+        }, 5000);
+
+        return () => {
+            clearInterval(updateTasksInterval);
+        };
+    }, []);
 
     const onMarkAsReadyHandler = (e, taskName) => {
         const index = currTasks.findIndex((x) => x.taskName === taskName);
         let tasksToUpdate = currTasks;
         tasksToUpdate[index].completed = !tasksToUpdate[index].completed;
-        apiService.updateEmployee(userId, { tasks: tasksToUpdate }).then((data) => {
+        apiService.updateEmployee(userInfo?.id, { tasks: tasksToUpdate }).then((data) => {
             setTasks(() => data.tasks);
         });
     };
@@ -51,7 +67,9 @@ const Tasks = ({ userId, tasks }) => {
                                 </TableCell>
                                 <TableCell align="right">
                                     {task.completed !== true ? (
-                                        <button id='btn-ready' onClick={(e) => onMarkAsReadyHandler(e, task.taskName)}>Mark as completed</button>
+                                        <button id="btn-ready" onClick={(e) => onMarkAsReadyHandler(e, task.taskName)}>
+                                            Mark as completed
+                                        </button>
                                     ) : (
                                         ''
                                     )}

@@ -38,7 +38,7 @@
         },
         {
           "taskName": "task 5",
-          "completed": false
+          "completed": true
         },
         {
           "taskName": "task 6",
@@ -47,6 +47,22 @@
         {
           "taskName": "task 7",
           "completed": false
+        },
+        {
+          "taskName": "task 8",
+          "completed": false
+        },
+        {
+          "taskName": "task 9",
+          "completed": true
+        },
+        {
+          "taskName": "task 10",
+          "completed": true
+        },
+        {
+          "taskName": "task 11",
+          "completed": true
         }
       ]
     },
