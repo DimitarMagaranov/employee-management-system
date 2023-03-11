@@ -12,7 +12,7 @@ const List = ({ title, tasks }) => {
     console.log(tasks);
     return (
         <div id='table-ctr'>
-            <h2>{title}</h2>
+            <h2 className='table-title'>{title}</h2>
             <TableContainer style={{ maxHeight: 400 }} component={Paper}>
                 <Table stickyHeader>
                     <TableHead>

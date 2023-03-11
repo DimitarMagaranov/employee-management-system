@@ -6,7 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import * as taskService from '../../../../services/taskService';
+import * as apiService from '../../../../services/apiService';
 import { useState } from 'react';
 
 import './Tasks.scss';
@@ -18,7 +18,7 @@ const Tasks = ({ userId, tasks }) => {
         const index = currTasks.findIndex((x) => x.taskName === taskName);
         let tasksToUpdate = currTasks;
         tasksToUpdate[index].completed = !tasksToUpdate[index].completed;
-        taskService.update(userId, { tasks: tasksToUpdate }).then((data) => {
+        apiService.updateEmployee(userId, { tasks: tasksToUpdate }).then((data) => {
             setTasks(() => data.tasks);
         });
     };

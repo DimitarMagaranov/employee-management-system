@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
 import Logout from './components/Logout/Logout';
-import * as authService from './services/authService';
+import * as apiService from './services/apiService';
 import TaskManagerDashboard from './components/Dashboard/TaskManager/TaskManagerDashboard';
 import EmployeeDashboard from './components/Dashboard/Employee/EmployeeDashboard';
 
@@ -20,7 +20,7 @@ function App() {
 
     useEffect(() => {
         // setIsLoading(true);
-        authService.getOne(user?._delegate.uid).then((data) => {
+        apiService.getOneEmployee(user?._delegate.uid).then((data) => {
             setUserInfo(() => data);
             // setIsLoading(false);
         });

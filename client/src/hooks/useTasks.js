@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import * as taskManagerService from '../services/taskManagerService';
+import * as apiService from '../services/apiService';
 
 const useTasks = () => {
     const [state, setState] = useState([]);
@@ -7,7 +7,7 @@ const useTasks = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        taskManagerService.getAllEmployees().then((data) => {
+        apiService.getAllEmployees().then((data) => {
             let tasks = [];
             data.filter(x => x.role !== 'taskManager').forEach((employee) => {
                 employee.tasks.forEach((task) => {

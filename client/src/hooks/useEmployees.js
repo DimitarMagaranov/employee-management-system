@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import * as taskManagerService from '../services/taskManagerService';
+import * as apiService from '../services/apiService';
 
 const useEmployees = () => {
     const [state, setState] = useState([]);
@@ -7,7 +7,7 @@ const useEmployees = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        taskManagerService
+        apiService
             .getAllEmployees()
             .then((data) => {
                 setState(() => data);

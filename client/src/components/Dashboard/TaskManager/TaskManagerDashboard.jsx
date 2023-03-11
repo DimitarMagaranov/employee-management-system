@@ -15,7 +15,7 @@ const TaskManagerDashboard = () => {
 
     const sortTop5Employees = () => {
         const sorted = [...employees]
-        ?.sort((a, b) => a.tasks.filter((x) => x.completed === true).length - b.tasks.filter((x) => x.completed === true).length)
+        ?.sort((a, b) => b.tasks.filter((x) => x.completed === true).length - a.tasks.filter((x) => x.completed === true).length)
         .slice(0, 5);
         return sorted;
     };

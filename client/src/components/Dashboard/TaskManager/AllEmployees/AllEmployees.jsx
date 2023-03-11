@@ -19,6 +19,8 @@ const AllEmployees = ({employees}) => {
                             <TableCell align="left">Phone Number</TableCell>
                             <TableCell align="left">Date of Birth</TableCell>
                             <TableCell align="left">Salary</TableCell>
+                            <TableCell align="right">Completed Tasks</TableCell>
+                            <TableCell align="right">Uncompleted Tasks</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -41,6 +43,12 @@ const AllEmployees = ({employees}) => {
                                 </TableCell>
                                 <TableCell align="left">
                                     {employee.salary}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {employee.tasks.filter(t => t.completed === true).length}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {employee.tasks.filter(t => t.completed !== true).length}
                                 </TableCell>
                             </TableRow>
                         ))}
