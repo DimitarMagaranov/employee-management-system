@@ -10,9 +10,9 @@ const Tasks = () => {
     return (
         isLoading ? 'Loading...' : 
         <div id='tasks-ctr'>
+            <CreateTask />
             <List title={'Completed Tasks'} tasks={tasks.filter(x => x.taskProcess === false)} />
             <List title={'Uncompleted Tasks'} tasks={tasks.filter(x => x.taskProcess === true)} />
-            <CreateTask />
         </div>
     )
 };

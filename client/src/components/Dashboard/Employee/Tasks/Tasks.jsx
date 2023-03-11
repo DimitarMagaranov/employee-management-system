@@ -34,6 +34,7 @@ const Tasks = ({ userInfo, onChangeUserInfo }) => {
         const index = currTasks.findIndex((x) => x.taskName === taskName);
         let tasksToUpdate = currTasks;
         tasksToUpdate[index].completed = !tasksToUpdate[index].completed;
+        tasksToUpdate[index].completeDate = new Date().valueOf();
         apiService.updateEmployee(userInfo?.id, { tasks: tasksToUpdate }).then((data) => {
             setTasks(() => data.tasks);
         });

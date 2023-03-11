@@ -22,46 +22,68 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 2",
-          "completed": false
+          "startDate": 1678575613112,
+          "completeDate": 1678576468386,
+          "completed": true
         },
         {
           "taskName": "task 3",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 4",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 5",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 6",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 7",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 8",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 9",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 10",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 11",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         }
       ],
@@ -79,18 +101,26 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 2",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 3",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 4",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         }
       ],
@@ -108,22 +138,32 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 2",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 3",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 4",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 5",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         }
       ],
@@ -141,22 +181,32 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 2",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 3",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 4",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 5",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         }
       ],
@@ -174,14 +224,20 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 2",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 3",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         }
       ],
@@ -199,18 +255,26 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 2",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 3",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 4",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         }
       ],
@@ -228,14 +292,20 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 2",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 3",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         }
       ],
@@ -253,22 +323,32 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 2",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 3",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 4",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 5",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         }
       ],
@@ -286,26 +366,38 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 2",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 3",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 5",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 6",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         },
         {
           "taskName": "task 7",
+          "startDate": 1678575613112,
+          "completeDate": null,
           "completed": false
         }
       ],
@@ -323,18 +415,26 @@
       "tasks": [
         {
           "taskName": "task 1",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 2",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 3",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         },
         {
           "taskName": "task 4",
+          "startDate": 1675552031435,
+          "completeDate": 1678575613112,
           "completed": true
         }
       ],
@@ -349,7 +449,14 @@
       "role": "employee",
       "dateOfBirth": "1999-02-02",
       "salary": "2000",
-      "tasks": [],
+      "tasks": [
+        {
+          "taskName": "task 1",
+          "startDate": 1678575613112,
+          "completeDate": null,
+          "completed": false
+        }
+      ],
       "isNew": false
     }
   ]

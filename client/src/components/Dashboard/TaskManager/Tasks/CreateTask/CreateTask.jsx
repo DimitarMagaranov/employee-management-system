@@ -10,6 +10,7 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
+import dayjs from 'dayjs';
 
 import useEmployees from '../../../../../hooks/useEmployees';
 import { FormGroup } from '@mui/material';
@@ -42,6 +43,8 @@ const CreateTask = () => {
                 ...employee.tasks,
                 {
                     taskName: taskName,
+                    startDate: new Date().valueOf(),
+                    completeDate: null,
                     completed: false,
                 },
             ],
