@@ -22,7 +22,7 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "completed": false
+          "completed": true
         },
         {
           "taskName": "task 2",

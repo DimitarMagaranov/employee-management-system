@@ -45,12 +45,12 @@ const Tasks = ({ userId, tasks }) => {
                                     {task.taskName}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <p className={`${task.completed === true ? 'inProcess' : 'ready'}`}>
-                                        {task.completed === true ? 'In process' : 'Completed'}
+                                    <p className={`${task.completed !== true ? 'uncompleted' : 'completed'}`}>
+                                        {task.completed !== true ? 'Uncompleted' : 'Completed'}
                                     </p>
                                 </TableCell>
                                 <TableCell align="right">
-                                    {task.completed === true ? (
+                                    {task.completed !== true ? (
                                         <button id='btn-ready' onClick={(e) => onMarkAsReadyHandler(e, task.taskName)}>Mark as completed</button>
                                     ) : (
                                         ''
