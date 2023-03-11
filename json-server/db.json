@@ -64,7 +64,8 @@
           "taskName": "task 11",
           "completed": true
         }
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "jVulQ2xnNKSJAHYmSJYcPWyQzhC2",
@@ -92,7 +93,8 @@
           "taskName": "task 4",
           "completed": false
         }
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "okB9ykc2ECgTZzt1yKuaX1hqApZ2",
@@ -124,7 +126,8 @@
           "taskName": "task 5",
           "completed": false
         }
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "WkzsGPokChRbt5Ced0mgvvwwwoj2",
@@ -156,7 +159,8 @@
           "taskName": "task 5",
           "completed": false
         }
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "n3Y4OrdP1BME9mizv4JIC8zEcQm1",
@@ -180,7 +184,8 @@
           "taskName": "task 3",
           "completed": false
         }
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "kIdjC5mdi7ftn1qw1UNLUOZ9XXJ2",
@@ -208,7 +213,8 @@
           "taskName": "task 4",
           "completed": false
         }
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "Fxu3aBZRJHdFcgOntDHsW830frr2",
@@ -232,7 +238,8 @@
           "taskName": "task 3",
           "completed": true
         }
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "9HXMo07YaNOvhGMnN2geh0ZdBk23",
@@ -264,7 +271,8 @@
           "taskName": "task 5",
           "completed": false
         }
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "tWaZ2LGk3RWUeb2c3OC17iNdUM72",
@@ -300,7 +308,8 @@
           "taskName": "task 7",
           "completed": false
         }
-      ]
+      ],
+      "isNew": false
     },
     {
       "id": "29kxVbuWq0XcKm9lAJBhD4IjZPB2",
@@ -328,7 +337,20 @@
           "taskName": "task 4",
           "completed": true
         }
-      ]
+      ],
+      "isNew": false
+    },
+    {
+      "id": "aq4RD6q7saShP6cJYEhquq5qbZf1",
+      "firstName": "employee21",
+      "lastName": "employee21",
+      "email": "employee21@gmail.com",
+      "phoneNumber": "0888888888",
+      "role": "employee",
+      "dateOfBirth": "1999-02-02",
+      "salary": "0",
+      "tasks": [],
+      "isNew": true
     }
   ]
 }

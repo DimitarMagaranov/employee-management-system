@@ -4,7 +4,7 @@ import * as apiService from '../../../../services/apiService';
 import { auth } from '../../../../utils/firebase';
 
 const PersonalInformation = ({ userInfo, onChangeUserInfo }) => {
-const [isLoading, setIsLoading] = useState();
+    const [isLoading, setIsLoading] = useState();
 
     useEffect(() => {
         setIsLoading(() => !userInfo?.firstName);
@@ -41,12 +41,21 @@ const [isLoading, setIsLoading] = useState();
             </div>
             <div className="txt_field">
                 <label htmlFor="date-of-birth">Date of birth</label>
-                <input disabled name="date-of-birth" id="date-of-birth" placeholder="Date of birth" type="text" defaultValue={userInfo?.dateOfBirth} />
+                <input
+                    disabled
+                    name="date-of-birth"
+                    id="date-of-birth"
+                    placeholder="Date of birth"
+                    type="text"
+                    defaultValue={userInfo?.dateOfBirth}
+                />
             </div>
-            <div className="txt_field">
-                <label htmlFor="salary">Salary</label>
-                <input disabled name="salary" id="salary" placeholder="Salary" type="text" defaultValue={userInfo?.salary} />
-            </div>
+            {!userInfo?.isNew && (
+                <div className="txt_field">
+                    <label htmlFor="salary">Salary</label>
+                    <input disabled name="salary" id="salary" placeholder="Salary" type="text" defaultValue={userInfo?.salary} />
+                </div>
+            )}
             <div className="txt_field">
                 <label htmlFor="email">Email</label>
                 <input name="email" id="email" placeholder="Email" type="text" defaultValue={userInfo?.email} />

@@ -6,7 +6,7 @@ export function getAllEmployees() {
         .catch((err) => console.log(err));
 }
 
-export function create(data) {
+export function createEmployee(data) {
     return fetch(url, {
         method: 'POST',
         headers: {
