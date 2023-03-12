@@ -143,7 +143,7 @@
     {
       "id": "WkzsGPokChRbt5Ced0mgvvwwwoj2",
       "role": "employee",
-      "firstName": "Saarah",
+      "firstName": "John",
       "lastName": "Mcgrath",
       "email": "employee4@gmail.com",
       "phoneNumber": "0888888888",
@@ -158,32 +158,11 @@
           "completed": true
         },
         {
-          "taskName": "task 2",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda vel iure incidunt. Accusamus impedit inventore error totam odio tenetur amet? Praesentium eaque assumenda atque porro molestias repellendus vel quis earum.",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
-        },
-        {
           "taskName": "task 3",
           "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda vel iure incidunt. Accusamus impedit inventore error totam odio tenetur amet? Praesentium eaque assumenda atque porro molestias repellendus vel quis earum.",
           "startDate": 1675552031435,
           "completeDate": 1678575613112,
           "completed": true
-        },
-        {
-          "taskName": "task 4",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda vel iure incidunt. Accusamus impedit inventore error totam odio tenetur amet? Praesentium eaque assumenda atque porro molestias repellendus vel quis earum.",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
-        },
-        {
-          "taskName": "task 5",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda vel iure incidunt. Accusamus impedit inventore error totam odio tenetur amet? Praesentium eaque assumenda atque porro molestias repellendus vel quis earum.",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
         }
       ],
       "isNew": false
@@ -309,13 +288,6 @@
       "tasks": [
         {
           "taskName": "task 1",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda vel iure incidunt. Accusamus impedit inventore error totam odio tenetur amet? Praesentium eaque assumenda atque porro molestias repellendus vel quis earum.",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
-        },
-        {
-          "taskName": "task 2",
           "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda vel iure incidunt. Accusamus impedit inventore error totam odio tenetur amet? Praesentium eaque assumenda atque porro molestias repellendus vel quis earum.",
           "startDate": 1678575613112,
           "completeDate": null,

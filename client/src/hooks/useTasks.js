@@ -9,14 +9,14 @@ const useTasks = () => {
         setIsLoading(true);
         apiService.getAllEmployees().then((data) => {
             let tasks = [];
-            data.filter(x => x.role !== 'taskManager').forEach((employee) => {
+            data.filter((x) => x.role !== 'taskManager').forEach((employee) => {
                 employee.tasks.forEach((task) => {
                     tasks.push({
                         employeeId: employee.id,
                         employeeFullName: `${employee.firstName} ${employee.lastName}`,
                         taskName: task.taskName,
                         taskDescription: task.description,
-                        taskProcess: task.completed
+                        taskProcess: task.completed,
                     });
                 });
             });
@@ -25,7 +25,19 @@ const useTasks = () => {
         });
     }, []);
 
-    return [state, isLoading, setState];
+    const deleteTask = (employeeId, taskName) => {
+        apiService.getOneEmployee(employeeId).then((employee) => {
+            let employeeTasks = [...employee.tasks];
+            const index = employeeTasks.findIndex((x) => x.taskName === taskName);
+            employeeTasks.splice(index, 1);
+            apiService.updateEmployee(employeeId, { tasks: employeeTasks }).then(() => {
+                const task = state.find((x) => x.employeeId === employeeId && x.taskName === taskName);
+                setState(() => state.filter((x) => x !== task));
+            });
+        });
+    };
+
+    return [state, isLoading, deleteTask];
 };
 
 export default useTasks;

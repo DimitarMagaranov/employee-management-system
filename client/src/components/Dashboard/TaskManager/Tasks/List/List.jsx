@@ -7,22 +7,9 @@ import { TableHead } from '@mui/material';
 import { TableRow } from '@mui/material';
 import { Paper } from '@mui/material';
 
-import * as apiService from '../../../../../services/apiService';
-
 import './List.scss';
 
-const List = ({ title, tasks, setState }) => {
-    const onDeleteTaskHandler = (employeeId, taskName) => {
-        apiService.getOneEmployee(employeeId).then((employee) => {
-            let employeeTasks = [...employee.tasks];
-            const index = employeeTasks.findIndex((x) => x.taskName === taskName);
-            employeeTasks.splice(index, 1);
-            apiService
-                .updateEmployee(employeeId, { tasks: employeeTasks })
-                .then(() => setState(() => tasks.filter((x) => x.employeeId !== employeeId && x.taskName !== taskName)));
-        });
-    };
-
+const List = ({ title, tasks, deleteTask }) => {
     return (
         <div id="table-ctr">
             <h2 className="table-title">{title}</h2>
@@ -53,7 +40,7 @@ const List = ({ title, tasks, setState }) => {
                                 <TableCell align="left">
                                     {title === 'Uncompleted Tasks' && (
                                         <Button
-                                            onClick={() => onDeleteTaskHandler(task.employeeId, task.taskName)}
+                                            onClick={() => deleteTask(task.employeeId, task.taskName)}
                                             variant="contained"
                                             color="secondary"
                                         >
