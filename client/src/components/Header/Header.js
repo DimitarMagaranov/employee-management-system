@@ -18,7 +18,12 @@ const header = ({ isAuthenticated, userEmail }) => {
                     <ul>
                         <li>
                             <NavLink to="/login">
-                                <i className="fas fa-sign-in-alt"></i> Login
+                                Login
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/register">
+                                Register
                             </NavLink>
                         </li>
                     </ul>
