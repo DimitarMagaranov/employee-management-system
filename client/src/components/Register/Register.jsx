@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { auth } from '../../utils/firebase';
+import { auth, firebaseErrMessages } from '../../utils/firebase';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as apiService from '../../services/apiService';
@@ -12,6 +12,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
+    const [firebaseErrorMsg, setFirebaseErrorMsg] = useState('');
 
     const navigate = useNavigate();
 
@@ -37,9 +38,8 @@ function Login() {
                 apiService.createEmployee(userToDb).then(() => navigate('/'));
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage);
+                console.log(error.message);
+                setFirebaseErrorMsg(() => firebaseErrMessages[error.message]);
             });
     }
 
@@ -54,15 +54,23 @@ function Login() {
                         placeholder="First name"
                         type="text"
                         onChange={(e) => setFirstName(() => e.target.value)}
+                        required
                     />
                     <span></span>
                 </div>
                 <div className="txt_field">
-                    <input name="lastName" id="lastName" placeholder="Last name" type="text" onChange={(e) => setLastName(() => e.target.value)} />
+                    <input
+                        name="lastName"
+                        id="lastName"
+                        placeholder="Last name"
+                        type="text"
+                        onChange={(e) => setLastName(() => e.target.value)}
+                        required
+                    />
                     <span></span>
                 </div>
                 <div className="txt_field">
-                    <input name="email" id="email" placeholder="Email" type="text" onChange={(e) => setEmail(() => e.target.value)} />
+                    <input name="email" id="email" placeholder="Email" type="text" onChange={(e) => setEmail(() => e.target.value)} required />
                     <span></span>
                 </div>
                 <div className="txt_field">
@@ -72,6 +80,7 @@ function Login() {
                         placeholder="Phone number"
                         type="text"
                         onChange={(e) => setPhoneNumber(() => e.target.value)}
+                        required
                     />
                     <span></span>
                 </div>
@@ -83,14 +92,24 @@ function Login() {
                         placeholder="Date of birth"
                         type="date"
                         onChange={(e) => setDateOfBirth(() => e.target.value)}
+                        required
                     />
 
                     <span></span>
                 </div>
                 <div className="txt_field">
-                    <input name="password" id="password" placeholder="Password" type="password" onChange={(e) => setPassword(() => e.target.value)} />
+                    <input
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        type="password"
+                        onChange={(e) => setPassword(() => e.target.value)}
+                        required
+                    />
                     <span></span>
                 </div>
+
+                <span className="err-msg">{firebaseErrorMsg}</span>
 
                 <p id="reg-msg">
                     Back to login? <Link to={'/login'}>Login</Link>
