@@ -13,7 +13,10 @@ const useEmployees = () => {
                 setState(() => data);
                 setIsLoading(false);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                setIsLoading(false);
+            });
     }, []);
 
     const updateEmployee = (employeeId, salary) => {
