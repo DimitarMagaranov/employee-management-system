@@ -30,14 +30,13 @@ const useEmployees = () => {
                 isNew: false,
             })
             .then(() => {
-                setState(() => state.filter((x) => x.id !== employee.id));
+                setReload(!reload);
             });
     };
 
     const deleteEmployee = (employeeId) => {
         apiService.deleteEmployee(employeeId)
         .then((res) => {
-            console.log(res);
             setReload(!reload);
         })
     }

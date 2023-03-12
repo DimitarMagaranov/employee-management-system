@@ -20,8 +20,8 @@ const AllEmployees = ({ employees, deleteEmployee }) => {
                             <TableCell align="left">Phone Number</TableCell>
                             <TableCell align="left">Date of Birth</TableCell>
                             <TableCell align="left">Salary</TableCell>
-                            <TableCell align="right">Completed Tasks</TableCell>
-                            <TableCell align="right">Uncompleted Tasks</TableCell>
+                            <TableCell align="center">Completed Tasks</TableCell>
+                            <TableCell align="center">Uncompleted Tasks</TableCell>
                             <TableCell align="right"></TableCell>
                         </TableRow>
                     </TableHead>
@@ -38,8 +38,8 @@ const AllEmployees = ({ employees, deleteEmployee }) => {
                                 <TableCell align="left">{employee.phoneNumber}</TableCell>
                                 <TableCell align="left">{employee.dateOfBirth}</TableCell>
                                 <TableCell align="left">{employee.salary}</TableCell>
-                                <TableCell align="right">{employee.tasks.filter((t) => t.completed === true).length}</TableCell>
-                                <TableCell align="right">{employee.tasks.filter((t) => t.completed !== true).length}</TableCell>
+                                <TableCell align="center">{employee.tasks.filter((t) => t.completed === true).length}</TableCell>
+                                <TableCell align="center">{employee.tasks.filter((t) => t.completed !== true).length}</TableCell>
                                 <TableCell align="right"><Button variant='contained' color='error' onClick={() => deleteEmployee(employee.id)}>delete</Button></TableCell>
                             </TableRow>
                         ))}

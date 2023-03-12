@@ -428,9 +428,9 @@
       "phoneNumber": "0888888888",
       "role": "employee",
       "dateOfBirth": "2020-02-02",
-      "salary": "0",
+      "salary": "2000",
       "tasks": [],
-      "isNew": true
+      "isNew": false
     }
   ]
 }

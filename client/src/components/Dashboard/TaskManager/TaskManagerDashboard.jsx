@@ -14,6 +14,8 @@ const TaskManagerDashboard = () => {
         setSelectedInfo(() => info);
     };
 
+    console.log(employees);
+
     const sortTop5Employees = () => {
         const currentDate = new Date();
         const timeBefore30Days = new Date(currentDate.getTime() - (30*86400000));
