@@ -16,7 +16,7 @@ const useEmployees = () => {
             .catch((err) => console.log(err));
     }, []);
 
-    return [state?.filter((x) => x.role != 'taskManager').sort((a, b) => a.firstName.localeCompare(b.firstName)), isLoading];
+    return [state?.filter((x) => x.role != 'taskManager').sort((a, b) => a.firstName.localeCompare(b.firstName)), isLoading, setState];
 };
 
 export default useEmployees;

@@ -10,8 +10,6 @@ import NewEmployees from '../NewEmployees/NewEmployees';
 const AllEmployees = ({ employees }) => {
     return (
         <div id="tasks-ctr">
-            <NewEmployees employees={employees?.filter(x => x.isNew === true)} />
-
             <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>
                     <TableHead>

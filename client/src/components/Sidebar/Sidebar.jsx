@@ -2,7 +2,7 @@ import { useState } from 'react';
 import MenuItem from './MenuItem/MenuItem';
 import './Sidebar.scss';
 
-const Sidebar = ({ isTaskManager, onSelectInfoHandler }) => {
+const Sidebar = ({ isTaskManager, onSelectInfoHandler, areNewEmployees }) => {
     const [currMenuItem, setCurrMenuItem] = useState(`${isTaskManager ? 'All Employees' : 'Personal Information'}`);
 
     const menuItemClickHandler = (menuItem) => {
@@ -15,6 +15,7 @@ const Sidebar = ({ isTaskManager, onSelectInfoHandler }) => {
             <h2>{isTaskManager ? 'Task Manager' : 'Employee'} Dashboard</h2>
             {isTaskManager ? (
                 <ul className="menu-items">
+                    {areNewEmployees && <MenuItem onClick={menuItemClickHandler} title={'New Employees'} currMenuItem={currMenuItem} />}
                     <MenuItem onClick={menuItemClickHandler} title={'All Employees'} currMenuItem={currMenuItem} />
                     <MenuItem onClick={menuItemClickHandler} title={'Top 5 Employees'} currMenuItem={currMenuItem} />
                     <MenuItem onClick={menuItemClickHandler} title={'Tasks'} currMenuItem={currMenuItem} />

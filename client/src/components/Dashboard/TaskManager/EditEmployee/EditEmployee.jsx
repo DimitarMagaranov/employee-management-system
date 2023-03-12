@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './EditEmployee.scss';
-import {Button, TextField} from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 
 import * as apiService from '../../../../services/apiService';
 
-const EditEmployee = ({ employee, setEmployeeToEdit, setEmployeesToEdit }) => {
+const EditEmployee = ({ employee, employees, setState }) => {
     const [salary, setSalary] = useState(0);
     const [open, setOpen] = useState(false);
 
@@ -23,8 +23,7 @@ const EditEmployee = ({ employee, setEmployeeToEdit, setEmployeesToEdit }) => {
                     isNew: false,
                 })
                 .then(() => {
-                    setEmployeeToEdit(() => null);
-                    setEmployeesToEdit(() => []);
+                    setState(() => employees.filter(x => x.id !== employee.id));
                 });
         } else {
             setOpen(true);
@@ -49,7 +48,7 @@ const EditEmployee = ({ employee, setEmployeeToEdit, setEmployeesToEdit }) => {
                 onChange={(e) => setSalary(() => e.target.value)}
             />
             <br />
-            <div id='alert-ctr'>
+            <div id="alert-ctr">
                 <Box sx={{ width: '50%' }}>
                     <Collapse in={open}>
                         <Alert

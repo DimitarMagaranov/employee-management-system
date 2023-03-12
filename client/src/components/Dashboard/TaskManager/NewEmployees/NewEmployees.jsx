@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './NewEmployees.scss';
 import EditEmployee from '../EditEmployee/EditEmployee';
 
@@ -11,18 +11,22 @@ import { TableRow } from '@mui/material';
 import {Paper} from '@mui/material';
 
 
-const NewEmployees = ({ employees }) => {
-    const [employeesToEdit, setEmployeesToEdit] = useState(employees);
+const NewEmployees = ({ employees, setState }) => {
+    const [employeesToEdit, setEmployeesToEdit] = useState(employees?.filter(x => x.isNew === true));
     const [employeeToEdit, setEmployeeToEdit] = useState();
+
+    useEffect(() => {
+        setEmployeesToEdit(() => employees?.filter(x => x.isNew === true));
+    }, [employees])
 
     const onEdintEmployeeInfoHandler = (employee) => {
         setEmployeeToEdit(() => employee);
     };
 
-    return employeesToEdit.length > 0 ? (
-        <>
-            {employeeToEdit && (
-                <EditEmployee employee={employeeToEdit} setEmployeeToEdit={setEmployeeToEdit} setEmployeesToEdit={setEmployeesToEdit} />
+    return employees.length > 0 ? (
+        <div id="tasks-ctr">
+            {employeesToEdit.length > 0 && employeeToEdit && (
+                <EditEmployee employee={employeeToEdit} employees={employees} setState={setState} />
             )}
             <h2 className="table-title">New employees</h2>
             <TableContainer component={Paper}>
@@ -57,7 +61,7 @@ const NewEmployees = ({ employees }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </>
+        </div>
     ) : (
         ''
     );

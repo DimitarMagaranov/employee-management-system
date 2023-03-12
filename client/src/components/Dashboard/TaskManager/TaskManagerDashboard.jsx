@@ -3,9 +3,10 @@ import Sidebar from '../../Sidebar/Sidebar';
 import { useState } from 'react';
 import AllEmployees from './AllEmployees/AllEmployees';
 import Tasks from './Tasks/Tasks';
+import NewEmployees from './NewEmployees/NewEmployees';
 
 const TaskManagerDashboard = () => {
-    const [employees, areEmployeesLoading] = useEmployees();
+    const [employees, areEmployeesLoading, setState] = useEmployees();
 
     const [selectedInfo, setSelectedInfo] = useState('All Employees');
 
@@ -23,6 +24,7 @@ const TaskManagerDashboard = () => {
     };
 
     const components = {
+        'New Employees': <NewEmployees employees={employees} setState={setState} />,
         'All Employees': <AllEmployees employees={employees} />,
         'Top 5 Employees': <AllEmployees employees={sortTop5Employees()} />,
         'Tasks': <Tasks />,
@@ -30,7 +32,7 @@ const TaskManagerDashboard = () => {
 
     return (
         <div className="dashboard">
-            <Sidebar isTaskManager={true} onSelectInfoHandler={onSelectInfoHandler} />
+            <Sidebar isTaskManager={true} onSelectInfoHandler={onSelectInfoHandler} areNewEmployees={employees?.filter(x => x.isNew === true)} />
             {areEmployeesLoading ? 'Loading...' : components[selectedInfo]}
         </div>
     );
