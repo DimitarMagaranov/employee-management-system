@@ -11,7 +11,7 @@ import { TableRow } from '@mui/material';
 import {Paper} from '@mui/material';
 
 
-const NewEmployees = ({ employees, setState }) => {
+const NewEmployees = ({ employees, updateEmployee }) => {
     const [employeesToEdit, setEmployeesToEdit] = useState(employees?.filter(x => x.isNew === true));
     const [employeeToEdit, setEmployeeToEdit] = useState();
 
@@ -26,7 +26,7 @@ const NewEmployees = ({ employees, setState }) => {
     return employees.length > 0 ? (
         <div id="tasks-ctr">
             {employeesToEdit.length > 0 && employeeToEdit && (
-                <EditEmployee employee={employeeToEdit} employees={employees} setState={setState} />
+                <EditEmployee employee={employeeToEdit} updateEmployee={updateEmployee} />
             )}
             <h2 className="table-title">New employees</h2>
             <TableContainer component={Paper}>

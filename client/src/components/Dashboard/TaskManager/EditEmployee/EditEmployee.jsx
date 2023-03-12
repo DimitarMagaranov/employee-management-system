@@ -6,28 +6,13 @@ import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 
-import * as apiService from '../../../../services/apiService';
-
-const EditEmployee = ({ employee, employees, setState }) => {
+const EditEmployee = ({ employee, updateEmployee }) => {
     const [salary, setSalary] = useState(0);
     const [open, setOpen] = useState(false);
 
     const onEditEmployeeHandler = (e) => {
         e.preventDefault();
-
-        if (salary > 0) {
-            apiService
-                .updateEmployee(employee.id, {
-                    ...employee,
-                    salary: salary,
-                    isNew: false,
-                })
-                .then(() => {
-                    setState(() => employees.filter(x => x.id !== employee.id));
-                });
-        } else {
-            setOpen(true);
-        }
+        salary > 0 ? updateEmployee(employee.id, salary) : setOpen(true);
     };
 
     return (
