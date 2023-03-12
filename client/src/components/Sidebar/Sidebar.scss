@@ -1,0 +1,15 @@
+#sidebar {
+    width: 20%;
+    background-color: var(--clr-primary);
+    color: white;
+    padding-left: 20px;
+    min-height: 100vh;
+}
+
+#sidebar h2 {
+    margin-bottom: 50px;
+}
+
+.menu-items {
+    list-style: none;
+}
