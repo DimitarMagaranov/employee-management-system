@@ -24,15 +24,6 @@ export function getOneEmployee(id) {
         .catch((err) => console.log(err));
 }
 
-export function getOneEmployeeByEmail(email) {
-    // return fetch(url)
-    //     .then((res) => res.json())
-    //     .then((data) => data.filter(x => x.email === email))
-    //     .catch((err) => console.log(err));
-
-    return getAllEmployees().filter(x => x.email === email);
-}
-
 export const updateEmployee = (id, data) => {
     return fetch(`${url}/${id}`, {
         method: 'PATCH',
