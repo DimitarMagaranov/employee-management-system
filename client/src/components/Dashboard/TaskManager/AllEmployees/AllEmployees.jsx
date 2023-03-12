@@ -9,7 +9,7 @@ import {Button} from '@mui/material';
 
 const AllEmployees = ({ employees, deleteEmployee, title }) => {
     return (
-        <div id="tasks-ctr">
+        <div className="table-ctr">
             <h2 className="table-title">{title}</h2>
             <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>

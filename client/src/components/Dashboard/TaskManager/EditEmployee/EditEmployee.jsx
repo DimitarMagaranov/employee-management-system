@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
+import './EditEmployee.scss';
 
 const EditEmployee = ({ employee, updateEmployee }) => {
     const [salary, setSalary] = useState(0);

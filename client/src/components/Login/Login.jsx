@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 import * as apiService from '../../services/apiService';
 
+import './Login.scss';
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import './Header.scss';
 
 const header = ({ isAuthenticated, userEmail }) => {
     return (

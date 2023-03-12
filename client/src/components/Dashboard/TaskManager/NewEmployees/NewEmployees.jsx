@@ -9,6 +9,8 @@ import { TableHead } from '@mui/material';
 import { TableRow } from '@mui/material';
 import {Paper} from '@mui/material';
 
+import './NewEmployees.scss';
+
 
 const NewEmployees = ({ employees, updateEmployee }) => {
     const [employeesToEdit, setEmployeesToEdit] = useState(employees?.filter(x => x.isNew === true));
@@ -23,7 +25,7 @@ const NewEmployees = ({ employees, updateEmployee }) => {
     };
 
     return employees.length > 0 ? (
-        <div id="tasks-ctr">
+        <div class="table-ctr">
             {employeesToEdit.length > 0 && employeeToEdit && (
                 <EditEmployee employee={employeeToEdit} updateEmployee={updateEmployee} />
             )}

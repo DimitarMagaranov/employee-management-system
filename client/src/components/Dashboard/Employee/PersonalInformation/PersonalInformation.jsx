@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as apiService from '../../../../services/apiService';
 import { auth } from '../../../../utils/firebase';
+import './PersonalInformation.scss';
 
 const PersonalInformation = ({ userInfo, onChangeUserInfo }) => {
     const [isLoading, setIsLoading] = useState();

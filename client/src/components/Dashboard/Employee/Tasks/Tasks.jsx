@@ -8,6 +8,7 @@ import {Paper} from '@mui/material';
 
 import * as apiService from '../../../../services/apiService';
 import { useEffect, useState } from 'react';
+import './Tasks.scss';
 
 const Tasks = ({ userInfo, onChangeUserInfo }) => {
     const [currTasks, setTasks] = useState();
@@ -39,7 +40,7 @@ const Tasks = ({ userInfo, onChangeUserInfo }) => {
     };
 
     return (
-        <div className="tasks-ctr">
+        <div className="table-ctr">
             <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>
                     <TableHead>

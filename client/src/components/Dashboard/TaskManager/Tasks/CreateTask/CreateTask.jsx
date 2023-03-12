@@ -63,7 +63,7 @@ const CreateTask = () => {
     return areEmployeesLoading ? (
         'Loading...'
     ) : (
-        <div className="table-ctr">
+        <div>
             <Box sx={{ width: '100%' }}>
                 <Collapse in={open}>
                     <Alert
