@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import MenuItem from './MenuItem/MenuItem';
-import './Sidebar.scss';
 
 const Sidebar = ({ isTaskManager, onSelectInfoHandler, areNewEmployees }) => {
     const [currMenuItem, setCurrMenuItem] = useState(`${isTaskManager ? 'All Employees' : 'Personal Information'}`);

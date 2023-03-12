@@ -1,4 +1,3 @@
-import './PersonalInformation.scss';
 import { useEffect, useState } from 'react';
 import * as apiService from '../../../../services/apiService';
 import { auth } from '../../../../utils/firebase';

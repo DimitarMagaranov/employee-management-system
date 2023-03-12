@@ -27,8 +27,8 @@ const TaskManagerDashboard = () => {
 
     const components = {
         'New Employees': <NewEmployees employees={employees} updateEmployee={updateEmployee} />,
-        'All Employees': <AllEmployees employees={employees} deleteEmployee={deleteEmployee} />,
-        'Top 5 Employees': <AllEmployees employees={sortTop5Employees()} />,
+        'All Employees': <AllEmployees employees={employees} deleteEmployee={deleteEmployee} title={'All Employees'} />,
+        'Top 5 Employees': <AllEmployees employees={sortTop5Employees()} title={'Top 5 Employees'} />,
         'Tasks': <Tasks />,
     };
 

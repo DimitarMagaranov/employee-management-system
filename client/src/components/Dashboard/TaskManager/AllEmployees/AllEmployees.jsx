@@ -7,9 +7,10 @@ import { TableRow } from '@mui/material';
 import {Paper} from '@mui/material';
 import {Button} from '@mui/material';
 
-const AllEmployees = ({ employees, deleteEmployee }) => {
+const AllEmployees = ({ employees, deleteEmployee, title }) => {
     return (
         <div id="tasks-ctr">
+            <h2 className="table-title">{title}</h2>
             <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>
                     <TableHead>

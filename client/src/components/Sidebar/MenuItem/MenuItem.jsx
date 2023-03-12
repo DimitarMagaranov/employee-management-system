@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import './MenuItem.scss';
 
 const MenuItem = ({onClick, title, currMenuItem}) => {
     let classes = ['nav-link'];

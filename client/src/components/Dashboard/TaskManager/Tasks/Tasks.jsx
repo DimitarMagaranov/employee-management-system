@@ -1,7 +1,6 @@
 import useTasks from '../../../../hooks/useTasks';
 import List from './List/List';
 import CreateTask from './CreateTask/CreateTask';
-import './Tasks.scss';
 import { useState } from 'react';
 
 const Tasks = () => {
@@ -20,7 +19,7 @@ const Tasks = () => {
 
     return (
         isLoading ? 'Loading...' : 
-        <div id='tasks-ctr'>
+        <div className='tasks-ctr'>
             <div id="task-menu">
                 <button id="create-task" className={activeButton === 'CREATE TASK' ? 'active' : ''} onClick={onSwapTables}>CREATE TASK</button>
                 <button id="completed" className={activeButton === 'COMPLETED TASKS' ? 'active' : ''} onClick={onSwapTables}>COMPLETED TASKS</button>

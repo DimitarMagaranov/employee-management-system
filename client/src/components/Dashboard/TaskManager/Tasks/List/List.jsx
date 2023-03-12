@@ -7,8 +7,6 @@ import { TableHead } from '@mui/material';
 import { TableRow } from '@mui/material';
 import { Paper } from '@mui/material';
 
-import './List.scss';
-
 const List = ({ title, tasks, deleteTask }) => {
     return (
         <div id="table-ctr">

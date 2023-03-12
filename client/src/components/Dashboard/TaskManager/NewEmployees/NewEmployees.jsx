@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './NewEmployees.scss';
 import EditEmployee from '../EditEmployee/EditEmployee';
 
 import { Table } from '@mui/material';
