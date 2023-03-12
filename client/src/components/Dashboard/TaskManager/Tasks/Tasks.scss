@@ -1,5 +1,9 @@
 #task-menu {
     margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 #task-menu button {

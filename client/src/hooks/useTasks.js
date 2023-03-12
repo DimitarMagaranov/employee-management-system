@@ -17,6 +17,8 @@ const useTasks = () => {
                         taskName: task.taskName,
                         taskDescription: task.description,
                         taskProcess: task.completed,
+                        startDate: task.startDate,
+                        completeDate: task.completeDate
                     });
                 });
             });
