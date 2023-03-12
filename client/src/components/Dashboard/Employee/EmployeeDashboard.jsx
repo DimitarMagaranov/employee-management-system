@@ -4,7 +4,7 @@ import Sidebar from '../../Sidebar/Sidebar';
 import PersonalInformation from './PersonalInformation/PersonalInformation';
 import Tasks from './Tasks/Tasks';
 
-const EmployeeDashboard = ({ userInfo, onChangeUserInfo }) => {
+const EmployeeDashboard = ({ userInfo, setUserInfo }) => {
     const [selectedInfo, setSelectedInfo] = useState('Personal Information');
 
     const onSelectInfoHandler = (info) => {
@@ -15,9 +15,9 @@ const EmployeeDashboard = ({ userInfo, onChangeUserInfo }) => {
         <div className="dashboard">
             <Sidebar isTaskManager={false} onSelectInfoHandler={onSelectInfoHandler} />
             {selectedInfo === 'Personal Information' ? (
-                <PersonalInformation userInfo={userInfo} onChangeUserInfo={onChangeUserInfo} />
+                <PersonalInformation userInfo={userInfo} setUserInfo={setUserInfo} />
             ) : (
-                <Tasks userInfo={userInfo} onChangeUserInfo={onChangeUserInfo} />
+                <Tasks userInfo={userInfo} setUserInfo={setUserInfo} />
             )}
         </div>
     );

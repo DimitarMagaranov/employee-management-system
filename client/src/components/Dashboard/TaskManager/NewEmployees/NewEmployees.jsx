@@ -18,7 +18,7 @@ const NewEmployees = ({ employees, updateEmployee }) => {
     };
 
     return employees.length > 0 ? (
-        <div class="table-ctr">
+        <div className="table-ctr">
             {employeesToEdit.length > 0 && employeeToEdit && <EditEmployee employee={employeeToEdit} updateEmployee={updateEmployee} />}
             <h2 className="table-title">New employees</h2>
             <TableContainer component={Paper}>

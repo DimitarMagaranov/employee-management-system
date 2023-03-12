@@ -4,7 +4,7 @@ import * as apiService from '../../../../services/apiService';
 import { auth } from '../../../../utils/firebase';
 import './PersonalInformation.scss';
 
-const PersonalInformation = ({ userInfo, onChangeUserInfo }) => {
+const PersonalInformation = ({ userInfo, setUserInfo }) => {
     const [isLoading, setIsLoading] = useState();
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const PersonalInformation = ({ userInfo, onChangeUserInfo }) => {
             userCredential.userInfo.updateEmail(newInfo.email);
         });
 
-        apiService.updateEmployee(userInfo.id, newInfo).then((data) => onChangeUserInfo(data));
+        apiService.updateEmployee(userInfo.id, newInfo).then((data) => setUserInfo(data));
     };
 
     return isLoading ? (

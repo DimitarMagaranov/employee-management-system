@@ -323,7 +323,7 @@
       "firstName": "Joshua",
       "lastName": "Petty",
       "email": "employee8@gmail.com",
-      "phoneNumber": "0888888888",
+      "phoneNumber": "0888888877",
       "dateOfBirth": "2000-01-01",
       "salary": "1700",
       "tasks": [
@@ -359,8 +359,8 @@
           "taskName": "task 6",
           "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda vel iure incidunt. Accusamus impedit inventore error totam odio tenetur amet? Praesentium eaque assumenda atque porro molestias repellendus vel quis earum.",
           "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
+          "completeDate": 1678652525758,
+          "completed": true
         },
         {
           "taskName": "task 7",

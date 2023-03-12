@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import * as apiService from '../../../../services/apiService';
 import './Tasks.scss';
 
-const Tasks = ({ userInfo, onChangeUserInfo }) => {
+const Tasks = ({ userInfo, setUserInfo }) => {
     const [currTasks, setTasks] = useState();
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const Tasks = ({ userInfo, onChangeUserInfo }) => {
     useEffect(() => {
         const updateTasksInterval = setInterval(() => {
             apiService.getOneEmployee(userInfo?.id).then((data) => {
-                onChangeUserInfo(data);
+                setUserInfo(data);
             });
         }, 5000);
 

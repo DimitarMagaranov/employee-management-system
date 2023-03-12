@@ -12,28 +12,23 @@ import * as apiService from './services/apiService';
 import './App.css';
 
 function App() {
-    const [user, setUser] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
-        auth.onAuthStateChanged(setUser);
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                apiService.getOneEmployee(user._delegate.uid).then((data) => {
+                    setUserInfo(() => data);
+                });
+            }
+        })
     }, []);
-
-    useEffect(() => {
-        apiService.getOneEmployee(user?._delegate.uid).then((data) => {
-            setUserInfo(() => data);
-        });
-    }, [user]);
-
-    const onChangeUserInfo = (info) => {
-        setUserInfo(() => info);
-    };
 
     const isTaskManager = userInfo?.role === 'taskManager';
 
     return (
         <div id="container">
-            <Header userEmail={user?._delegate.email} isAuthenticated={!!user} />
+            <Header userEmail={userInfo?.email} isAuthenticated={!!userInfo} />
             <Routes>
                 <Route
                     index
@@ -43,13 +38,13 @@ function App() {
                         ) : isTaskManager ? (
                             <TaskManagerDashboard />
                         ) : (
-                            <EmployeeDashboard userInfo={userInfo} onChangeUserInfo={onChangeUserInfo} />
+                            <EmployeeDashboard userInfo={userInfo} setUserInfo={setUserInfo} />
                         )
                     }
                 ></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>
-                <Route path="/logout" element={<Logout />}></Route>
+                <Route path="/logout" element={<Logout setUserInfo={setUserInfo} />}></Route>
             </Routes>
         </div>
     );

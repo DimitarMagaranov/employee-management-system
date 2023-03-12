@@ -16,7 +16,7 @@ const AllEmployees = ({ employees, deleteEmployee, title }) => {
                             <TableCell align="left">Salary</TableCell>
                             <TableCell align="center">Completed Tasks</TableCell>
                             <TableCell align="center">Uncompleted Tasks</TableCell>
-                            <TableCell align="right"></TableCell>
+                            {title !== 'Top 5 Employees' && <TableCell align="right"></TableCell>}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -36,11 +36,13 @@ const AllEmployees = ({ employees, deleteEmployee, title }) => {
                                     <TableCell align="left">{employee.salary}</TableCell>
                                     <TableCell align="center">{employee.tasks.filter((t) => t.completed === true).length}</TableCell>
                                     <TableCell align="center">{employee.tasks.filter((t) => t.completed !== true).length}</TableCell>
-                                    <TableCell align="right">
-                                        <Button variant="contained" color="error" onClick={() => deleteEmployee(employee.id)}>
-                                            delete
-                                        </Button>
-                                    </TableCell>
+                                    {title !== 'Top 5 Employees' && (
+                                        <TableCell align="right">
+                                            <Button variant="contained" color="error" onClick={() => deleteEmployee(employee.id)}>
+                                                delete
+                                            </Button>
+                                        </TableCell>
+                                    )}
                                 </TableRow>
                             ))}
                     </TableBody>
