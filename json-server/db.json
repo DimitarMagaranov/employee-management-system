@@ -5,7 +5,7 @@
       "role": "taskManager",
       "firstName": "Dimitar",
       "lastName": "Magaranov",
-      "email": "taskmanager@gmail.com",
+      "email": "taskManager@gmail.com",
       "phoneNumber": "0888888888",
       "dateOfBirth": "1993-03-20",
       "salary": "2000"
@@ -418,38 +418,6 @@
           "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda vel iure incidunt. Accusamus impedit inventore error totam odio tenetur amet? Praesentium eaque assumenda atque porro molestias repellendus vel quis earum."
         }
       ],
-      "isNew": false
-    },
-    {
-      "id": "aq4RD6q7saShP6cJYEhquq5qbZf1",
-      "firstName": "employee21",
-      "lastName": "employee21",
-      "email": "employee21@gmail.com",
-      "phoneNumber": "0888888888",
-      "role": "employee",
-      "dateOfBirth": "1999-02-02",
-      "salary": "2000",
-      "tasks": [
-        {
-          "taskName": "task 1",
-          "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda vel iure incidunt. Accusamus impedit inventore error totam odio tenetur amet? Praesentium eaque assumenda atque porro molestias repellendus vel quis earum.",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
-        }
-      ],
-      "isNew": false
-    },
-    {
-      "id": "Qi8tXWfjSNNWpHpDh12TgubMcKK2",
-      "firstName": "FirstName",
-      "lastName": "LastName",
-      "email": "employee1@gmail.com",
-      "phoneNumber": "0888888888",
-      "role": "employee",
-      "dateOfBirth": "1999-02-02",
-      "salary": "1300",
-      "tasks": [],
       "isNew": false
     },
     {

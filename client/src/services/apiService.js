@@ -24,6 +24,15 @@ export function getOneEmployee(id) {
         .catch((err) => console.log(err));
 }
 
+export function getOneEmployeeByEmail(email) {
+    // return fetch(url)
+    //     .then((res) => res.json())
+    //     .then((data) => data.filter(x => x.email === email))
+    //     .catch((err) => console.log(err));
+
+    return getAllEmployees().filter(x => x.email === email);
+}
+
 export const updateEmployee = (id, data) => {
     return fetch(`${url}/${id}`, {
         method: 'PATCH',
@@ -42,3 +51,11 @@ export const getTasksByUserId = (id) => {
         .then((data) => data.tasks)
         .catch((err) => console.log(err));
 };
+
+export function deleteEmployee(id) {
+    return fetch(`${url}/${id}`, {
+        method: 'DELETE',
+    })
+        .then((res) => res.status)
+        .catch((err) => console.log(err));
+}

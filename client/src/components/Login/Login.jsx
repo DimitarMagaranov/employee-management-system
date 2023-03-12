@@ -5,6 +5,8 @@ import { auth, firebaseErrMessages } from '../../utils/firebase';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import * as apiService from '../../services/apiService';
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,9 +14,21 @@ function Login() {
 
     const navigate = useNavigate();
 
-    function onLoginFormSUbmitHandler(e) {
+    const onLoginFormSUbmitHandler = (e) => {
         e.preventDefault();
 
+        apiService.getAllEmployees().then((data) => {
+            const user = data.find((x) => x.email === email);
+            if (user === undefined) {
+                setError(() => 'User with this email does not exist.');
+            } else {
+                loginToFirebase();
+            }
+        });
+    };
+
+    const loginToFirebase = () => {
+        setError(() => '');
         auth.signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 navigate('/');
@@ -23,7 +37,7 @@ function Login() {
                 console.log(error.message);
                 setError(() => firebaseErrMessages[error.message]);
             });
-    }
+    };
 
     return (
         <div className="login">

@@ -6,7 +6,7 @@ import Tasks from './Tasks/Tasks';
 import NewEmployees from './NewEmployees/NewEmployees';
 
 const TaskManagerDashboard = () => {
-    const [employees, areEmployeesLoading, updateEmployee] = useEmployees();
+    const [employees, areEmployeesLoading, updateEmployee, deleteEmployee] = useEmployees();
 
     const [selectedInfo, setSelectedInfo] = useState('All Employees');
 
@@ -25,7 +25,7 @@ const TaskManagerDashboard = () => {
 
     const components = {
         'New Employees': <NewEmployees employees={employees} updateEmployee={updateEmployee} />,
-        'All Employees': <AllEmployees employees={employees} />,
+        'All Employees': <AllEmployees employees={employees} deleteEmployee={deleteEmployee} />,
         'Top 5 Employees': <AllEmployees employees={sortTop5Employees()} />,
         'Tasks': <Tasks />,
     };

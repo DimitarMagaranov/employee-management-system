@@ -5,9 +5,9 @@ import { TableContainer } from '@mui/material';
 import { TableHead } from '@mui/material';
 import { TableRow } from '@mui/material';
 import {Paper} from '@mui/material';
-import NewEmployees from '../NewEmployees/NewEmployees';
+import {Button} from '@mui/material';
 
-const AllEmployees = ({ employees }) => {
+const AllEmployees = ({ employees, deleteEmployee }) => {
     return (
         <div id="tasks-ctr">
             <TableContainer component={Paper}>
@@ -22,6 +22,7 @@ const AllEmployees = ({ employees }) => {
                             <TableCell align="left">Salary</TableCell>
                             <TableCell align="right">Completed Tasks</TableCell>
                             <TableCell align="right">Uncompleted Tasks</TableCell>
+                            <TableCell align="right"></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -39,6 +40,7 @@ const AllEmployees = ({ employees }) => {
                                 <TableCell align="left">{employee.salary}</TableCell>
                                 <TableCell align="right">{employee.tasks.filter((t) => t.completed === true).length}</TableCell>
                                 <TableCell align="right">{employee.tasks.filter((t) => t.completed !== true).length}</TableCell>
+                                <TableCell align="right"><Button variant='contained' color='error' onClick={() => deleteEmployee(employee.id)}>delete</Button></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
