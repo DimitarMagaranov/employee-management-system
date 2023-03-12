@@ -451,6 +451,18 @@
       "salary": "1300",
       "tasks": [],
       "isNew": false
+    },
+    {
+      "id": "xiFVSGrpKRfUrTQYx1xGpwuuFq52",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "employee12@gmail.com",
+      "phoneNumber": "0888888888",
+      "role": "employee",
+      "dateOfBirth": "2020-02-02",
+      "salary": "0",
+      "tasks": [],
+      "isNew": true
     }
   ]
 }

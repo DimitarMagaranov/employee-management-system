@@ -1,5 +1,6 @@
 import './App.css';
 import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 import { auth } from './utils/firebase';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -49,6 +50,7 @@ function App() {
                     }
                 ></Route>
                 <Route path="/login" element={<Login />}></Route>
+                <Route path="/register" element={<Register />}></Route>
                 <Route path="/logout" element={<Logout />}></Route>
             </Routes>
         </div>
