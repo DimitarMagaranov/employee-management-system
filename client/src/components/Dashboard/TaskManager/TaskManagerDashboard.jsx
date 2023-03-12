@@ -14,8 +14,10 @@ const TaskManagerDashboard = () => {
     };
 
     const sortTop5Employees = () => {
+        const currentDate = new Date();
+        const timeBefore30Days = new Date(currentDate.getTime() - (30*86400000));
         const sorted = [...employees]
-        ?.sort((a, b) => b.tasks.filter((x) => x.completed === true).length - a.tasks.filter((x) => x.completed === true).length)
+        ?.sort((a, b) => b.tasks.filter((x) => x.completed === true && x.completeDate > timeBefore30Days).length - a.tasks.filter((x) => x.completed === true).length)
         .slice(0, 5);
         return sorted;
     };

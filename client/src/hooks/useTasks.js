@@ -24,7 +24,7 @@ const useTasks = () => {
         });
     }, []);
 
-    return [state, isLoading];
+    return [state, isLoading, setState];
 };
 
 export default useTasks;

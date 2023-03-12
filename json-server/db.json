@@ -39,34 +39,10 @@
           "completed": true
         },
         {
-          "taskName": "task 4",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
-        },
-        {
           "taskName": "task 5",
           "startDate": 1675552031435,
           "completeDate": 1678575613112,
           "completed": true
-        },
-        {
-          "taskName": "task 6",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
-        },
-        {
-          "taskName": "task 7",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
-        },
-        {
-          "taskName": "task 8",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
         },
         {
           "taskName": "task 9",
@@ -106,12 +82,6 @@
           "completed": true
         },
         {
-          "taskName": "task 2",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
-        },
-        {
           "taskName": "task 3",
           "startDate": 1675552031435,
           "completeDate": 1678575613112,
@@ -143,22 +113,10 @@
           "completed": true
         },
         {
-          "taskName": "task 2",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
-        },
-        {
           "taskName": "task 3",
           "startDate": 1675552031435,
           "completeDate": 1678575613112,
           "completed": true
-        },
-        {
-          "taskName": "task 4",
-          "startDate": 1678575613112,
-          "completeDate": null,
-          "completed": false
         },
         {
           "taskName": "task 5",
@@ -458,6 +416,18 @@
         }
       ],
       "isNew": false
+    },
+    {
+      "id": "Qi8tXWfjSNNWpHpDh12TgubMcKK2",
+      "firstName": "FirstName",
+      "lastName": "LastName",
+      "email": "employee1@gmail.com",
+      "phoneNumber": "0888888888",
+      "role": "employee",
+      "dateOfBirth": "1999-02-02",
+      "salary": "0",
+      "tasks": [],
+      "isNew": true
     }
   ]
 }

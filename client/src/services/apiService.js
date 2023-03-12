@@ -41,4 +41,4 @@ export const getTasksByUserId = (id) => {
         .then((res) => res.json())
         .then((data) => data.tasks)
         .catch((err) => console.log(err));
-}
+};
