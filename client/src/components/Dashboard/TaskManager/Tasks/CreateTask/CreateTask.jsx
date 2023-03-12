@@ -10,7 +10,6 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
-import dayjs from 'dayjs';
 
 import useEmployees from '../../../../../hooks/useEmployees';
 import { FormGroup } from '@mui/material';
@@ -20,6 +19,7 @@ import * as apiService from '../../../../../services/apiService';
 const CreateTask = () => {
     const [employee, setEmployee] = useState({});
     const [taskName, setTaskName] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
     const [employees, areEmployeesLoading] = useEmployees();
     const [taskFieldDisabled, setTaskFieldDisabled] = useState(true);
     const [submitDisabled, setSubmitDisabled] = useState(true);
@@ -34,24 +34,31 @@ const CreateTask = () => {
 
     const handleChangeTaskName = (e) => {
         setTaskName(() => e.target.value);
+    };
+
+    const handleChangeTaskDescription = (e) => {
+        setTaskDescription(() => e.target.value);
         setSubmitDisabled(e.target.value === '');
     };
 
     const handleSubmit = () => {
-        apiService.updateEmployee(employee.id, {
-            tasks: [
-                ...employee.tasks,
-                {
-                    taskName: taskName,
-                    startDate: new Date().valueOf(),
-                    completeDate: null,
-                    completed: false,
-                },
-            ],
-        }).then((data) => {
-            setOpen(true);
-            setEmployee(() => data);
-        });
+        apiService
+            .updateEmployee(employee.id, {
+                tasks: [
+                    ...employee.tasks,
+                    {
+                        taskName: taskName,
+                        startDate: new Date().valueOf(),
+                        completeDate: null,
+                        completed: false,
+                        description: taskDescription,
+                    },
+                ],
+            })
+            .then((data) => {
+                setOpen(true);
+                setEmployee(() => data);
+            });
     };
 
     return areEmployeesLoading ? (
@@ -61,7 +68,7 @@ const CreateTask = () => {
             <Box sx={{ width: '100%' }}>
                 <Collapse in={open}>
                     <Alert
-                    severity='success'
+                        severity="success"
                         action={
                             <IconButton
                                 aria-label="close"
@@ -84,10 +91,10 @@ const CreateTask = () => {
             <Box sx={{ minWidth: 120, backgroundColor: 'white', padding: '20px', borderRadius: '5px', marginBottom: '50px' }}>
                 <FormGroup>
                     <FormControl fullWidth sx={{ marginBottom: '20px' }}>
-                        <InputLabel id="demo-simple-select-label">Employee</InputLabel>
+                        <InputLabel id="simple-select-label">Employee</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                            labelId="simple-select-label"
+                            id="simple-select"
                             label="Employee"
                             defaultValue={''}
                             onChange={handleChangeEmployee}
@@ -106,6 +113,17 @@ const CreateTask = () => {
                             variant="outlined"
                             multiline
                             defaultValue={taskName}
+                        />
+                    </FormControl>
+                    <FormControl fullWidth sx={{ marginBottom: '20px' }}>
+                        <TextField
+                            disabled={taskFieldDisabled}
+                            onChange={handleChangeTaskDescription}
+                            id="outlined-basic"
+                            label="Task description"
+                            variant="outlined"
+                            multiline
+                            defaultValue={taskDescription}
                         />
                     </FormControl>
                     <Button

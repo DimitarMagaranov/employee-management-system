@@ -1,11 +1,11 @@
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
+import { Table } from '@mui/material';
+import { TableBody } from '@mui/material';
+import { TableCell } from '@mui/material';
+import { TableContainer } from '@mui/material';
+import { TableHead } from '@mui/material';
+import { TableRow } from '@mui/material';
+import { Paper } from '@mui/material';
 
 import * as apiService from '../../../../../services/apiService';
 
@@ -31,8 +31,9 @@ const List = ({ title, tasks, setState }) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>No</TableCell>
-                            <TableCell>Task Name</TableCell>
                             <TableCell align="left">Employee</TableCell>
+                            <TableCell>Task Name</TableCell>
+                            <TableCell>Task Description</TableCell>
                             {title === 'Uncompleted Tasks' && <TableCell align="right"></TableCell>}
                         </TableRow>
                     </TableHead>
@@ -42,10 +43,13 @@ const List = ({ title, tasks, setState }) => {
                                 <TableCell component="th" scope="row">
                                     {index + 1}
                                 </TableCell>
+                                <TableCell align="left">{task.employeeFullName}</TableCell>
                                 <TableCell component="th" scope="row">
                                     {task.taskName}
                                 </TableCell>
-                                <TableCell align="left">{task.employeeFullName}</TableCell>
+                                <TableCell component="th" scope="row">
+                                    {task.taskDescription}
+                                </TableCell>
                                 <TableCell align="left">
                                     {title === 'Uncompleted Tasks' && (
                                         <Button

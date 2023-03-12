@@ -1,16 +1,11 @@
+import { useState } from 'react';
 import './EditEmployee.scss';
-import { TextField, Button } from '@material-ui/core';
-import { useState, useEffect } from 'react';
-import dayjs from 'dayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateField } from '@mui/x-date-pickers/DateField';
+import {Button, TextField} from '@mui/material';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 
-import { auth } from '../../../../utils/firebase';
 import * as apiService from '../../../../services/apiService';
 
 const EditEmployee = ({ employee, setEmployeeToEdit, setEmployeesToEdit }) => {

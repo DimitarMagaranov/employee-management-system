@@ -1,10 +1,10 @@
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { Table } from '@mui/material';
+import { TableBody } from '@mui/material';
+import { TableCell } from '@mui/material';
+import { TableContainer } from '@mui/material';
+import { TableHead } from '@mui/material';
+import { TableRow } from '@mui/material';
+import {Paper} from '@mui/material';
 
 import * as apiService from '../../../../services/apiService';
 import { useEffect, useState } from 'react';
@@ -48,7 +48,8 @@ const Tasks = ({ userInfo, onChangeUserInfo }) => {
                         <TableRow>
                             <TableCell>No</TableCell>
                             <TableCell>Task Name</TableCell>
-                            <TableCell align="right">Process</TableCell>
+                            <TableCell>Task Description</TableCell>
+                            <TableCell align="left">Process</TableCell>
                             <TableCell align="right"></TableCell>
                         </TableRow>
                     </TableHead>
@@ -61,7 +62,10 @@ const Tasks = ({ userInfo, onChangeUserInfo }) => {
                                 <TableCell component="th" scope="row">
                                     {task.taskName}
                                 </TableCell>
-                                <TableCell align="right">
+                                <TableCell style={{width: '60%'}} align="left">
+                                    {task.description}
+                                </TableCell>
+                                <TableCell align="left">
                                     <p className={`${task.completed !== true ? 'uncompleted' : 'completed'}`}>
                                         {task.completed !== true ? 'Uncompleted' : 'Completed'}
                                     </p>

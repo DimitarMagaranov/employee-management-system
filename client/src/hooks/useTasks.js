@@ -15,6 +15,7 @@ const useTasks = () => {
                         employeeId: employee.id,
                         employeeFullName: `${employee.firstName} ${employee.lastName}`,
                         taskName: task.taskName,
+                        taskDescription: task.description,
                         taskProcess: task.completed
                     });
                 });
