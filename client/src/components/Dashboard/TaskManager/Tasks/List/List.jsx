@@ -18,7 +18,7 @@ const List = ({ title, tasks, deleteTask }) => {
                             <TableCell>No</TableCell>
                             <TableCell align="left">Employee</TableCell>
                             <TableCell>Task Name</TableCell>
-                            <TableCell>Task Description</TableCell>
+                            <TableCell style={{width: '50%'}}>Task Description</TableCell>
                             {title === 'Uncompleted Tasks' && <TableCell align="right"></TableCell>}
                         </TableRow>
                     </TableHead>
@@ -32,7 +32,7 @@ const List = ({ title, tasks, deleteTask }) => {
                                 <TableCell component="th" scope="row">
                                     {task.taskName}
                                 </TableCell>
-                                <TableCell component="th" scope="row">
+                                <TableCell style={{width: '50%'}} component="th" scope="row">
                                     {task.taskDescription}
                                 </TableCell>
                                 <TableCell align="left">
