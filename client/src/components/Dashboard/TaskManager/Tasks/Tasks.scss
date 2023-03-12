@@ -1,0 +1,24 @@
+#task-menu {
+    margin: auto;
+}
+
+#task-menu button {
+    margin-left: 30px;
+    padding: 8px 16px;
+    border-radius: 3px;
+    border: none;
+    letter-spacing: 1px;
+    font-size: 16px;
+    cursor: pointer;
+    color: rgb(64, 78, 103);
+}
+
+#task-menu button:hover {
+    color: white;
+    background-color: rgb(64, 78, 103);
+}
+
+#task-menu button.active {
+    color: white;
+    background-color: rgb(64, 78, 103);
+}

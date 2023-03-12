@@ -13,8 +13,8 @@ const List = ({ title, tasks, deleteTask }) => {
     return (
         <div id="table-ctr">
             <h2 className="table-title">{title}</h2>
-            <TableContainer style={{ maxHeight: 400 }} component={Paper}>
-                <Table stickyHeader>
+            <TableContainer component={Paper}>
+                <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell>No</TableCell>
@@ -42,7 +42,7 @@ const List = ({ title, tasks, deleteTask }) => {
                                         <Button
                                             onClick={() => deleteTask(task.employeeId, task.taskName)}
                                             variant="contained"
-                                            color="secondary"
+                                            color="error"
                                         >
                                             delete
                                         </Button>
