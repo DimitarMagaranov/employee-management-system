@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+
 import './Header.scss';
 
 const header = ({ isAuthenticated, userEmail }) => {
@@ -17,14 +18,10 @@ const header = ({ isAuthenticated, userEmail }) => {
                 ) : (
                     <ul>
                         <li>
-                            <NavLink to="/login">
-                                Login
-                            </NavLink>
+                            <NavLink to="/login">Login</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/register">
-                                Register
-                            </NavLink>
+                            <NavLink to="/register">Register</NavLink>
                         </li>
                     </ul>
                 )}

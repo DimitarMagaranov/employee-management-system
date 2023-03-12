@@ -1,24 +1,17 @@
 import { useEffect, useState } from 'react';
+
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+
 import EditEmployee from '../EditEmployee/EditEmployee';
-
-import { Table } from '@mui/material';
-import { TableBody } from '@mui/material';
-import { TableCell } from '@mui/material';
-import { TableContainer } from '@mui/material';
-import { TableHead } from '@mui/material';
-import { TableRow } from '@mui/material';
-import {Paper} from '@mui/material';
-
 import './NewEmployees.scss';
 
-
 const NewEmployees = ({ employees, updateEmployee }) => {
-    const [employeesToEdit, setEmployeesToEdit] = useState(employees?.filter(x => x.isNew === true));
+    const [employeesToEdit, setEmployeesToEdit] = useState(employees?.filter((x) => x.isNew === true));
     const [employeeToEdit, setEmployeeToEdit] = useState();
 
     useEffect(() => {
-        setEmployeesToEdit(() => employees?.filter(x => x.isNew === true));
-    }, [employees])
+        setEmployeesToEdit(() => employees?.filter((x) => x.isNew === true));
+    }, [employees]);
 
     const onEdintEmployeeInfoHandler = (employee) => {
         setEmployeeToEdit(() => employee);
@@ -26,9 +19,7 @@ const NewEmployees = ({ employees, updateEmployee }) => {
 
     return employees.length > 0 ? (
         <div class="table-ctr">
-            {employeesToEdit.length > 0 && employeeToEdit && (
-                <EditEmployee employee={employeeToEdit} updateEmployee={updateEmployee} />
-            )}
+            {employeesToEdit.length > 0 && employeeToEdit && <EditEmployee employee={employeeToEdit} updateEmployee={updateEmployee} />}
             <h2 className="table-title">New employees</h2>
             <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>

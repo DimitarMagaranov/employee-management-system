@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import * as apiService from '../services/apiService';
 
 const useTasks = () => {
@@ -7,28 +8,30 @@ const useTasks = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        apiService.getAllEmployees().then((data) => {
-            let tasks = [];
-            data.filter((x) => x.role !== 'taskManager').forEach((employee) => {
-                employee.tasks.forEach((task) => {
-                    tasks.push({
-                        employeeId: employee.id,
-                        employeeFullName: `${employee.firstName} ${employee.lastName}`,
-                        taskName: task.taskName,
-                        taskDescription: task.description,
-                        taskProcess: task.completed,
-                        startDate: task.startDate,
-                        completeDate: task.completeDate
+        apiService
+            .getAllEmployees()
+            .then((data) => {
+                let tasks = [];
+                data.filter((x) => x.role !== 'taskManager').forEach((employee) => {
+                    employee.tasks.forEach((task) => {
+                        tasks.push({
+                            employeeId: employee.id,
+                            employeeFullName: `${employee.firstName} ${employee.lastName}`,
+                            taskName: task.taskName,
+                            taskDescription: task.description,
+                            taskProcess: task.completed,
+                            startDate: task.startDate,
+                            completeDate: task.completeDate,
+                        });
                     });
                 });
+                setState(() => tasks);
+                setIsLoading(() => false);
+            })
+            .catch((error) => {
+                console.log(error);
+                setIsLoading(false);
             });
-            setState(() => tasks);
-            setIsLoading(() => false);
-        })
-        .catch((error) => {
-            console.log(error);
-            setIsLoading(false);
-        });
     }, []);
 
     const deleteTask = (employeeId, taskName) => {

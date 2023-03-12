@@ -1,12 +1,12 @@
 const url = 'http://localhost:5000/employees';
 
-export function getAllEmployees() {
+export const getAllEmployees = () => {
     return fetch(url)
         .then((res) => res.json())
         .catch((err) => console.log(err));
-}
+};
 
-export function createEmployee(data) {
+export const createEmployee = (data) => {
     return fetch(url, {
         method: 'POST',
         headers: {
@@ -16,13 +16,13 @@ export function createEmployee(data) {
     })
         .then((res) => res.json())
         .catch((err) => console.log(err));
-}
+};
 
-export function getOneEmployee(id) {
+export const getOneEmployee = (id) => {
     return fetch(`${url}/${id}`)
         .then((res) => res.json())
         .catch((err) => console.log(err));
-}
+};
 
 export const updateEmployee = (id, data) => {
     return fetch(`${url}/${id}`, {
@@ -43,10 +43,10 @@ export const getTasksByUserId = (id) => {
         .catch((err) => console.log(err));
 };
 
-export function deleteEmployee(id) {
+export const deleteEmployee = (id) => {
     return fetch(`${url}/${id}`, {
         method: 'DELETE',
     })
         .then((res) => res.status)
         .catch((err) => console.log(err));
-}
+};

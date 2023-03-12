@@ -1,13 +1,8 @@
-import { Table } from '@mui/material';
-import { TableBody } from '@mui/material';
-import { TableCell } from '@mui/material';
-import { TableContainer } from '@mui/material';
-import { TableHead } from '@mui/material';
-import { TableRow } from '@mui/material';
-import {Paper} from '@mui/material';
+import { useEffect, useState } from 'react';
+
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 import * as apiService from '../../../../services/apiService';
-import { useEffect, useState } from 'react';
 import './Tasks.scss';
 
 const Tasks = ({ userInfo, onChangeUserInfo }) => {
@@ -61,7 +56,7 @@ const Tasks = ({ userInfo, onChangeUserInfo }) => {
                                 <TableCell component="th" scope="row">
                                     {task.taskName}
                                 </TableCell>
-                                <TableCell style={{width: '60%'}} align="left">
+                                <TableCell style={{ width: '60%' }} align="left">
                                     {task.description}
                                 </TableCell>
                                 <TableCell align="left">

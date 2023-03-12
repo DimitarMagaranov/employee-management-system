@@ -1,9 +1,10 @@
-import useEmployees from '../../../hooks/useEmployees';
-import Sidebar from '../../Sidebar/Sidebar';
 import { useState } from 'react';
+
+import useEmployees from '../../../hooks/useEmployees';
 import AllEmployees from './AllEmployees/AllEmployees';
-import Tasks from './Tasks/Tasks';
 import NewEmployees from './NewEmployees/NewEmployees';
+import Sidebar from '../../Sidebar/Sidebar';
+import Tasks from './Tasks/Tasks';
 
 const TaskManagerDashboard = () => {
     const [employees, areEmployeesLoading, updateEmployee, deleteEmployee] = useEmployees();
@@ -18,10 +19,14 @@ const TaskManagerDashboard = () => {
 
     const sortTop5Employees = () => {
         const currentDate = new Date();
-        const timeBefore30Days = new Date(currentDate.getTime() - (30*86400000));
+        const timeBefore30Days = new Date(currentDate.getTime() - 30 * 86400000);
         const sorted = [...employees]
-        ?.sort((a, b) => b.tasks.filter((x) => x.completed === true && x.completeDate > timeBefore30Days).length - a.tasks.filter((x) => x.completed === true).length)
-        .slice(0, 5);
+            ?.sort(
+                (a, b) =>
+                    b.tasks.filter((x) => x.completed === true && x.completeDate > timeBefore30Days).length -
+                    a.tasks.filter((x) => x.completed === true).length
+            )
+            .slice(0, 5);
         return sorted;
     };
 
@@ -29,12 +34,12 @@ const TaskManagerDashboard = () => {
         'New Employees': <NewEmployees employees={employees} updateEmployee={updateEmployee} />,
         'All Employees': <AllEmployees employees={employees} deleteEmployee={deleteEmployee} title={'All Employees'} />,
         'Top 5 Employees': <AllEmployees employees={sortTop5Employees()} title={'Top 5 Employees'} />,
-        'Tasks': <Tasks />,
+        Tasks: <Tasks />,
     };
 
     return (
         <div className="dashboard">
-            <Sidebar isTaskManager={true} onSelectInfoHandler={onSelectInfoHandler} areNewEmployees={employees?.filter(x => x.isNew === true)} />
+            <Sidebar isTaskManager={true} onSelectInfoHandler={onSelectInfoHandler} areNewEmployees={employees?.filter((x) => x.isNew === true)} />
             {areEmployeesLoading ? 'Loading...' : components[selectedInfo]}
         </div>
     );

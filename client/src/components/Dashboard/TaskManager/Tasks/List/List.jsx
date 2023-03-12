@@ -1,11 +1,4 @@
-import { Button } from '@mui/material';
-import { Table } from '@mui/material';
-import { TableBody } from '@mui/material';
-import { TableCell } from '@mui/material';
-import { TableContainer } from '@mui/material';
-import { TableHead } from '@mui/material';
-import { TableRow } from '@mui/material';
-import { Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 
 const List = ({ title, tasks, deleteTask }) => {
     return (
@@ -18,7 +11,7 @@ const List = ({ title, tasks, deleteTask }) => {
                             <TableCell>No</TableCell>
                             <TableCell align="left">Employee</TableCell>
                             <TableCell>Task Name</TableCell>
-                            <TableCell style={{width: '50%'}}>Task Description</TableCell>
+                            <TableCell style={{ width: '50%' }}>Task Description</TableCell>
                             {title === 'Uncompleted Tasks' && <TableCell align="right"></TableCell>}
                         </TableRow>
                     </TableHead>
@@ -32,16 +25,12 @@ const List = ({ title, tasks, deleteTask }) => {
                                 <TableCell component="th" scope="row">
                                     {task.taskName}
                                 </TableCell>
-                                <TableCell style={{width: '50%'}} component="th" scope="row">
+                                <TableCell style={{ width: '50%' }} component="th" scope="row">
                                     {task.taskDescription}
                                 </TableCell>
                                 <TableCell align="left">
                                     {title === 'Uncompleted Tasks' && (
-                                        <Button
-                                            onClick={() => deleteTask(task.employeeId, task.taskName)}
-                                            variant="contained"
-                                            color="error"
-                                        >
+                                        <Button onClick={() => deleteTask(task.employeeId, task.taskName)} variant="contained" color="error">
                                             delete
                                         </Button>
                                     )}

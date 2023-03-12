@@ -1,11 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { auth, firebaseErrMessages } from '../../utils/firebase';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import * as apiService from '../../services/apiService';
 
-function Login() {
+function Register() {
     const [dateOfBirth, setDateOfBirth] = useState('1999-01-01');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -56,7 +55,6 @@ function Login() {
                         onChange={(e) => setFirstName(() => e.target.value)}
                         required
                     />
-                    <span></span>
                 </div>
                 <div className="txt_field">
                     <input
@@ -67,11 +65,9 @@ function Login() {
                         onChange={(e) => setLastName(() => e.target.value)}
                         required
                     />
-                    <span></span>
                 </div>
                 <div className="txt_field">
                     <input name="email" id="email" placeholder="Email" type="text" onChange={(e) => setEmail(() => e.target.value)} required />
-                    <span></span>
                 </div>
                 <div className="txt_field">
                     <input
@@ -82,7 +78,6 @@ function Login() {
                         onChange={(e) => setPhoneNumber(() => e.target.value)}
                         required
                     />
-                    <span></span>
                 </div>
                 <div className="txt_field">
                     <label htmlFor="dateOfBirth">Date of birth</label>
@@ -94,8 +89,6 @@ function Login() {
                         onChange={(e) => setDateOfBirth(() => e.target.value)}
                         required
                     />
-
-                    <span></span>
                 </div>
                 <div className="txt_field">
                     <input
@@ -106,7 +99,6 @@ function Login() {
                         onChange={(e) => setPassword(() => e.target.value)}
                         required
                     />
-                    <span></span>
                 </div>
 
                 <span className="err-msg">{firebaseErrorMsg}</span>
@@ -121,4 +113,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

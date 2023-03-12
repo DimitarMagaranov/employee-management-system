@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
+
 import * as apiService from '../services/apiService';
-import {auth} from '../utils/firebase';
 
 const useEmployees = () => {
     const [state, setState] = useState([]);
@@ -22,7 +22,7 @@ const useEmployees = () => {
     }, [reload]);
 
     const updateEmployee = (employeeId, salary) => {
-        const employee = state.find(x => x.id === employeeId);
+        const employee = state.find((x) => x.id === employeeId);
         apiService
             .updateEmployee(employeeId, {
                 ...employee,
@@ -35,11 +35,10 @@ const useEmployees = () => {
     };
 
     const deleteEmployee = (employeeId) => {
-        apiService.deleteEmployee(employeeId)
-        .then((res) => {
+        apiService.deleteEmployee(employeeId).then((res) => {
             setReload(!reload);
-        })
-    }
+        });
+    };
 
     const employees = state?.filter((x) => x.role != 'taskManager').sort((a, b) => a.firstName.localeCompare(b.firstName));
 

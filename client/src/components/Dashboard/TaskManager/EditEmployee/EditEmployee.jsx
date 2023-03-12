@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { Button, TextField } from '@mui/material';
-import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
+
+import { Button, TextField, Box, Alert, Collapse, IconButton } from '@mui/material';
+
 import './EditEmployee.scss';
 
 const EditEmployee = ({ employee, updateEmployee }) => {

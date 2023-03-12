@@ -1,18 +1,8 @@
 import { useState } from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import Alert from '@mui/material/Alert';
-import IconButton from '@mui/material/IconButton';
-import Collapse from '@mui/material/Collapse';
-import Button from '@mui/material/Button';
+
+import { Box, InputLabel, MenuItem, FormControl, Select, TextField, Alert, IconButton, Collapse, Button, FormGroup } from '@mui/material';
 
 import useEmployees from '../../../../../hooks/useEmployees';
-import { FormGroup } from '@mui/material';
-
 import * as apiService from '../../../../../services/apiService';
 
 const CreateTask = () => {
@@ -91,13 +81,7 @@ const CreateTask = () => {
                 <FormGroup>
                     <FormControl fullWidth sx={{ marginBottom: '20px' }}>
                         <InputLabel id="simple-select-label">Employee</InputLabel>
-                        <Select
-                            labelId="simple-select-label"
-                            id="simple-select"
-                            label="Employee"
-                            defaultValue={''}
-                            onChange={handleChangeEmployee}
-                        >
+                        <Select labelId="simple-select-label" id="simple-select" label="Employee" defaultValue={''} onChange={handleChangeEmployee}>
                             {employees?.map((employee) => {
                                 return <MenuItem key={employee.id} value={employee.id}>{`${employee.firstName} ${employee.lastName}`}</MenuItem>;
                             })}

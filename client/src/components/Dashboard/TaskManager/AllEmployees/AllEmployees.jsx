@@ -1,11 +1,4 @@
-import { Table } from '@mui/material';
-import { TableBody } from '@mui/material';
-import { TableCell } from '@mui/material';
-import { TableContainer } from '@mui/material';
-import { TableHead } from '@mui/material';
-import { TableRow } from '@mui/material';
-import {Paper} from '@mui/material';
-import {Button} from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 
 const AllEmployees = ({ employees, deleteEmployee, title }) => {
     return (
@@ -27,23 +20,29 @@ const AllEmployees = ({ employees, deleteEmployee, title }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {employees?.filter(x => x.isNew === false).map((employee, index) => (
-                            <TableRow key={employee.id}>
-                                <TableCell component="th" scope="row">
-                                    {index + 1}
-                                </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {`${employee.firstName} ${employee.lastName}`}
-                                </TableCell>
-                                <TableCell align="left">{employee.email}</TableCell>
-                                <TableCell align="left">{employee.phoneNumber}</TableCell>
-                                <TableCell align="left">{employee.dateOfBirth}</TableCell>
-                                <TableCell align="left">{employee.salary}</TableCell>
-                                <TableCell align="center">{employee.tasks.filter((t) => t.completed === true).length}</TableCell>
-                                <TableCell align="center">{employee.tasks.filter((t) => t.completed !== true).length}</TableCell>
-                                <TableCell align="right"><Button variant='contained' color='error' onClick={() => deleteEmployee(employee.id)}>delete</Button></TableCell>
-                            </TableRow>
-                        ))}
+                        {employees
+                            ?.filter((x) => x.isNew === false)
+                            .map((employee, index) => (
+                                <TableRow key={employee.id}>
+                                    <TableCell component="th" scope="row">
+                                        {index + 1}
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        {`${employee.firstName} ${employee.lastName}`}
+                                    </TableCell>
+                                    <TableCell align="left">{employee.email}</TableCell>
+                                    <TableCell align="left">{employee.phoneNumber}</TableCell>
+                                    <TableCell align="left">{employee.dateOfBirth}</TableCell>
+                                    <TableCell align="left">{employee.salary}</TableCell>
+                                    <TableCell align="center">{employee.tasks.filter((t) => t.completed === true).length}</TableCell>
+                                    <TableCell align="center">{employee.tasks.filter((t) => t.completed !== true).length}</TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="error" onClick={() => deleteEmployee(employee.id)}>
+                                            delete
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
                     </TableBody>
                 </Table>
             </TableContainer>

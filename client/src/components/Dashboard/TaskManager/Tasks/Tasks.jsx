@@ -1,8 +1,8 @@
-import useTasks from '../../../../hooks/useTasks';
-import List from './List/List';
-import CreateTask from './CreateTask/CreateTask';
 import { useState } from 'react';
 
+import useTasks from '../../../../hooks/useTasks';
+import CreateTask from './CreateTask/CreateTask';
+import List from './List/List';
 import './Tasks.scss';
 
 const Tasks = () => {
@@ -14,17 +14,16 @@ const Tasks = () => {
     };
 
     const getCompletedTasks = () => {
+        const currentDate = new Date();
+        let timeBefore = 0;
+
         if (activeButton === 'COMPLETED IN THE PAST WEEK') {
-            const currentDate = new Date();
-            const timeBefore7Days = new Date(currentDate.getTime() - 7 * 86400000);
-            const filtered = [...tasks].filter((x) => x.completeDate > timeBefore7Days);
-            return filtered;
+            timeBefore = new Date(currentDate.getTime() - 7 * 86400000);
         } else {
-            const currentDate = new Date();
-            const timeBefore30Days = new Date(currentDate.getTime() - 30 * 86400000);
-            const filtered = [...tasks].filter((x) => x.completeDate > timeBefore30Days);
-            return filtered;
+            timeBefore = new Date(currentDate.getTime() - 30 * 86400000);
         }
+
+        return tasks.filter((x) => x.completeDate > timeBefore);
     };
 
     const components = {
