@@ -430,7 +430,7 @@
       "dateOfBirth": "2020-02-02",
       "salary": "2000",
       "tasks": [],
-      "isNew": false
+      "isNew": true
     }
   ]
 }
