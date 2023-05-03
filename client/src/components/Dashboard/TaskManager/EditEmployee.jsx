@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
-import { Button, TextField, Box, Alert, Collapse, IconButton } from '@mui/material';
-
-import './EditEmployee.scss';
+import { Button, TextField, Box, Alert, Collapse, IconButton, styled, Divider } from '@mui/material';
 
 const EditEmployee = ({ employee, updateEmployee }) => {
     const [salary, setSalary] = useState(0);
@@ -13,16 +11,21 @@ const EditEmployee = ({ employee, updateEmployee }) => {
         salary > 0 ? updateEmployee(employee.id, salary) : setOpen(true);
     };
 
+    const STextField = styled(TextField)(() => ({
+        width: '40%',
+        margin: '5px',
+        backgroundColor: 'white',
+        boxShadow: '0px 10px 18px -11px white',
+    }));
+
     return (
-        <form id="new-employee-form">
-            <TextField className="textField" type="text" label="First name" variant="outlined" defaultValue={employee.firstName} disabled />
-            <TextField className="textField" type="text" label="Last name" variant="outlined" defaultValue={employee.lastName} disabled />
-            <br />
-            <TextField className="textField" type="text" label="Email" variant="outlined" defaultValue={employee.email} disabled />
-            <TextField className="textField" type="text" label="Phone number" variant="outlined" defaultValue={employee.phoneNumber} disabled />
-            <br />
-            <TextField className="textField" type="text" label="Date of birth" variant="outlined" defaultValue={employee.dateOfBirth} disabled />
-            <TextField
+        <Box sx={{ textAlign: 'center' }}>
+            <STextField type="text" label="First name" variant="outlined" defaultValue={employee.firstName} disabled />
+            <STextField type="text" label="Last name" variant="outlined" defaultValue={employee.lastName} disabled />
+            <STextField type="text" label="Email" variant="outlined" defaultValue={employee.email} disabled />
+            <STextField type="text" label="Phone number" variant="outlined" defaultValue={employee.phoneNumber} disabled />
+            <STextField type="text" label="Date of birth" variant="outlined" defaultValue={employee.dateOfBirth} disabled />
+            <STextField
                 className="textField"
                 type="number"
                 label="Salary"
@@ -30,8 +33,13 @@ const EditEmployee = ({ employee, updateEmployee }) => {
                 defaultValue={employee.salary}
                 onChange={(e) => setSalary(() => e.target.value)}
             />
-            <br />
-            <div id="alert-ctr">
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
                 <Box sx={{ width: '50%' }}>
                     <Collapse in={open}>
                         <Alert
@@ -54,8 +62,7 @@ const EditEmployee = ({ employee, updateEmployee }) => {
                         </Alert>
                     </Collapse>
                 </Box>
-            </div>
-            <br />
+            </Box>
             <Button
                 style={{
                     marginTop: '10px',
@@ -70,7 +77,7 @@ const EditEmployee = ({ employee, updateEmployee }) => {
             >
                 edit employee
             </Button>
-        </form>
+        </Box>
     );
 };
 

@@ -3,13 +3,13 @@ import { Route, Routes } from 'react-router-dom';
 
 import TaskManagerDashboard from './components/Dashboard/TaskManager/TaskManagerDashboard';
 import EmployeeDashboard from './components/Dashboard/Employee/EmployeeDashboard';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
+import Login from './components/Login';
+import Register from './components/Register';
 import { auth } from './utils/firebase';
-import Header from './components/Header/Header';
-import Logout from './components/Logout/Logout';
+import Header from './components/Header';
+import Logout from './components/Logout';
 import * as apiService from './services/apiService';
-import './App.css';
+import { Box } from '@mui/material';
 
 function App() {
     const [userInfo, setUserInfo] = useState(null);
@@ -31,7 +31,7 @@ function App() {
     const isTaskManager = userInfo?.role === 'taskManager';
 
     return (
-        <div id="container">
+        <Box>
             {initialized ? (
                 <>
                     <Header userEmail={userInfo?.email} isAuthenticated={!!userInfo} />
@@ -54,7 +54,7 @@ function App() {
                     </Routes>
                 </>
             ) : null}
-        </div>
+        </Box>
     );
 }
 

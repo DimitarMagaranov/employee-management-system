@@ -1,15 +1,17 @@
 import { useState } from 'react';
 
+import { Box, styled, Button } from '@mui/material';
+
+import List from './List/List';
 import useTasks from '../../../../hooks/useTasks';
 import CreateTask from './CreateTask/CreateTask';
-import List from './List/List';
-import './Tasks.scss';
+import DashboardInfoContainer from '../../../../styled/components/containers/DashboardInfoContainer';
 
 const Tasks = () => {
     const [tasks, isLoading, deleteTask] = useTasks();
     const [activeButton, setActiveButton] = useState('COMPLETED');
 
-    const onSwapTables = (e) => {
+    const onChangeTable = (e) => {
         setActiveButton(() => e.target.textContent);
     };
 
@@ -34,33 +36,44 @@ const Tasks = () => {
         'COMPLETED IN THE PAST MONTH': <List title={'Completed in the past month'} tasks={getCompletedTasks()} />,
     };
 
+    const TaskMenu = styled(Box)(({ theme }) => ({
+        margin: '50px auto',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '20px',
+    }));
+
+    const SButton = styled(Button)(({ theme }) => ({
+        // marginLeft: '30px',
+        padding: '8px, 16px',
+        color: theme.palette.primary.main,
+        backgroundColor: 'white',
+        marginRight: '20px',
+        '&:hover': {
+            color: 'white',
+            backgroundColor: theme.palette.primary.main,
+        },
+        '&:active': {},
+    }));
+
     return isLoading ? (
         'Loading...'
     ) : (
-        <div className="table-ctr">
-            <div id="task-menu">
-                <div>
-                    <button className={activeButton === 'CREATE TASK' ? 'active' : ''} onClick={onSwapTables}>
-                        CREATE TASK
-                    </button>
-                    <button className={activeButton === 'COMPLETED' ? 'active' : ''} onClick={onSwapTables}>
-                        COMPLETED
-                    </button>
-                    <button className={activeButton === 'UNCOMPLETED' ? 'active' : ''} onClick={onSwapTables}>
-                        UNCOMPLETED
-                    </button>
-                </div>
-                <div>
-                    <button className={activeButton === 'COMPLETED IN THE PAST WEEK' ? 'active' : ''} onClick={onSwapTables}>
-                        COMPLETED IN THE PAST WEEK
-                    </button>
-                    <button className={activeButton === 'COMPLETED IN THE PAST MONTH' ? 'active' : ''} onClick={onSwapTables}>
-                        COMPLETED IN THE PAST MONTH
-                    </button>
-                </div>
-            </div>
+        <DashboardInfoContainer>
+            <TaskMenu>
+                <Box>
+                    <SButton onClick={onChangeTable}>CREATE TASK</SButton>
+                    <SButton onClick={onChangeTable}>COMPLETED</SButton>
+                    <SButton onClick={onChangeTable}>UNCOMPLETED</SButton>
+                </Box>
+                <Box>
+                    <SButton onClick={onChangeTable}>COMPLETED IN THE PAST WEEK</SButton>
+                    <SButton onClick={onChangeTable}>COMPLETED IN THE PAST MONTH</SButton>
+                </Box>
+            </TaskMenu>
             {[components[activeButton]]}
-        </div>
+        </DashboardInfoContainer>
     );
 };
 

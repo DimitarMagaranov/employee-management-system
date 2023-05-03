@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
+import { Box } from '@mui/material';
+
 import Sidebar from '../../Sidebar/Sidebar';
-import PersonalInformation from './PersonalInformation/PersonalInformation';
-import Tasks from './Tasks/Tasks';
+import PersonalInformation from './PersonalInformation';
+import Tasks from './Tasks';
 
 const EmployeeDashboard = ({ userInfo, setUserInfo }) => {
     const [selectedInfo, setSelectedInfo] = useState('Personal Information');
@@ -12,14 +14,14 @@ const EmployeeDashboard = ({ userInfo, setUserInfo }) => {
     };
 
     return (
-        <div className="dashboard">
+        <Box sx={{ width: '100%', display: 'flex' }}>
             <Sidebar isTaskManager={false} onSelectInfoHandler={onSelectInfoHandler} />
             {selectedInfo === 'Personal Information' ? (
                 <PersonalInformation userInfo={userInfo} setUserInfo={setUserInfo} />
             ) : (
                 <Tasks userInfo={userInfo} setUserInfo={setUserInfo} />
             )}
-        </div>
+        </Box>
     );
 };
 

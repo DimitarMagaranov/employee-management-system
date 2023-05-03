@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
+import { Box } from '@mui/material';
+
 import useEmployees from '../../../hooks/useEmployees';
-import AllEmployees from './AllEmployees/AllEmployees';
-import NewEmployees from './NewEmployees/NewEmployees';
+import AllEmployees from './AllEmployees';
+import NewEmployees from './NewEmployees';
 import Sidebar from '../../Sidebar/Sidebar';
 import Tasks from './Tasks/Tasks';
 
@@ -14,8 +16,6 @@ const TaskManagerDashboard = () => {
     const onSelectInfoHandler = (info) => {
         setSelectedInfo(() => info);
     };
-
-    console.log(employees);
 
     const sortTop5Employees = () => {
         const currentDate = new Date();
@@ -31,17 +31,17 @@ const TaskManagerDashboard = () => {
     };
 
     const components = {
-        'New Employees': <NewEmployees employees={employees} updateEmployee={updateEmployee} />,
+        'New Employees': <NewEmployees employees={employees} updateEmployee={updateEmployee} title={'New Employees'} />,
         'All Employees': <AllEmployees employees={employees} deleteEmployee={deleteEmployee} title={'All Employees'} />,
         'Top 5 Employees': <AllEmployees employees={sortTop5Employees()} title={'Top 5 Employees'} />,
         Tasks: <Tasks />,
     };
 
     return (
-        <div className="dashboard">
+        <Box sx={{ width: '100%', display: 'flex' }}>
             <Sidebar isTaskManager={true} onSelectInfoHandler={onSelectInfoHandler} areNewEmployees={employees?.filter((x) => x.isNew === true)} />
             {areEmployeesLoading ? 'Loading...' : components[selectedInfo]}
-        </div>
+        </Box>
     );
 };
 

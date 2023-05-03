@@ -1,9 +1,12 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 
+import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
+import TableTitle from '../../../styled/components/TableTitle';
+
 const AllEmployees = ({ employees, deleteEmployee, title }) => {
     return (
-        <div className="table-ctr">
-            <h2 className="table-title">{title}</h2>
+        <DashboardInfoContainer>
+            <TableTitle title={title} />
             <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>
                     <TableHead>
@@ -48,7 +51,7 @@ const AllEmployees = ({ employees, deleteEmployee, title }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
+        </DashboardInfoContainer>
     );
 };
 

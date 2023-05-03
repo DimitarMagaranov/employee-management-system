@@ -1,9 +1,12 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 
+import DashboardInfoContainer from '../../../../../styled/components/layout/DashboardInfoContainer';
+import TableTitle from '../../../../../styled/components/TableTitle';
+
 const List = ({ title, tasks, deleteTask }) => {
     return (
-        <div id="table-ctr">
-            <h2 className="table-title">{title}</h2>
+        <DashboardInfoContainer>
+            <TableTitle title={title} />
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
@@ -40,7 +43,7 @@ const List = ({ title, tasks, deleteTask }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
+        </DashboardInfoContainer>
     );
 };
 

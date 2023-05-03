@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
-import EditEmployee from '../EditEmployee/EditEmployee';
-import './NewEmployees.scss';
+import EditEmployee from './EditEmployee';
+import TableTitle from '../../../styled/components/TableTitle';
+import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
 
-const NewEmployees = ({ employees, updateEmployee }) => {
+const NewEmployees = ({ employees, updateEmployee, title }) => {
     const [employeesToEdit, setEmployeesToEdit] = useState(employees?.filter((x) => x.isNew === true));
     const [employeeToEdit, setEmployeeToEdit] = useState();
 
@@ -18,9 +20,9 @@ const NewEmployees = ({ employees, updateEmployee }) => {
     };
 
     return employees.length > 0 ? (
-        <div className="table-ctr">
+        <DashboardInfoContainer>
             {employeesToEdit.length > 0 && employeeToEdit && <EditEmployee employee={employeeToEdit} updateEmployee={updateEmployee} />}
-            <h2 className="table-title">New employees</h2>
+            <TableTitle title={title} />
             <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>
                     <TableHead>
@@ -46,17 +48,17 @@ const NewEmployees = ({ employees, updateEmployee }) => {
                                 <TableCell align="left">{employee.phoneNumber}</TableCell>
                                 <TableCell align="left">{employee.dateOfBirth}</TableCell>
                                 <TableCell align="left">
-                                    <i onClick={() => onEdintEmployeeInfoHandler(employee)} className="fas fa-edit"></i>
+                                    <Button onClick={() => onEdintEmployeeInfoHandler(employee)}>
+                                        <BorderColorIcon />
+                                    </Button>
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
-    ) : (
-        ''
-    );
+        </DashboardInfoContainer>
+    ) : null;
 };
 
 export default NewEmployees;

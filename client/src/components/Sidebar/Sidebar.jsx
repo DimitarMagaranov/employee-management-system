@@ -1,33 +1,47 @@
 import { useState } from 'react';
 
-import MenuItem from './MenuItem/MenuItem';
-import './Sidebar.scss';
+import { styled, Box, Typography, List } from '@mui/material';
+
+import SidebarListItem from './SidebarListItem/SidebarListItem';
 
 const Sidebar = ({ isTaskManager, onSelectInfoHandler, areNewEmployees }) => {
-    const [currMenuItem, setCurrMenuItem] = useState(`${isTaskManager ? 'All Employees' : 'Personal Information'}`);
+    const [currSidebarItem, setCurrSidebarItem] = useState(`${isTaskManager ? 'All Employees' : 'Personal Information'}`);
 
-    const menuItemClickHandler = (menuItem) => {
-        setCurrMenuItem(() => menuItem);
+    const sidebarItemClickHandler = (menuItem) => {
+        setCurrSidebarItem(() => menuItem);
         onSelectInfoHandler(menuItem);
     };
 
+    const SSidebar = styled(Box)(({ theme }) => ({
+        backgroundColor: theme.palette.primary.main,
+        color: 'white',
+        paddingLeft: '20px',
+        minHeight: '100vh',
+    }));
+
     return (
-        <div id="sidebar">
-            <h2>{isTaskManager ? 'Task Manager' : 'Employee'} Dashboard</h2>
-            {isTaskManager ? (
-                <ul className="menu-items">
-                    {areNewEmployees && <MenuItem onClick={menuItemClickHandler} title={'New Employees'} currMenuItem={currMenuItem} />}
-                    <MenuItem onClick={menuItemClickHandler} title={'All Employees'} currMenuItem={currMenuItem} />
-                    <MenuItem onClick={menuItemClickHandler} title={'Top 5 Employees'} currMenuItem={currMenuItem} />
-                    <MenuItem onClick={menuItemClickHandler} title={'Tasks'} currMenuItem={currMenuItem} />
-                </ul>
-            ) : (
-                <ul className="menu-items">
-                    <MenuItem onClick={menuItemClickHandler} title={'Personal Information'} currMenuItem={currMenuItem} />
-                    <MenuItem onClick={menuItemClickHandler} title={'Tasks'} currMenuItem={currMenuItem} />
-                </ul>
-            )}
-        </div>
+        <SSidebar flex={1}>
+            <Box position="fixed">
+                <Typography variant="h5" marginBottom={4} paddingTop={2}>
+                    {isTaskManager ? 'Task Manager' : 'Employee'} Dashboard
+                </Typography>
+                {isTaskManager ? (
+                    <List>
+                        {areNewEmployees && (
+                            <SidebarListItem onClick={sidebarItemClickHandler} title={'New Employees'} currSidebarItem={currSidebarItem} />
+                        )}
+                        <SidebarListItem onClick={sidebarItemClickHandler} title={'All Employees'} currSidebarItem={currSidebarItem} />
+                        <SidebarListItem onClick={sidebarItemClickHandler} title={'Top 5 Employees'} currSidebarItem={currSidebarItem} />
+                        <SidebarListItem onClick={sidebarItemClickHandler} title={'Tasks'} currSidebarItem={currSidebarItem} />
+                    </List>
+                ) : (
+                    <List>
+                        <SidebarListItem onClick={sidebarItemClickHandler} title={'Personal Information'} currSidebarItem={currSidebarItem} />
+                        <SidebarListItem onClick={sidebarItemClickHandler} title={'Tasks'} currSidebarItem={currSidebarItem} />
+                    </List>
+                )}
+            </Box>
+        </SSidebar>
     );
 };
 

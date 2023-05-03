@@ -429,7 +429,15 @@
       "role": "employee",
       "dateOfBirth": "2020-02-02",
       "salary": "2000",
-      "tasks": [],
+      "tasks": [
+        {
+          "taskName": "task123",
+          "startDate": 1682971239430,
+          "completeDate": 1682971612296,
+          "completed": true,
+          "description": "asdasdasdasdasd"
+        }
+      ],
       "isNew": true
     }
   ]

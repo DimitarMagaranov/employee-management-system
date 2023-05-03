@@ -4,6 +4,7 @@ import { Box, InputLabel, MenuItem, FormControl, Select, TextField, Alert, IconB
 
 import useEmployees from '../../../../../hooks/useEmployees';
 import * as apiService from '../../../../../services/apiService';
+import TableTitle from '../../../../../styled/components/TableTitle';
 
 const CreateTask = () => {
     const [employee, setEmployee] = useState({});
@@ -53,7 +54,7 @@ const CreateTask = () => {
     return areEmployeesLoading ? (
         'Loading...'
     ) : (
-        <div>
+        <Box>
             <Box sx={{ width: '100%' }}>
                 <Collapse in={open}>
                     <Alert
@@ -76,7 +77,7 @@ const CreateTask = () => {
                     </Alert>
                 </Collapse>
             </Box>
-            <h2 className="table-title">Create Task</h2>
+            <TableTitle title="Create Task" />
             <Box sx={{ minWidth: 120, backgroundColor: 'white', padding: '20px', borderRadius: '5px', marginBottom: '50px' }}>
                 <FormGroup>
                     <FormControl fullWidth sx={{ marginBottom: '20px' }}>
@@ -120,7 +121,7 @@ const CreateTask = () => {
                     </Button>
                 </FormGroup>
             </Box>
-        </div>
+        </Box>
     );
 };
 

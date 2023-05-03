@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button, styled } from '@mui/material';
 
-import * as apiService from '../../../../services/apiService';
-import './Tasks.scss';
+import * as apiService from '../../../services/apiService';
+import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
 
 const Tasks = ({ userInfo, setUserInfo }) => {
     const [currTasks, setTasks] = useState();
@@ -34,8 +34,21 @@ const Tasks = ({ userInfo, setUserInfo }) => {
         });
     };
 
+    const ButtonReady = styled(Button)(() => ({
+        fontSize: '12px',
+        padding: '6px 8px',
+        borderRadius: '6px',
+        border: 'none',
+        color: 'white',
+        backgroundColor: '#4bb543',
+        '&:hover': {
+            color: '#4bb543',
+            backgroundColor: 'white',
+        },
+    }));
+
     return (
-        <div className="table-ctr">
+        <DashboardInfoContainer>
             <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>
                     <TableHead>
@@ -60,25 +73,21 @@ const Tasks = ({ userInfo, setUserInfo }) => {
                                     {task.description}
                                 </TableCell>
                                 <TableCell align="left">
-                                    <p className={`${task.completed !== true ? 'uncompleted' : 'completed'}`}>
+                                    <Typography sx={task.completed !== true ? { color: 'red' } : { color: '#4bb543' }} variant="p">
                                         {task.completed !== true ? 'Uncompleted' : 'Completed'}
-                                    </p>
+                                    </Typography>
                                 </TableCell>
                                 <TableCell align="right">
                                     {task.completed !== true ? (
-                                        <button id="btn-ready" onClick={(e) => onMarkAsReadyHandler(e, task.taskName)}>
-                                            Mark as completed
-                                        </button>
-                                    ) : (
-                                        ''
-                                    )}
+                                        <ButtonReady onClick={(e) => onMarkAsReadyHandler(e, task.taskName)}>Mark as completed</ButtonReady>
+                                    ) : null}
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
+        </DashboardInfoContainer>
     );
 };
 
