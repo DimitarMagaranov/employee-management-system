@@ -5,12 +5,12 @@ import { Button, Grid, TextField, Typography } from '@mui/material';
 
 import { LoginRegisterContainer } from './layout/LoginRegisterContainer';
 
+const SForm = styled('form')(() => ({
+    padding: '40px',
+}));
+
 const Form = ({ title, redirectLink, onSubmit, setEmail, setPassword, setFirstName, setLastName, setPhoneNumber, setDateOfBirth, errors }) => {
     const theme = useTheme();
-
-    const SForm = styled('form')(() => ({
-        padding: '40px',
-    }));
 
     return (
         <LoginRegisterContainer>

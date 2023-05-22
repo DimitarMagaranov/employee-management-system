@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
-import { auth, firebaseErrMessages } from '../utils/firebase';
+import { doc, setDoc } from 'firebase/firestore';
+
+import { auth, db, firebaseErrMessages } from '../utils/firebase';
 import * as apiService from '../services/apiService';
 import Form from '../styled/components/Form';
 
@@ -40,6 +42,13 @@ function Register({ user }) {
                     isNew: true,
                 };
                 apiService.createEmployee(userToDb).then(() => navigate('/'));
+            })
+            .then(() => {
+                setDoc(doc(db, 'cities', 'LA'), {
+                    name: 'Los Angeles',
+                    state: 'CA',
+                    country: 'USA',
+                });
             })
             .catch((error) => {
                 pushError(firebaseErrMessages[error.message]);

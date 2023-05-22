@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth'; 
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -20,9 +21,8 @@ export const firebaseErrMessages = {
     'Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).': 'The password is invalid.',
 };
 
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
+const app = firebase.initializeApp(firebaseConfig);
 
+export const db = getFirestore(app);
 export const auth = firebase.auth();
 export default firebase;
