@@ -6,8 +6,10 @@ import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/fires
 import { auth, db, firebaseErrMessages } from '../utils/firebase';
 import * as apiService from '../services/apiService';
 import Form from '../styled/components/Form';
+import { useContext } from 'react';
+import AuthContext from '../contexts/AuthContext';
 
-function Register({ isAuthenticated }) {
+function Register() {
     const [dateOfBirth, setDateOfBirth] = useState('1999-01-01');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -15,6 +17,7 @@ function Register({ isAuthenticated }) {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const {isAuthenticated} = useContext(AuthContext);
 
     const navigate = useNavigate();
 

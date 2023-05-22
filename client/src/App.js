@@ -56,8 +56,8 @@ function App() {
                             )
                         }
                     />
-                    <Route path="/login" element={<Login isAuthenticated={authInfo.isAuthenticated} />} />
-                    <Route path="/register" element={<Register isAuthenticated={authInfo.isAuthenticated} />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register/>} />
                     <Route path="/logout" element={<Logout setUserInfo={setUserInfo} />} />
                 </Routes>
             </AuthContext.Provider>

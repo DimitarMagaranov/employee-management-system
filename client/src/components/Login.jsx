@@ -4,11 +4,14 @@ import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { auth, firebaseErrMessages } from '../utils/firebase';
 import * as apiService from '../services/apiService';
 import Form from '../styled/components/Form';
+import { useContext } from 'react';
+import AuthContext from '../contexts/AuthContext';
 
-function Login({ isAuthenticated }) {
+function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const {isAuthenticated} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
