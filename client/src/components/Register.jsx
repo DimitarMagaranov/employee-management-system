@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { auth, firebaseErrMessages } from '../utils/firebase';
 import * as apiService from '../services/apiService';
 import Form from '../styled/components/Form';
 
-function Register() {
+function Register({ user }) {
     const [dateOfBirth, setDateOfBirth] = useState('1999-01-01');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -46,7 +46,7 @@ function Register() {
             });
     }
 
-    return (
+    return !user ? (
         <Form
             title="Register"
             redirectLink="/login"
@@ -59,6 +59,8 @@ function Register() {
             setDateOfBirth={setDateOfBirth}
             errors={errors}
         />
+    ) : (
+        <Navigate to="/" />
     );
 }
 

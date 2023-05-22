@@ -5,7 +5,7 @@ import { Box, styled, Button } from '@mui/material';
 import List from './List/List';
 import useTasks from '../../../../hooks/useTasks';
 import CreateTask from './CreateTask/CreateTask';
-import DashboardInfoContainer from '../../../../styled/components/containers/DashboardInfoContainer';
+import DashboardInfoContainer from '../../../../styled/components/layout/DashboardInfoContainer';
 
 const Tasks = () => {
     const [tasks, isLoading, deleteTask] = useTasks();

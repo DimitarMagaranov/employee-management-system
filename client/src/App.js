@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 
 import TaskManagerDashboard from './components/Dashboard/TaskManager/TaskManagerDashboard';
 import EmployeeDashboard from './components/Dashboard/Employee/EmployeeDashboard';
@@ -30,32 +30,30 @@ function App() {
 
     const isTaskManager = userInfo?.role === 'taskManager';
 
-    return (
+    return initialized ? (
         <Box>
-            {initialized ? (
-                <>
-                    <Header userEmail={userInfo?.email} isAuthenticated={!!userInfo} />
-                    <Routes>
-                        <Route
-                            index
-                            element={
-                                !userInfo ? (
-                                    <Login />
-                                ) : isTaskManager ? (
-                                    <TaskManagerDashboard />
-                                ) : (
-                                    <EmployeeDashboard userInfo={userInfo} setUserInfo={setUserInfo} />
-                                )
-                            }
-                        ></Route>
-                        <Route path="/login" element={<Login />}></Route>
-                        <Route path="/register" element={<Register />}></Route>
-                        <Route path="/logout" element={<Logout setUserInfo={setUserInfo} />}></Route>
-                    </Routes>
-                </>
-            ) : null}
+            <Header userEmail={userInfo?.email} isAuthenticated={!!userInfo} />
+            <Routes>
+                <Route path="/">
+                    <Route
+                        index
+                        element={
+                            !userInfo ? (
+                                <Login />
+                            ) : isTaskManager ? (
+                                <TaskManagerDashboard />
+                            ) : (
+                                <EmployeeDashboard userInfo={userInfo} setUserInfo={setUserInfo} />
+                            )
+                        }
+                    />
+                    <Route path="/login" element={<Login user={userInfo}/>} />
+                    <Route path="/register" element={<Register user={userInfo}/>} />
+                    <Route path="/logout" element={<Logout setUserInfo={setUserInfo} />} />
+                </Route>
+            </Routes>
         </Box>
-    );
+    ) : null;
 }
 
 export default App;

@@ -1,8 +1,8 @@
 import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import 'firebase/compat/auth'; 
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyCv9zMM-4Ayu-7Jto0nDrFp1pyEifcKL_0',
+    apiKey: process.env.REACT_APP_FIREBASE_KEY,
     authDomain: 'moonlit-casing-372301.firebaseapp.com',
     projectId: 'moonlit-casing-372301',
     storageBucket: 'moonlit-casing-372301.appspot.com',
