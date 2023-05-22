@@ -5,7 +5,7 @@ import { auth, firebaseErrMessages } from '../utils/firebase';
 import * as apiService from '../services/apiService';
 import Form from '../styled/components/Form';
 
-function Login({ user }) {
+function Login({ isAuthenticated }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
@@ -43,7 +43,7 @@ function Login({ user }) {
             });
     };
 
-    return !user ? (
+    return !isAuthenticated ? (
         <Form
             title="Sign In"
             redirectLink="/register"

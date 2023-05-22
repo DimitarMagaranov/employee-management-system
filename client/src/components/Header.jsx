@@ -2,8 +2,11 @@ import { NavLink } from 'react-router-dom';
 
 import { AppBar, Box, Toolbar, Typography, styled, useTheme } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useContext } from 'react';
+import AuthContext from '../contexts/AuthContext';
 
-const Header = ({ isAuthenticated, userEmail }) => {
+const Header = ({ user }) => {
+    const {isAuthenticated, userEmail} = useContext(AuthContext);
     const theme = useTheme();
 
     const SAppBar = styled(AppBar)({

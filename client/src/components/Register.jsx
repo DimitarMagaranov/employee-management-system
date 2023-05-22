@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
-import { doc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/firestore';
 
 import { auth, db, firebaseErrMessages } from '../utils/firebase';
 import * as apiService from '../services/apiService';
 import Form from '../styled/components/Form';
 
-function Register({ user }) {
+function Register({ isAuthenticated }) {
     const [dateOfBirth, setDateOfBirth] = useState('1999-01-01');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -41,21 +41,31 @@ function Register({ user }) {
                     tasks: [],
                     isNew: true,
                 };
-                apiService.createEmployee(userToDb).then(() => navigate('/'));
-            })
-            .then(() => {
-                setDoc(doc(db, 'cities', 'LA'), {
-                    name: 'Los Angeles',
-                    state: 'CA',
-                    country: 'USA',
-                });
+                apiService
+                    .createEmployee(userToDb)
+                    .then(() => {
+                        setDoc(doc(db, 'users', user._delegate.uid), {
+                            id: user._delegate.uid,
+                            firstName: firstName,
+                            lastName: lastName,
+                            email: email,
+                            phoneNumber: phoneNumber,
+                            role: 'employee',
+                            dateOfBirth: dateOfBirth,
+                            salary: '0',
+                            tasks: [],
+                            isNew: true,
+                            timeStamp: serverTimestamp(),
+                        });
+                    })
+                    .then(() => navigate('/'));
             })
             .catch((error) => {
                 pushError(firebaseErrMessages[error.message]);
             });
     }
 
-    return !user ? (
+    return !isAuthenticated ? (
         <Form
             title="Register"
             redirectLink="/login"
