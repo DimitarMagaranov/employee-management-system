@@ -9,13 +9,9 @@ import Tasks from './Tasks';
 const EmployeeDashboard = ({ userInfo, setUserInfo }) => {
     const [selectedInfo, setSelectedInfo] = useState('Personal Information');
 
-    const onSelectInfoHandler = (info) => {
-        setSelectedInfo(() => info);
-    };
-
     return (
         <Box sx={{ width: '100%', display: 'flex' }}>
-            <Sidebar isTaskManager={false} onSelectInfoHandler={onSelectInfoHandler} />
+            <Sidebar isTaskManager={false} setSelectedInfo={setSelectedInfo} />
             {selectedInfo === 'Personal Information' ? (
                 <PersonalInformation userInfo={userInfo} setUserInfo={setUserInfo} />
             ) : (

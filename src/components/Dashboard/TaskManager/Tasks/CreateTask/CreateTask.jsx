@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { Box, InputLabel, MenuItem, FormControl, Select, TextField, Alert, IconButton, Collapse, Button, FormGroup } from '@mui/material';
 
-import useEmployees from '../../../../../hooks/useEmployees';
 import * as apiService from '../../../../../services/apiService';
+import useEmployees from '../../../../../hooks/useEmployees';
 import TableTitle from '../../../../../styled/components/TableTitle';
 
 const CreateTask = () => {
@@ -16,10 +16,15 @@ const CreateTask = () => {
     const [open, setOpen] = useState(false);
 
     const handleChangeEmployee = (e) => {
-        apiService.getOneEmployee(e.target.value).then((data) => {
-            setEmployee(() => data);
-            setTaskFieldDisabled(false);
-        });
+        apiService
+            .getOneEmployee(e.target.value)
+            .then((data) => {
+                setEmployee(data);
+            })
+            .then(() => setTaskFieldDisabled(false))
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     const handleChangeTaskName = (e) => {
@@ -31,24 +36,26 @@ const CreateTask = () => {
         setSubmitDisabled(e.target.value === '');
     };
 
-    const handleSubmit = () => {
-        apiService
-            .updateEmployee(employee.id, {
-                tasks: [
-                    ...employee.tasks,
-                    {
-                        taskName: taskName,
-                        startDate: new Date().valueOf(),
-                        completeDate: null,
-                        completed: false,
-                        description: taskDescription,
-                    },
-                ],
-            })
-            .then((data) => {
+    const handleSubmit = async () => {
+        const tasksToUpdate = {
+            tasks: [
+                ...employee.tasks,
+                {
+                    taskName: taskName,
+                    startDate: new Date().valueOf(),
+                    completeDate: null,
+                    completed: false,
+                    description: taskDescription,
+                },
+            ],
+        };
+
+        apiService.updateEmployee(employee.id, tasksToUpdate).then(() => {
+            apiService.getOneEmployee(employee.id).then((data) => {
                 setOpen(true);
                 setEmployee(() => data);
             });
+        });
     };
 
     return areEmployeesLoading ? (

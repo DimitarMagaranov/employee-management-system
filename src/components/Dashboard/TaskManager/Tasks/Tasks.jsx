@@ -29,7 +29,7 @@ const Tasks = () => {
     };
 
     const components = {
-        'CREATE TASK': <CreateTask />,
+        'CREATE TASK': <CreateTask/>,
         UNCOMPLETED: <List title={'Uncompleted Tasks'} tasks={tasks.filter((x) => x.taskProcess === false)} deleteTask={deleteTask} />,
         COMPLETED: <List title={'Completed Tasks'} tasks={tasks.filter((x) => x.taskProcess === true)} />,
         'COMPLETED IN THE PAST WEEK': <List title={'Completed in the past week'} tasks={getCompletedTasks()} />,

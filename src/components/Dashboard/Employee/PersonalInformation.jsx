@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { TextField, Grid, Button, useTheme } from '@mui/material';
 
-import { auth } from '../../../utils/firebase';
 import * as apiService from '../../../services/apiService';
+import { auth } from '../../../utils/firebase';
 import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
 
 const PersonalInformation = ({ userInfo, setUserInfo }) => {
@@ -21,11 +21,23 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
             phoneNumber: e.target.phoneNumber.value,
         };
 
-        auth.signInWithEmailAndPassword(userInfo?.email, e.target.password.value).then(function (userCredential) {
-            userCredential.userInfo.updateEmail(newInfo.email);
-        });
-
-        apiService.updateEmployee(userInfo.id, newInfo).then((data) => setUserInfo(data));
+        auth.signInWithEmailAndPassword(userInfo?.email, e.target.password.value)
+            .then((userCredential) => {
+                userCredential.user
+                    .updateEmail(newInfo.email)
+                    .then(() => {
+                        apiService.updateEmployee(userInfo.id, newInfo);
+                    })
+                    .then(() => {
+                        setUserInfo((oldInfo) => ({ ...oldInfo, ...newInfo }));
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return isLoading ? (
@@ -89,8 +101,8 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
                         <TextField
                             sx={{ width: '100%', backgroundColor: 'rgb(240, 240, 240)' }}
                             type="email"
-                            label="Email"
-                            name="Email"
+                            label="email"
+                            name="email"
                             placeholder="Email"
                             defaultValue={userInfo?.email}
                             InputLabelProps={{
@@ -103,7 +115,7 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
                             sx={{ width: '100%', backgroundColor: 'rgb(240, 240, 240)' }}
                             type="text"
                             label="Phone number"
-                            name="Phone number"
+                            name="phoneNumber"
                             placeholder="Phone number"
                             defaultValue={userInfo?.phoneNumber}
                             InputLabelProps={{
@@ -116,7 +128,7 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
                             sx={{ width: '100%', backgroundColor: 'rgb(240, 240, 240)' }}
                             type="text"
                             label="Password"
-                            name="Password"
+                            name="password"
                             placeholder="Password"
                             InputLabelProps={{
                                 style: { color: theme.palette.primary.main },

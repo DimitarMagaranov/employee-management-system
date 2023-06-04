@@ -1,9 +1,21 @@
 import { useEffect, useState } from 'react';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button, styled } from '@mui/material';
-
 import * as apiService from '../../../services/apiService';
 import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
+
+const ButtonReady = styled(Button)(() => ({
+    fontSize: '12px',
+    padding: '6px 8px',
+    borderRadius: '6px',
+    border: 'none',
+    color: 'white',
+    backgroundColor: '#4bb543',
+    '&:hover': {
+        color: '#4bb543',
+        backgroundColor: 'white',
+    },
+}));
 
 const Tasks = ({ userInfo, setUserInfo }) => {
     const [currTasks, setTasks] = useState();
@@ -14,9 +26,14 @@ const Tasks = ({ userInfo, setUserInfo }) => {
 
     useEffect(() => {
         const updateTasksInterval = setInterval(() => {
-            apiService.getOneEmployee(userInfo?.id).then((data) => {
-                setUserInfo(data);
-            });
+            apiService
+                .getOneEmployee(userInfo?.id)
+                .then((data) => {
+                    setUserInfo(data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }, 5000);
 
         return () => {
@@ -24,28 +41,20 @@ const Tasks = ({ userInfo, setUserInfo }) => {
         };
     }, []);
 
-    const onMarkAsReadyHandler = (e, taskName) => {
+    const onMarkAsReadyHandler = (taskName) => {
         const index = currTasks.findIndex((x) => x.taskName === taskName);
-        let tasksToUpdate = currTasks;
+        let tasksToUpdate = [...currTasks];
         tasksToUpdate[index].completed = !tasksToUpdate[index].completed;
         tasksToUpdate[index].completeDate = new Date().valueOf();
-        apiService.updateEmployee(userInfo?.id, { tasks: tasksToUpdate }).then((data) => {
-            setTasks(() => data.tasks);
-        });
+        apiService
+            .updateEmployee(userInfo?.id, { tasks: tasksToUpdate })
+            .then(() => {
+                setTasks(tasksToUpdate);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
-
-    const ButtonReady = styled(Button)(() => ({
-        fontSize: '12px',
-        padding: '6px 8px',
-        borderRadius: '6px',
-        border: 'none',
-        color: 'white',
-        backgroundColor: '#4bb543',
-        '&:hover': {
-            color: '#4bb543',
-            backgroundColor: 'white',
-        },
-    }));
 
     return (
         <DashboardInfoContainer>
@@ -79,7 +88,7 @@ const Tasks = ({ userInfo, setUserInfo }) => {
                                 </TableCell>
                                 <TableCell align="right">
                                     {task.completed !== true ? (
-                                        <ButtonReady onClick={(e) => onMarkAsReadyHandler(e, task.taskName)}>Mark as completed</ButtonReady>
+                                        <ButtonReady onClick={() => onMarkAsReadyHandler(task.taskName)}>Mark as completed</ButtonReady>
                                     ) : null}
                                 </TableCell>
                             </TableRow>

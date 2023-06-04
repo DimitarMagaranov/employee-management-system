@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
 import TableTitle from '../../../styled/components/TableTitle';
 
-const AllEmployees = ({ employees, deleteEmployee, title }) => {
+const AllEmployees = ({ employees, title }) => {
     return (
         <DashboardInfoContainer>
             <TableTitle title={title} />
@@ -19,7 +19,6 @@ const AllEmployees = ({ employees, deleteEmployee, title }) => {
                             <TableCell align="left">Salary</TableCell>
                             <TableCell align="center">Completed Tasks</TableCell>
                             <TableCell align="center">Uncompleted Tasks</TableCell>
-                            {title !== 'Top 5 Employees' && <TableCell align="right"></TableCell>}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -39,13 +38,6 @@ const AllEmployees = ({ employees, deleteEmployee, title }) => {
                                     <TableCell align="left">{employee.salary}</TableCell>
                                     <TableCell align="center">{employee.tasks.filter((t) => t.completed === true).length}</TableCell>
                                     <TableCell align="center">{employee.tasks.filter((t) => t.completed !== true).length}</TableCell>
-                                    {title !== 'Top 5 Employees' && (
-                                        <TableCell align="right">
-                                            <Button variant="contained" color="error" onClick={() => deleteEmployee(employee.id)}>
-                                                delete
-                                            </Button>
-                                        </TableCell>
-                                    )}
                                 </TableRow>
                             ))}
                     </TableBody>

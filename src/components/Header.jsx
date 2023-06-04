@@ -5,7 +5,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
 
-const Header = ({ user }) => {
+const Header = () => {
     const {isAuthenticated, userEmail} = useContext(AuthContext);
     const theme = useTheme();
 

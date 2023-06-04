@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import * as apiService from './services/apiService';
 import TaskManagerDashboard from './components/Dashboard/TaskManager/TaskManagerDashboard';
 import EmployeeDashboard from './components/Dashboard/Employee/EmployeeDashboard';
 import Login from './components/Login';
@@ -8,7 +9,6 @@ import Register from './components/Register';
 import { auth } from './utils/firebase';
 import Header from './components/Header';
 import Logout from './components/Logout';
-import * as apiService from './services/apiService';
 import { Box } from '@mui/material';
 import AuthContext from './contexts/AuthContext';
 
@@ -23,10 +23,15 @@ function App() {
 
     useEffect(() => {
         if (user) {
-            apiService.getOneEmployee(user._delegate.uid).then((data) => {
-                setInitialized(true);
-                setUserInfo(() => data);
-            });
+            apiService
+                .getOneEmployee(user._delegate.uid)
+                .then((data) => {
+                    setUserInfo(data);
+                })
+                .then(() => setInitialized(true))
+                .catch((error) => {
+                    console.log(error);
+                });
         } else {
             setInitialized(true);
         }
@@ -57,7 +62,7 @@ function App() {
                         }
                     />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register/>} />
+                    <Route path="/register" element={<Register />} />
                     <Route path="/logout" element={<Logout setUserInfo={setUserInfo} />} />
                 </Routes>
             </AuthContext.Provider>

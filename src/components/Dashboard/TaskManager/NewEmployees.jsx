@@ -7,7 +7,7 @@ import EditEmployee from './EditEmployee';
 import TableTitle from '../../../styled/components/TableTitle';
 import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
 
-const NewEmployees = ({ employees, updateEmployee, title }) => {
+const NewEmployees = ({ employees, title, setEmployees }) => {
     const [employeesToEdit, setEmployeesToEdit] = useState(employees?.filter((x) => x.isNew === true));
     const [employeeToEdit, setEmployeeToEdit] = useState();
 
@@ -15,13 +15,14 @@ const NewEmployees = ({ employees, updateEmployee, title }) => {
         setEmployeesToEdit(() => employees?.filter((x) => x.isNew === true));
     }, [employees]);
 
-    const onEdintEmployeeInfoHandler = (employee) => {
-        setEmployeeToEdit(() => employee);
-    };
-
     return employees.length > 0 ? (
         <DashboardInfoContainer>
-            {employeesToEdit.length > 0 && employeeToEdit && <EditEmployee employee={employeeToEdit} updateEmployee={updateEmployee} />}
+            {employeesToEdit.length > 0 && employeeToEdit && (
+                <EditEmployee
+                    employeeToEdit={employeeToEdit}
+                    setEmployees={setEmployees}
+                />
+            )}
             <TableTitle title={title} />
             <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>
@@ -48,7 +49,7 @@ const NewEmployees = ({ employees, updateEmployee, title }) => {
                                 <TableCell align="left">{employee.phoneNumber}</TableCell>
                                 <TableCell align="left">{employee.dateOfBirth}</TableCell>
                                 <TableCell align="left">
-                                    <Button onClick={() => onEdintEmployeeInfoHandler(employee)}>
+                                    <Button onClick={() => setEmployeeToEdit(employee)}>
                                         <BorderColorIcon />
                                     </Button>
                                 </TableCell>

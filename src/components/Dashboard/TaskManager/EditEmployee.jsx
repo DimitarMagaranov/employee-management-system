@@ -1,36 +1,47 @@
 import { useState } from 'react';
 
+import * as apiService from '../../../services/apiService';
+
 import { Button, TextField, Box, Alert, Collapse, IconButton, styled, Divider } from '@mui/material';
 
-const EditEmployee = ({ employee, updateEmployee }) => {
+const StyledTextField = styled(TextField)(() => ({
+    width: '40%',
+    margin: '5px',
+    backgroundColor: 'white',
+    boxShadow: '0px 10px 18px -11px white',
+}));
+
+const EditEmployee = ({ employeeToEdit, setEmployees }) => {
     const [salary, setSalary] = useState(0);
     const [open, setOpen] = useState(false);
 
     const onEditEmployeeHandler = (e) => {
         e.preventDefault();
-        salary > 0 ? updateEmployee(employee.id, salary) : setOpen(true);
+        salary > 0
+            ? apiService
+                  .updateEmployee(employeeToEdit.id, { salary: salary, isNew: false })
+                  .then(() => {
+                      apiService.getAllEmployees().then((employees) => setEmployees(employees));
+                  })
+                  .catch((error) => {
+                      console.log(error);
+                  })
+            : setOpen(true);
     };
-
-    const STextField = styled(TextField)(() => ({
-        width: '40%',
-        margin: '5px',
-        backgroundColor: 'white',
-        boxShadow: '0px 10px 18px -11px white',
-    }));
 
     return (
         <Box sx={{ textAlign: 'center' }}>
-            <STextField type="text" label="First name" variant="outlined" defaultValue={employee.firstName} disabled />
-            <STextField type="text" label="Last name" variant="outlined" defaultValue={employee.lastName} disabled />
-            <STextField type="text" label="Email" variant="outlined" defaultValue={employee.email} disabled />
-            <STextField type="text" label="Phone number" variant="outlined" defaultValue={employee.phoneNumber} disabled />
-            <STextField type="text" label="Date of birth" variant="outlined" defaultValue={employee.dateOfBirth} disabled />
-            <STextField
+            <StyledTextField type="text" label="First name" variant="outlined" defaultValue={employeeToEdit.firstName} disabled />
+            <StyledTextField type="text" label="Last name" variant="outlined" defaultValue={employeeToEdit.lastName} disabled />
+            <StyledTextField type="text" label="Email" variant="outlined" defaultValue={employeeToEdit.email} disabled />
+            <StyledTextField type="text" label="Phone number" variant="outlined" defaultValue={employeeToEdit.phoneNumber} disabled />
+            <StyledTextField type="text" label="Date of birth" variant="outlined" defaultValue={employeeToEdit.dateOfBirth} disabled />
+            <StyledTextField
                 className="textField"
                 type="number"
                 label="Salary"
                 variant="outlined"
-                defaultValue={employee.salary}
+                defaultValue={employeeToEdit.salary}
                 onChange={(e) => setSalary(() => e.target.value)}
             />
             <Box
