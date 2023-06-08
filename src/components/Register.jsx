@@ -5,10 +5,8 @@ import * as apiService from '../services/apiService';
 
 import { firebaseErrMessages } from '../utils/firebase';
 import Form from '../styled/components/Form';
-import { useContext } from 'react';
-import AuthContext from '../contexts/AuthContext';
 
-function Register() {
+function Register({ userData }) {
     const [dateOfBirth, setDateOfBirth] = useState('1999-01-01');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -16,7 +14,6 @@ function Register() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
-    const { isAuthenticated } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -27,7 +24,7 @@ function Register() {
     const onRegisterFormSUbmitHandler = async (e) => {
         e.preventDefault();
 
-        const userToDb = {
+        const data = {
             firstName: firstName,
             lastName: lastName,
             email: email,
@@ -41,7 +38,7 @@ function Register() {
         };
 
         apiService
-            .createEmployee(email, password, userToDb)
+            .createEmployee(email, password, data)
             .then(() => {
                 navigate('/');
             })
@@ -50,22 +47,24 @@ function Register() {
             });
     };
 
-    return !isAuthenticated ? (
-        <Form
-            title="Register"
-            redirectLink="/login"
-            onSubmit={onRegisterFormSUbmitHandler}
-            setEmail={setEmail}
-            setPassword={setPassword}
-            setFirstName={setFirstName}
-            setLastName={setLastName}
-            setPhoneNumber={setPhoneNumber}
-            setDateOfBirth={setDateOfBirth}
-            errors={errors}
-        />
-    ) : (
-        <Navigate to="/" />
-    );
+    if (userData) {
+        return <Navigate to="/dashboard" />;
+    } else {
+        return (
+            <Form
+                title="Register"
+                redirectLink="/login"
+                onSubmit={onRegisterFormSUbmitHandler}
+                setEmail={setEmail}
+                setPassword={setPassword}
+                setFirstName={setFirstName}
+                setLastName={setLastName}
+                setPhoneNumber={setPhoneNumber}
+                setDateOfBirth={setDateOfBirth}
+                errors={errors}
+            />
+        );
+    }
 }
 
 export default Register;

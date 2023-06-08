@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button, styled } from '@mui/material';
-import * as apiService from '../../../services/apiService';
 import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
+import useEmployees from '../../../hooks/useEmployees';
 
 const ButtonReady = styled(Button)(() => ({
     fontSize: '12px',
@@ -17,23 +17,19 @@ const ButtonReady = styled(Button)(() => ({
     },
 }));
 
-const Tasks = ({ userInfo, setUserInfo }) => {
+export const Tasks = ({ userData }) => {
+    const [, , , , , updateEmployee, getOneEmployee] = useEmployees();
     const [currTasks, setTasks] = useState();
 
     useEffect(() => {
-        setTasks(() => userInfo?.tasks);
-    }, [userInfo]);
+        setTasks(() => userData?.tasks);
+    }, [userData]);
 
     useEffect(() => {
         const updateTasksInterval = setInterval(() => {
-            apiService
-                .getOneEmployee(userInfo?.id)
-                .then((data) => {
-                    setUserInfo(data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            getOneEmployee(userData?.id).then((data) => {
+                setTasks(data.tasks);
+            });
         }, 5000);
 
         return () => {
@@ -44,16 +40,9 @@ const Tasks = ({ userInfo, setUserInfo }) => {
     const onMarkAsReadyHandler = (taskName) => {
         const index = currTasks.findIndex((x) => x.taskName === taskName);
         let tasksToUpdate = [...currTasks];
-        tasksToUpdate[index].completed = !tasksToUpdate[index].completed;
+        tasksToUpdate[index].completed = true;
         tasksToUpdate[index].completeDate = new Date().valueOf();
-        apiService
-            .updateEmployee(userInfo?.id, { tasks: tasksToUpdate })
-            .then(() => {
-                setTasks(tasksToUpdate);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        updateEmployee(userData?.id, { tasks: tasksToUpdate });
     };
 
     return (
@@ -99,5 +88,3 @@ const Tasks = ({ userInfo, setUserInfo }) => {
         </DashboardInfoContainer>
     );
 };
-
-export default Tasks;

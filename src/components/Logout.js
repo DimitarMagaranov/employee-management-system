@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { auth } from '../utils/firebase';
 
-function Logout({ setUserInfo }) {
+function Logout({ setUserData }) {
     const navigate = useNavigate();
 
     auth.signOut().then(() => {
-        setUserInfo(null);
+        setUserData(null);
         navigate('/login');
     });
 }

@@ -3,14 +3,11 @@ import { useNavigate, Navigate } from 'react-router-dom';
 
 import { auth, firebaseErrMessages } from '../utils/firebase';
 import Form from '../styled/components/Form';
-import { useContext } from 'react';
-import AuthContext from '../contexts/AuthContext';
 
-function Login() {
+function Login({userData}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
-    const { isAuthenticated } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -29,18 +26,20 @@ function Login() {
             });
     };
 
-    return !isAuthenticated ? (
-        <Form
-            title="Sign In"
-            redirectLink="/register"
-            onSubmit={onLoginFormSUbmitHandler}
-            setEmail={setEmail}
-            setPassword={setPassword}
-            errors={errors}
-        />
-    ) : (
-        <Navigate to="/" />
-    );
+    if (userData) {
+        return <Navigate to="/dashboard" />;
+    } else {
+        return (
+            <Form
+                title="Sign In"
+                redirectLink="/register"
+                onSubmit={onLoginFormSUbmitHandler}
+                setEmail={setEmail}
+                setPassword={setPassword}
+                errors={errors}
+            />
+        );
+    }
 }
 
 export default Login;

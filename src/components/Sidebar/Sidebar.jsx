@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { styled, Box, Typography, List } from '@mui/material';
 
 import SidebarListItem from './SidebarListItem/SidebarListItem';
+import { routingPaths } from '../../utils/constants';
+import useEmployees from '../../hooks/useEmployees';
 
 const StyledSidebar = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
@@ -11,13 +14,24 @@ const StyledSidebar = styled(Box)(({ theme }) => ({
     minHeight: '100vh',
 }));
 
-const Sidebar = ({ isTaskManager, setSelectedInfo, areNewEmployees }) => {
-    const [currSidebarItem, setCurrSidebarItem] = useState(`${isTaskManager ? 'All Employees' : 'Personal Information'}`);
+const Sidebar = ({ isTaskManager }) => {
+    const [, , , , filterNewEmployees] = useEmployees();
+    const [currSidebarItem, setCurrSidebarItem] = useState(isTaskManager ? 'All Employees' : 'Personal Information');
+    const navigate = useNavigate();
 
-    const sidebarItemClickHandler = (menuItem) => {
-        setCurrSidebarItem(() => menuItem);
-        setSelectedInfo(menuItem);
+    useEffect(() => {
+        // currSidebarItem is also the current component title
+        navigateTo(currSidebarItem);
+    }, []);
+
+    const sidebarItemClickHandler = (componentTitle) => {
+        setCurrSidebarItem(() => componentTitle);
+        navigateTo(componentTitle);
     };
+
+    const navigateTo = (componentTitle) => {
+        isTaskManager ? navigate(routingPaths.taskManager[componentTitle]) : navigate(routingPaths.employee[componentTitle]);
+    }
 
     return (
         <StyledSidebar flex={1}>
@@ -27,7 +41,7 @@ const Sidebar = ({ isTaskManager, setSelectedInfo, areNewEmployees }) => {
                 </Typography>
                 {isTaskManager ? (
                     <List>
-                        {areNewEmployees && (
+                        {filterNewEmployees() && (
                             <SidebarListItem onClick={sidebarItemClickHandler} title={'New Employees'} currSidebarItem={currSidebarItem} />
                         )}
                         <SidebarListItem onClick={sidebarItemClickHandler} title={'All Employees'} currSidebarItem={currSidebarItem} />

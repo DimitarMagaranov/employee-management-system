@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import * as apiService from './services/apiService';
-import TaskManagerDashboard from './components/Dashboard/TaskManager/TaskManagerDashboard';
-import EmployeeDashboard from './components/Dashboard/Employee/EmployeeDashboard';
 import Login from './components/Login';
 import Register from './components/Register';
 import { auth } from './utils/firebase';
 import Header from './components/Header';
 import Logout from './components/Logout';
 import { Box } from '@mui/material';
-import AuthContext from './contexts/AuthContext';
+import Dashboard from './components/Dashboard/Dashboard';
+import useEmployees from './hooks/useEmployees';
 
 function App() {
     const [user, setUser] = useState(null);
-    const [userInfo, setUserInfo] = useState(null);
+    const [userData, setUserData] = useState(null);
     const [initialized, setInitialized] = useState(false);
+    const [, , , , , , getOneEmployee] = useEmployees();
 
     useEffect(() => {
         auth.onAuthStateChanged(setUser);
@@ -23,49 +23,32 @@ function App() {
 
     useEffect(() => {
         if (user) {
-            apiService
-                .getOneEmployee(user._delegate.uid)
+            getOneEmployee(user._delegate.uid)
                 .then((data) => {
-                    setUserInfo(data);
+                    setUserData(data);
                 })
-                .then(() => setInitialized(true))
                 .catch((error) => {
                     console.log(error);
                 });
+            setInitialized(true);
         } else {
             setInitialized(true);
         }
     }, [user]);
 
-    const authInfo = {
-        isAuthenticated: !!user,
-        userEmail: user?._delegate.email,
-    };
-
-    const isTaskManager = userInfo?.role === 'taskManager';
-
     return initialized ? (
         <Box>
-            <AuthContext.Provider value={authInfo}>
-                <Header />
-                <Routes>
-                    <Route
-                        index
-                        element={
-                            !authInfo.isAuthenticated ? (
-                                <Login />
-                            ) : isTaskManager ? (
-                                <TaskManagerDashboard />
-                            ) : (
-                                <EmployeeDashboard userInfo={userInfo} setUserInfo={setUserInfo} />
-                            )
-                        }
-                    />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/logout" element={<Logout setUserInfo={setUserInfo} />} />
-                </Routes>
-            </AuthContext.Provider>
+            <Header userData={userData} />
+            <Routes>
+                <Route index element={<Login userData={userData} />} />
+                <Route path="login" element={<Login userData={userData} />} />
+                <Route path="register" element={<Register userData={userData} />} />
+                <Route path="logout" element={<Logout setUserData={setUserData} />} />
+                <Route
+                    path="dashboard/*"
+                    element={<Dashboard userData={userData} setUserData={setUserData} isTaskManager={userData?.role === 'taskManager'} />}
+                />
+            </Routes>
         </Box>
     ) : null;
 }

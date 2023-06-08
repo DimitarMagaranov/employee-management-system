@@ -1,61 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Box, styled, Button } from '@mui/material';
 
 import List from './List/List';
-import useTasks from '../../../../hooks/useTasks';
 import CreateTask from './CreateTask/CreateTask';
 import DashboardInfoContainer from '../../../../styled/components/layout/DashboardInfoContainer';
+import { routingPaths } from '../../../../utils/constants';
+import { Route, Routes } from 'react-router-dom';
+import useTasks from '../../../../hooks/useTasks';
 
-const Tasks = () => {
-    const [tasks, isLoading, deleteTask] = useTasks();
-    const [activeButton, setActiveButton] = useState('COMPLETED');
+const TaskMenu = styled(Box)(() => ({
+    margin: '50px auto',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '20px',
+}));
 
-    const onChangeTable = (e) => {
-        setActiveButton(() => e.target.textContent);
-    };
+const SButton = styled(Button)(({ theme }) => ({
+    padding: '8px, 16px',
+    color: theme.palette.primary.main,
+    backgroundColor: 'white',
+    marginRight: '20px',
+    '&:hover': {
+        color: 'white',
+        backgroundColor: theme.palette.primary.main,
+    },
+    '&:active': {},
+}));
 
-    const getCompletedTasks = () => {
-        const currentDate = new Date();
-        let timeBefore = 0;
+export const Tasks = () => {
+    const [tasks, isLoading, deleteTask, getCompletedTasks, createTask] = useTasks();
+    const [activeComponentTitle, setActiveComponentTitle] = useState('COMPLETED');
 
-        if (activeButton === 'COMPLETED IN THE PAST WEEK') {
-            timeBefore = new Date(currentDate.getTime() - 7 * 86400000);
-        } else {
-            timeBefore = new Date(currentDate.getTime() - 30 * 86400000);
-        }
+    const navigate = useNavigate();
 
-        return tasks.filter((x) => x.completeDate > timeBefore);
-    };
-
-    const components = {
-        'CREATE TASK': <CreateTask/>,
-        UNCOMPLETED: <List title={'Uncompleted Tasks'} tasks={tasks.filter((x) => x.taskProcess === false)} deleteTask={deleteTask} />,
-        COMPLETED: <List title={'Completed Tasks'} tasks={tasks.filter((x) => x.taskProcess === true)} />,
-        'COMPLETED IN THE PAST WEEK': <List title={'Completed in the past week'} tasks={getCompletedTasks()} />,
-        'COMPLETED IN THE PAST MONTH': <List title={'Completed in the past month'} tasks={getCompletedTasks()} />,
-    };
-
-    const TaskMenu = styled(Box)(({ theme }) => ({
-        margin: '50px auto',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '20px',
-    }));
-
-    const SButton = styled(Button)(({ theme }) => ({
-        // marginLeft: '30px',
-        padding: '8px, 16px',
-        color: theme.palette.primary.main,
-        backgroundColor: 'white',
-        marginRight: '20px',
-        '&:hover': {
-            color: 'white',
-            backgroundColor: theme.palette.primary.main,
-        },
-        '&:active': {},
-    }));
+    useEffect(() => {
+        navigate(routingPaths[activeComponentTitle]);
+    }, [activeComponentTitle]);
 
     return isLoading ? (
         'Loading...'
@@ -63,18 +46,32 @@ const Tasks = () => {
         <DashboardInfoContainer>
             <TaskMenu>
                 <Box>
-                    <SButton onClick={onChangeTable}>CREATE TASK</SButton>
-                    <SButton onClick={onChangeTable}>COMPLETED</SButton>
-                    <SButton onClick={onChangeTable}>UNCOMPLETED</SButton>
+                    <SButton onClick={(e) => setActiveComponentTitle(e.target.textContent)}>CREATE TASK</SButton>
+                    <SButton onClick={(e) => setActiveComponentTitle(e.target.textContent)}>COMPLETED</SButton>
+                    <SButton onClick={(e) => setActiveComponentTitle(e.target.textContent)}>UNCOMPLETED</SButton>
                 </Box>
                 <Box>
-                    <SButton onClick={onChangeTable}>COMPLETED IN THE PAST WEEK</SButton>
-                    <SButton onClick={onChangeTable}>COMPLETED IN THE PAST MONTH</SButton>
+                    <SButton onClick={(e) => setActiveComponentTitle(e.target.textContent)}>COMPLETED IN THE PAST WEEK</SButton>
+                    <SButton onClick={(e) => setActiveComponentTitle(e.target.textContent)}>COMPLETED IN THE PAST MONTH</SButton>
                 </Box>
             </TaskMenu>
-            {[components[activeButton]]}
+
+            <Routes>
+                <Route path="create" element={<CreateTask createTask={createTask} />} />
+                <Route
+                    path="uncompleted"
+                    element={<List title={'Uncompleted Tasks'} tasks={tasks.filter((x) => x.taskProcess === false)} deleteTask={deleteTask} />}
+                />
+                <Route path="completed" element={<List title={'Completed Tasks'} tasks={tasks?.filter((x) => x.taskProcess === true)} />} />
+                <Route
+                    path="completedPastWeek"
+                    element={<List title={'Completed in the past week'} tasks={getCompletedTasks(activeComponentTitle)} />}
+                />
+                <Route
+                    path="completedPastMonth"
+                    element={<List title={'Completed in the past month'} tasks={getCompletedTasks(activeComponentTitle)} />}
+                />
+            </Routes>
         </DashboardInfoContainer>
     );
 };
-
-export default Tasks;

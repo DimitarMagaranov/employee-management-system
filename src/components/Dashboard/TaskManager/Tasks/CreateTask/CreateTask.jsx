@@ -2,33 +2,23 @@ import { useState } from 'react';
 
 import { Box, InputLabel, MenuItem, FormControl, Select, TextField, Alert, IconButton, Collapse, Button, FormGroup } from '@mui/material';
 
-import * as apiService from '../../../../../services/apiService';
 import useEmployees from '../../../../../hooks/useEmployees';
 import TableTitle from '../../../../../styled/components/TableTitle';
 
-const CreateTask = () => {
+const CreateTask = ({createTask}) => {
     const [employee, setEmployee] = useState({});
     const [taskName, setTaskName] = useState('');
     const [taskDescription, setTaskDescription] = useState('');
-    const [employees, areEmployeesLoading] = useEmployees();
+    const [employees, , areEmployeesLoading] = useEmployees();
     const [taskFieldDisabled, setTaskFieldDisabled] = useState(true);
     const [submitDisabled, setSubmitDisabled] = useState(true);
     const [open, setOpen] = useState(false);
 
     const handleChangeEmployee = (e) => {
-        apiService
-            .getOneEmployee(e.target.value)
-            .then((data) => {
-                setEmployee(data);
-            })
-            .then(() => setTaskFieldDisabled(false))
-            .catch((error) => {
-                console.log(error);
-            });
-    };
+        const employee = employees.find(x => x.id === e.target.value);
+        setEmployee(employee);
+        setTaskFieldDisabled(false);
 
-    const handleChangeTaskName = (e) => {
-        setTaskName(() => e.target.value);
     };
 
     const handleChangeTaskDescription = (e) => {
@@ -50,12 +40,7 @@ const CreateTask = () => {
             ],
         };
 
-        apiService.updateEmployee(employee.id, tasksToUpdate).then(() => {
-            apiService.getOneEmployee(employee.id).then((data) => {
-                setOpen(true);
-                setEmployee(() => data);
-            });
-        });
+        createTask(employee.id, tasksToUpdate, setOpen);
     };
 
     return areEmployeesLoading ? (
@@ -98,7 +83,7 @@ const CreateTask = () => {
                     <FormControl fullWidth sx={{ marginBottom: '20px' }}>
                         <TextField
                             disabled={taskFieldDisabled}
-                            onChange={handleChangeTaskName}
+                            onChange={(e) => setTaskName(e.target.value)}
                             id="outlined-basic"
                             label="Task name"
                             variant="outlined"

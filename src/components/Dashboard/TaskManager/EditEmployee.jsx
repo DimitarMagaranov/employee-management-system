@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
-import * as apiService from '../../../services/apiService';
-
-import { Button, TextField, Box, Alert, Collapse, IconButton, styled, Divider } from '@mui/material';
+import { Button, TextField, Box, Alert, Collapse, IconButton, styled } from '@mui/material';
 
 const StyledTextField = styled(TextField)(() => ({
     width: '40%',
@@ -11,22 +9,13 @@ const StyledTextField = styled(TextField)(() => ({
     boxShadow: '0px 10px 18px -11px white',
 }));
 
-const EditEmployee = ({ employeeToEdit, setEmployees }) => {
+const EditEmployee = ({ employeeToEdit, updateEmployee }) => {
     const [salary, setSalary] = useState(0);
     const [open, setOpen] = useState(false);
 
     const onEditEmployeeHandler = (e) => {
         e.preventDefault();
-        salary > 0
-            ? apiService
-                  .updateEmployee(employeeToEdit.id, { salary: salary, isNew: false })
-                  .then(() => {
-                      apiService.getAllEmployees().then((employees) => setEmployees(employees));
-                  })
-                  .catch((error) => {
-                      console.log(error);
-                  })
-            : setOpen(true);
+        salary > 0 ? updateEmployee(employeeToEdit.id, { salary: salary, isNew: false }) : setOpen(true);
     };
 
     return (

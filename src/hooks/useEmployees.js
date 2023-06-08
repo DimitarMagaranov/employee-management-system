@@ -7,6 +7,10 @@ const useEmployees = () => {
     const [isLoading, setIsLoading] = useState();
 
     useEffect(() => {
+        setAllEmployees();
+    }, []);
+
+    const setAllEmployees = () => {
         setIsLoading(true);
         apiService
             .getAllEmployees()
@@ -16,8 +20,9 @@ const useEmployees = () => {
             })
             .catch((error) => {
                 console.log(error);
+                setIsLoading(false);
             });
-    }, []);
+    };
 
     const sortTop5Employees = () => {
         const currentDate = new Date();
@@ -32,9 +37,27 @@ const useEmployees = () => {
         return sorted;
     };
 
-    
+    const filterNewEmployees = () => {
+        return employees?.filter((x) => x.isNew === true);
+    };
 
-    return [employees, setEmployees, isLoading, sortTop5Employees];
+    const updateEmployee = (employeeId, data) => {
+        apiService
+            .updateEmployee(employeeId, data)
+            .then(() => {
+                setAllEmployees();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const getOneEmployee = async (employeeId) => {
+        const employee = await apiService.getOneEmployee(employeeId);
+        return employee;
+    };
+
+    return [employees, setEmployees, isLoading, sortTop5Employees, filterNewEmployees, updateEmployee, getOneEmployee];
 };
 
 export default useEmployees;

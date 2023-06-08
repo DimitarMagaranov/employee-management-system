@@ -1,38 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { TextField, Grid, Button, useTheme } from '@mui/material';
 
-import * as apiService from '../../../services/apiService';
 import { auth } from '../../../utils/firebase';
 import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
+import useEmployees from '../../../hooks/useEmployees';
 
-const PersonalInformation = ({ userInfo, setUserInfo }) => {
+const PersonalInformation = ({ userData, setUserData }) => {
     const theme = useTheme();
-    const [isLoading, setIsLoading] = useState();
+    const [email, setEmail] = useState(userData?.email);
+    const [phoneNumber, setPhoneNumber] = useState(userData?.phoneNumber);
+    const [password, setPassword] = useState('');
+    const [, , , , , updateEmployee] = useEmployees();
 
-    useEffect(() => {
-        setIsLoading(() => !userInfo?.firstName);
-    }, [userInfo]);
 
     const onChangeDetailsSubmitHandler = (e) => {
         e.preventDefault();
-        const newInfo = {
-            email: e.target.email.value,
-            phoneNumber: e.target.phoneNumber.value,
-        };
 
-        auth.signInWithEmailAndPassword(userInfo?.email, e.target.password.value)
+        auth.signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 userCredential.user
-                    .updateEmail(newInfo.email)
+                    .updateEmail(email)
                     .then(() => {
-                        apiService.updateEmployee(userInfo.id, newInfo);
+                        updateEmployee(userData.id, {email, phoneNumber});
                     })
                     .then(() => {
-                        setUserInfo((oldInfo) => ({ ...oldInfo, ...newInfo }));
-                    })
-                    .catch((error) => {
-                        console.log(error);
+                        setUserData((oldInfo) => ({ ...oldInfo, email, phoneNumber}));
                     });
             })
             .catch((error) => {
@@ -40,7 +33,7 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
             });
     };
 
-    return isLoading ? (
+    return !userData ? (
         <div>Loading...</div>
     ) : (
         <DashboardInfoContainer>
@@ -52,7 +45,7 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
                 }}
                 onSubmit={onChangeDetailsSubmitHandler}
             >
-                <Grid container spacing={2} direction="col">
+                <Grid container spacing={2}>
                     <Grid item sx={{ width: '100%' }}>
                         <TextField
                             sx={{ width: '100%', backgroundColor: 'rgb(240, 240, 240)' }}
@@ -61,7 +54,7 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
                             label="Full name"
                             name="Full name"
                             placeholder="Full name"
-                            defaultValue={`${userInfo?.firstName} ${userInfo?.lastName}`}
+                            defaultValue={`${userData?.firstName} ${userData?.lastName}`}
                             InputLabelProps={{
                                 style: { color: theme.palette.primary.main },
                             }}
@@ -75,28 +68,26 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
                             label="Date of birth"
                             name="Date of birth"
                             placeholder="Date of birth"
-                            defaultValue={userInfo?.dateOfBirth}
+                            defaultValue={userData?.dateOfBirth}
                             InputLabelProps={{
                                 style: { color: theme.palette.primary.main },
                             }}
                         />
                     </Grid>
-                    {!userInfo?.isNew && (
-                        <Grid item sx={{ width: '100%' }}>
-                            <TextField
-                                sx={{ width: '100%', backgroundColor: 'rgb(240, 240, 240)' }}
-                                disabled
-                                type="text"
-                                label="Salary"
-                                name="Salary"
-                                placeholder="Salary"
-                                defaultValue={userInfo?.salary}
-                                InputLabelProps={{
-                                    style: { color: theme.palette.primary.main },
-                                }}
-                            />
-                        </Grid>
-                    )}
+                    <Grid item sx={{ width: '100%', display: !userData?.isNew ? 'block' : 'none' }}>
+                        <TextField
+                            sx={{ width: '100%', backgroundColor: 'rgb(240, 240, 240)' }}
+                            disabled
+                            type="text"
+                            label="Salary"
+                            name="Salary"
+                            placeholder="Salary"
+                            defaultValue={userData?.salary}
+                            InputLabelProps={{
+                                style: { color: theme.palette.primary.main },
+                            }}
+                        />
+                    </Grid>
                     <Grid item sx={{ width: '100%' }}>
                         <TextField
                             sx={{ width: '100%', backgroundColor: 'rgb(240, 240, 240)' }}
@@ -104,7 +95,8 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
                             label="email"
                             name="email"
                             placeholder="Email"
-                            defaultValue={userInfo?.email}
+                            defaultValue={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             InputLabelProps={{
                                 style: { color: theme.palette.primary.main },
                             }}
@@ -117,7 +109,8 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
                             label="Phone number"
                             name="phoneNumber"
                             placeholder="Phone number"
-                            defaultValue={userInfo?.phoneNumber}
+                            defaultValue={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
                             InputLabelProps={{
                                 style: { color: theme.palette.primary.main },
                             }}
@@ -130,15 +123,16 @@ const PersonalInformation = ({ userInfo, setUserInfo }) => {
                             label="Password"
                             name="password"
                             placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
                             InputLabelProps={{
                                 style: { color: theme.palette.primary.main },
                             }}
                         />
                     </Grid>
-                    <Button variant="contained" sx={{ margin: 'auto' }} type="submit">
-                        change
-                    </Button>
                 </Grid>
+                <Button variant="contained" sx={{ margin: 'auto' }} type="submit">
+                    change
+                </Button>
             </form>
         </DashboardInfoContainer>
     );
