@@ -29,7 +29,6 @@ export const Tasks = ({ userData }: {userData: IFirestoreUserData}) => {
     useEffect(() => {
         const updateTasksInterval = setInterval(() => {
             getOneEmployee(userData.id!).then((data) => {
-                console.log(data);
                 setTasks(data.tasks);
             });
         }, 5000);
