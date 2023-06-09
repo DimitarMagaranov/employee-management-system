@@ -28,6 +28,7 @@ export const Tasks = ({ userData }) => {
     useEffect(() => {
         const updateTasksInterval = setInterval(() => {
             getOneEmployee(userData?.id).then((data) => {
+                console.log(data);
                 setTasks(data.tasks);
             });
         }, 5000);

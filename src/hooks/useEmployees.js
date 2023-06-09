@@ -52,8 +52,15 @@ const useEmployees = () => {
             });
     };
 
-    const getOneEmployee = async (employeeId) => {
-        const employee = await apiService.getOneEmployee(employeeId);
+    const getOneEmployee = (employeeId) => {
+        const employee = apiService.getOneEmployee(employeeId)
+        .then((data) => {
+            return data;
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
         return employee;
     };
 
