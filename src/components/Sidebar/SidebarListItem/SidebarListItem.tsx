@@ -1,7 +1,9 @@
 import { ListItemButton, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
-const SidebarListItem = ({ onClick, title, currSidebarItem }) => {
+import { ISidebarListItemProps } from '../../../interfaces';
+
+const SidebarListItem = ({ onClick, title, currSidebarItem }: ISidebarListItemProps) => {
     let classes = ['nav-link'];
 
     if (currSidebarItem === title) {
@@ -17,7 +19,7 @@ const SidebarListItem = ({ onClick, title, currSidebarItem }) => {
                 <ListItemText
                     disableTypography
                     primary={
-                        <Typography variant="p" sx={{ fontWeight: currSidebarItem === title ? '500' : '300' }}>
+                        <Typography sx={{ fontWeight: currSidebarItem === title ? '500' : '300' }}>
                             {title}
                         </Typography>
                     }

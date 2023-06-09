@@ -1,17 +1,18 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 
-import { auth, firebaseErrMessages } from '../utils/firebase';
+import { auth, getFirebaseErrMessage } from '../utils/firebase';
 import Form from '../styled/components/Form';
+import { IFirestoreUserData } from '../interfaces';
 
-function Login({userData}) {
+function Login({userData}: {userData: IFirestoreUserData | null}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState<string[]>([]);
 
     const navigate = useNavigate();
 
-    const onLoginFormSUbmitHandler = async (e) => {
+    const onLoginFormSUbmitHandler = async (e: FormEvent) => {
         e.preventDefault();
         setErrors([]);
 
@@ -19,9 +20,9 @@ function Login({userData}) {
             .then(async () => {
                 navigate('/');
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.log(error);
-                const errMsg = firebaseErrMessages[error.message];
+                const errMsg = getFirebaseErrMessage(error.message);
                 setErrors([...errors].concat([errMsg ?? error.message]));
             });
     };

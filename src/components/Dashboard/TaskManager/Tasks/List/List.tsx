@@ -2,8 +2,9 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 
 import DashboardInfoContainer from '../../../../../styled/components/layout/DashboardInfoContainer';
 import TableTitle from '../../../../../styled/components/TableTitle';
+import { IListProps } from '../../../../../interfaces';
 
-const List = ({ title, tasks, deleteTask }) => {
+const List = ({ title, tasks, deleteTask }: IListProps) => {
     return (
         <DashboardInfoContainer>
             <TableTitle title={title} />
@@ -33,7 +34,7 @@ const List = ({ title, tasks, deleteTask }) => {
                                 </TableCell>
                                 <TableCell align="left">
                                     {title === 'Uncompleted Tasks' && (
-                                        <Button onClick={() => deleteTask(task.employeeId, task.taskName)} variant="contained" color="error">
+                                        <Button onClick={() => deleteTask!(task.employeeId, task.taskName)} variant="contained" color="error">
                                             delete
                                         </Button>
                                     )}

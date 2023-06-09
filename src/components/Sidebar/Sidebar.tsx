@@ -14,7 +14,7 @@ const StyledSidebar = styled(Box)(({ theme }) => ({
     minHeight: '100vh',
 }));
 
-const Sidebar = ({ isTaskManager }) => {
+const Sidebar = ({ isTaskManager }: {isTaskManager: boolean}) => {
     const [, , , , filterNewEmployees] = useEmployees();
     const [currSidebarItem, setCurrSidebarItem] = useState(isTaskManager ? 'All Employees' : 'Personal Information');
     const navigate = useNavigate();
@@ -24,12 +24,12 @@ const Sidebar = ({ isTaskManager }) => {
         navigateTo(currSidebarItem);
     }, []);
 
-    const sidebarItemClickHandler = (componentTitle) => {
+    const sidebarItemClickHandler = (componentTitle: string) => {
         setCurrSidebarItem(() => componentTitle);
         navigateTo(componentTitle);
     };
 
-    const navigateTo = (componentTitle) => {
+    const navigateTo = (componentTitle: string) => {
         isTaskManager ? navigate(routingPaths.taskManager[componentTitle]) : navigate(routingPaths.employee[componentTitle]);
     }
 

@@ -1,23 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
 import * as apiService from '../services/apiService';
 import useEmployees from './useEmployees';
+import { ITask, ITaskConverted, ITasksToUpdate } from '../interfaces';
 
 const useTasks = () => {
-    const [state, setState] = useState([]);
-    const [isLoading, setIsLoading] = useState();
-    const [, , , , , updateEmployee] = useEmployees();
+    const [state, setState] = useState<ITaskConverted[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [, , , , , updateEmployee, , setAllEmployees] = useEmployees();
 
     useEffect(() => {
         setIsLoading(true);
         getAllTasks();
     }, []);
 
-    const getAllTasks = () => {
+    const getAllTasks = (): void => {
         apiService
             .getAllTasks()
             .then((tasks) => {
-                setState(tasks);
+                setState(tasks as ITaskConverted[]);
             })
             .then(() => {
                 setIsLoading(false);
@@ -28,8 +29,8 @@ const useTasks = () => {
             });
     };
 
-    const deleteTask = (employeeId, taskName) => {
-        let employeeTasks = [];
+    const deleteTask = (employeeId: string, taskName: string): void => {
+        let employeeTasks = [] as ITask[];
 
         apiService
             .getOneEmployee(employeeId)
@@ -49,21 +50,21 @@ const useTasks = () => {
             });
     };
 
-    const createTask = (employeeId, tasksToUpdate, setOpen) => {
-        updateEmployee(employeeId, tasksToUpdate);
+    const createTask = (employeeId: string, tasksToUpdate: ITask[], setOpen: Dispatch<SetStateAction<boolean>>): void => {
+        updateEmployee(employeeId, {tasks: tasksToUpdate});
         getAllTasks();
         setOpen(true);
     };
 
-    const getCompletedTasks = (criteria) => {
+    const getCompletedTasks = (criteria: string): ITaskConverted[] => {
         const currentDate = new Date();
         const days = criteria === 'COMPLETED IN THE PAST WEEK' ? 7 : 30;
-        const timeBefore = new Date(currentDate.getTime() - days * 86400000);
+        const timeBefore = new Date(currentDate.getTime() - days * 86400000).valueOf();
 
-        return state.filter((x) => x.completeDate > timeBefore);
+        return state.filter((x) => x.completeDate! > timeBefore);
     };
 
-    return [state, isLoading, deleteTask, getCompletedTasks, createTask];
+    return [state, isLoading, deleteTask, getCompletedTasks, createTask] as const;
 };
 
 export default useTasks;

@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { TextField, Grid, Button, useTheme } from '@mui/material';
 
 import { auth } from '../../../utils/firebase';
 import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
 import useEmployees from '../../../hooks/useEmployees';
+import { IFirestoreUserData } from '../../../interfaces';
+import { IPersonalInformationProps } from '../../../interfaces';
 
-const PersonalInformation = ({ userData, setUserData }) => {
+const PersonalInformation = ({ userData, setUserData }: IPersonalInformationProps) => {
     const theme = useTheme();
     const [email, setEmail] = useState(userData?.email);
     const [phoneNumber, setPhoneNumber] = useState(userData?.phoneNumber);
@@ -14,18 +16,18 @@ const PersonalInformation = ({ userData, setUserData }) => {
     const [, , , , , updateEmployee] = useEmployees();
 
 
-    const onChangeDetailsSubmitHandler = (e) => {
+    const onChangeDetailsSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        auth.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email!, password)
             .then((userCredential) => {
-                userCredential.user
-                    .updateEmail(email)
+                userCredential.user!
+                    .updateEmail(email!)
                     .then(() => {
-                        updateEmployee(userData.id, {email, phoneNumber});
+                        updateEmployee(userData!.id!, {email, phoneNumber});
                     })
                     .then(() => {
-                        setUserData((oldInfo) => ({ ...oldInfo, email, phoneNumber}));
+                        setUserData((oldInfo) => ({ ...oldInfo, email, phoneNumber} as IFirestoreUserData));
                     });
             })
             .catch((error) => {

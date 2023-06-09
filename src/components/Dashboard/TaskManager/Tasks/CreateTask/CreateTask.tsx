@@ -1,12 +1,30 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-import { Box, InputLabel, MenuItem, FormControl, Select, TextField, Alert, IconButton, Collapse, Button, FormGroup } from '@mui/material';
+import {
+    Box,
+    InputLabel,
+    MenuItem,
+    FormControl,
+    Select,
+    TextField,
+    Alert,
+    IconButton,
+    Collapse,
+    Button,
+    FormGroup,
+    SelectChangeEvent,
+} from '@mui/material';
 
 import useEmployees from '../../../../../hooks/useEmployees';
 import TableTitle from '../../../../../styled/components/TableTitle';
+import { IFirestoreUserData, ITask } from '../../../../../interfaces';
 
-const CreateTask = ({createTask}) => {
-    const [employee, setEmployee] = useState({});
+const CreateTask = ({
+    createTask,
+}: {
+    createTask: (employeeId: string, tasksToUpdate: ITask[], setOpen: React.Dispatch<React.SetStateAction<boolean>>) => void;
+}) => {
+    const [employee, setEmployee] = useState<IFirestoreUserData | null>(null);
     const [taskName, setTaskName] = useState('');
     const [taskDescription, setTaskDescription] = useState('');
     const [employees, , areEmployeesLoading] = useEmployees();
@@ -14,37 +32,33 @@ const CreateTask = ({createTask}) => {
     const [submitDisabled, setSubmitDisabled] = useState(true);
     const [open, setOpen] = useState(false);
 
-    const handleChangeEmployee = (e) => {
-        const employee = employees.find(x => x.id === e.target.value);
-        setEmployee(employee);
+    const handleChangeEmployee = (e: SelectChangeEvent<string>) => {
+        const employee = employees.find((x) => x.id === e.target.value);
+        setEmployee(employee!);
         setTaskFieldDisabled(false);
-
     };
 
-    const handleChangeTaskDescription = (e) => {
+    const handleChangeTaskDescription = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setTaskDescription(() => e.target.value);
         setSubmitDisabled(e.target.value === '');
     };
 
     const handleSubmit = async () => {
-        const tasksToUpdate = {
-            tasks: [
-                ...employee.tasks,
-                {
-                    taskName: taskName,
-                    startDate: new Date().valueOf(),
-                    completeDate: null,
-                    completed: false,
-                    description: taskDescription,
-                },
-            ],
+        const task = {
+            taskName: taskName,
+            startDate: new Date().valueOf(),
+            completeDate: null,
+            completed: false,
+            description: taskDescription,
         };
 
-        createTask(employee.id, tasksToUpdate, setOpen);
+        const tasksToUpdate = [...employee!.tasks, task] as ITask[];
+
+        createTask(employee!.id!, tasksToUpdate, setOpen);
     };
 
     return areEmployeesLoading ? (
-        'Loading...'
+        <Box>Loading...</Box>
     ) : (
         <Box>
             <Box sx={{ width: '100%' }}>
@@ -65,7 +79,7 @@ const CreateTask = ({createTask}) => {
                         }
                         sx={{ mb: 2 }}
                     >
-                        {`You are successfully gave new task to ${employee.firstName} ${employee.lastName}`}
+                        {`You are successfully gave new task to ${employee?.firstName} ${employee?.lastName}`}
                     </Alert>
                 </Collapse>
             </Box>

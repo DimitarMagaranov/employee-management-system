@@ -10,24 +10,31 @@ import Logout from './components/Logout';
 import { Box } from '@mui/material';
 import Dashboard from './components/Dashboard/Dashboard';
 import useEmployees from './hooks/useEmployees';
+import { User, onAuthStateChanged } from 'firebase/auth';
+import { IFirestoreUserData } from './interfaces';
+import { DocumentData } from 'firebase/firestore';
 
 function App() {
-    const [user, setUser] = useState(null);
-    const [userData, setUserData] = useState(null);
+    const [user, setUser] = useState<null | User>(null);
+    const [userData, setUserData] = useState<null | IFirestoreUserData>(null);
     const [initialized, setInitialized] = useState(false);
-    const [, , , , , , getOneEmployee] = useEmployees();
 
     useEffect(() => {
-        auth.onAuthStateChanged(setUser);
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+            }
+        });
     }, []);
 
     useEffect(() => {
         if (user) {
-            getOneEmployee(user._delegate.uid)
+            apiService
+                .getOneEmployee(user.uid)
                 .then((data) => {
-                    setUserData(data);
+                    setUserData(data as IFirestoreUserData);
                 })
-                .catch((error) => {
+                .catch((error: Error) => {
                     console.log(error);
                 });
             setInitialized(true);
@@ -43,7 +50,7 @@ function App() {
                 <Route index element={<Login userData={userData} />} />
                 <Route path="login" element={<Login userData={userData} />} />
                 <Route path="register" element={<Register userData={userData} />} />
-                <Route path="logout" element={<Logout setUserData={setUserData} />} />
+                <Route path="logout" element={<Logout userData={userData} setUserData={setUserData} />} />
                 <Route
                     path="dashboard/*"
                     element={<Dashboard userData={userData} setUserData={setUserData} isTaskManager={userData?.role === 'taskManager'} />}

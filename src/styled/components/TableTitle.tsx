@@ -1,6 +1,6 @@
 import { Typography, useTheme } from '@mui/material';
 
-const TableTitle = ({ title }) => {
+const TableTitle = ({ title }: {title: string}) => {
     const theme = useTheme();
 
     return (

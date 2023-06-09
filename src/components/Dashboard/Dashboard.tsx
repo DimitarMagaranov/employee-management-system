@@ -1,14 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { Box } from '@mui/material';
+
 import Sidebar from '../Sidebar/Sidebar';
 import NewEmployees from './TaskManager/NewEmployees';
 import AllEmployees from './TaskManager/AllEmployees';
 import { Tasks as TMTasks } from './TaskManager/Tasks/Tasks';
 import PersonalInformation from './Employee/PersonalInformation';
 import { Tasks as ETasks } from './Employee/Tasks';
+import { IDashboardProps } from '../../interfaces';
 
-const Dashboard = ({ userData, setUserData, isTaskManager }) => {
+const Dashboard = ({ userData, setUserData, isTaskManager }: IDashboardProps) => {
     return userData ? (
         <Box sx={{ width: '100%', display: 'flex' }}>
             <Sidebar isTaskManager={isTaskManager} />
@@ -24,7 +26,7 @@ const Dashboard = ({ userData, setUserData, isTaskManager }) => {
                 ) : (
                     <>
                         <Route path="personalInfo" element={<PersonalInformation userData={userData} setUserData={setUserData} />} />
-                        <Route path="tasks/*" element={<ETasks userData={userData} setUserData={setUserData} />} />
+                        <Route path="tasks/*" element={<ETasks userData={userData} />} />
                     </>
                 )}
             </Routes>

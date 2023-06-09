@@ -1,27 +1,27 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import * as apiService from '../services/apiService';
-
-import { firebaseErrMessages } from '../utils/firebase';
+import { getFirebaseErrMessage } from '../utils/firebase';
 import Form from '../styled/components/Form';
+import { IFirestoreUserData, ITask } from '../interfaces';
 
-function Register({ userData }) {
+function Register({ userData }: {userData: IFirestoreUserData | null}) {
     const [dateOfBirth, setDateOfBirth] = useState('1999-01-01');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState<string[]>([]);
 
     const navigate = useNavigate();
 
-    const pushError = (error) => {
+    const pushError = (error: string) => {
         setErrors([...errors].concat([error]));
     };
 
-    const onRegisterFormSUbmitHandler = async (e) => {
+    const onRegisterFormSUbmitHandler = async (e: FormEvent) => {
         e.preventDefault();
 
         const data = {
@@ -32,7 +32,7 @@ function Register({ userData }) {
             role: 'employee',
             dateOfBirth: dateOfBirth,
             salary: '0',
-            tasks: [],
+            tasks: [] as ITask[],
             deleted: false,
             isNew: true,
         };
@@ -43,7 +43,7 @@ function Register({ userData }) {
                 navigate('/');
             })
             .catch((error) => {
-                pushError(firebaseErrMessages[error.message]);
+                pushError(getFirebaseErrMessage(error.message));
             });
     };
 

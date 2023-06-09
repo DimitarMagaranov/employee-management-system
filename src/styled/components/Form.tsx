@@ -4,12 +4,26 @@ import { useTheme, styled } from '@mui/material/styles';
 import { Button, Grid, TextField, Typography } from '@mui/material';
 
 import { LoginRegisterContainer } from './layout/LoginRegisterContainer';
+import React, { Dispatch, FormEvent, SetStateAction } from 'react';
 
 const SForm = styled('form')(() => ({
     padding: '40px',
 }));
 
-const Form = ({ title, redirectLink, onSubmit, setEmail, setPassword, setFirstName, setLastName, setPhoneNumber, setDateOfBirth, errors }) => {
+interface FormProps {
+    title: string;
+    redirectLink: string;
+    onSubmit(e: FormEvent): void;
+    setEmail: Dispatch<SetStateAction<string>>;
+    setPassword: Dispatch<SetStateAction<string>>;
+    setFirstName?: Dispatch<SetStateAction<string>>;
+    setLastName?: Dispatch<SetStateAction<string>>;
+    setPhoneNumber?: Dispatch<SetStateAction<string>>;
+    setDateOfBirth?: Dispatch<SetStateAction<string>>;
+    errors: string[];
+}
+
+const Form = ({ title, redirectLink, onSubmit, setEmail, setPassword, setFirstName, setLastName, setPhoneNumber, setDateOfBirth, errors }: FormProps) => {
     const theme = useTheme();
 
     return (
@@ -54,7 +68,7 @@ const Form = ({ title, redirectLink, onSubmit, setEmail, setPassword, setFirstNa
                                     placeholder="First name"
                                     fullWidth
                                     required
-                                    onChange={(e) => setFirstName(e.target.value)}
+                                    onChange={(e) => setFirstName!(e.target.value)}
                                 />
                             </Grid>
                             <Grid item width="100%">
@@ -65,7 +79,7 @@ const Form = ({ title, redirectLink, onSubmit, setEmail, setPassword, setFirstNa
                                     placeholder="Last name"
                                     fullWidth
                                     required
-                                    onChange={(e) => setLastName(e.target.value)}
+                                    onChange={(e) => setLastName!(e.target.value)}
                                 />
                             </Grid>
                             <Grid item width="100%">
@@ -87,7 +101,7 @@ const Form = ({ title, redirectLink, onSubmit, setEmail, setPassword, setFirstNa
                                     placeholder="Phone number"
                                     fullWidth
                                     required
-                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                    onChange={(e) => setPhoneNumber!(e.target.value)}
                                 />
                             </Grid>
                             <Grid item width="100%">
@@ -98,7 +112,7 @@ const Form = ({ title, redirectLink, onSubmit, setEmail, setPassword, setFirstNa
                                     placeholder="Date og birth"
                                     fullWidth
                                     required
-                                    onChange={(e) => setDateOfBirth(e.target.value)}
+                                    onChange={(e) => setDateOfBirth!(e.target.value)}
                                 />
                             </Grid>
                             <Grid item width="100%">
@@ -116,7 +130,7 @@ const Form = ({ title, redirectLink, onSubmit, setEmail, setPassword, setFirstNa
                     )}
                 </Grid>
                 {errors.map((e) => (
-                    <Typography variant="span" color="red">
+                    <Typography color="red">
                         {e}
                     </Typography>
                 ))}

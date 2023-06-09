@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button, styled } from '@mui/material';
 import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
 import useEmployees from '../../../hooks/useEmployees';
+import { IFirestoreUserData, ITask } from '../../../interfaces';
 
 const ButtonReady = styled(Button)(() => ({
     fontSize: '12px',
@@ -17,9 +18,9 @@ const ButtonReady = styled(Button)(() => ({
     },
 }));
 
-export const Tasks = ({ userData }) => {
+export const Tasks = ({ userData }: {userData: IFirestoreUserData}) => {
     const [, , , , , updateEmployee, getOneEmployee] = useEmployees();
-    const [currTasks, setTasks] = useState();
+    const [currTasks, setTasks] = useState<ITask[] | null>(null);
 
     useEffect(() => {
         setTasks(() => userData?.tasks);
@@ -27,7 +28,7 @@ export const Tasks = ({ userData }) => {
 
     useEffect(() => {
         const updateTasksInterval = setInterval(() => {
-            getOneEmployee(userData?.id).then((data) => {
+            getOneEmployee(userData.id!).then((data) => {
                 console.log(data);
                 setTasks(data.tasks);
             });
@@ -38,12 +39,12 @@ export const Tasks = ({ userData }) => {
         };
     }, []);
 
-    const onMarkAsReadyHandler = (taskName) => {
-        const index = currTasks.findIndex((x) => x.taskName === taskName);
-        let tasksToUpdate = [...currTasks];
+    const onMarkAsReadyHandler = (taskName: string) => {
+        const index = currTasks!.findIndex((x) => x.taskName === taskName);
+        let tasksToUpdate = [...currTasks!];
         tasksToUpdate[index].completed = true;
         tasksToUpdate[index].completeDate = new Date().valueOf();
-        updateEmployee(userData?.id, { tasks: tasksToUpdate });
+        updateEmployee(userData.id!, { tasks: tasksToUpdate });
     };
 
     return (
@@ -72,7 +73,7 @@ export const Tasks = ({ userData }) => {
                                     {task.description}
                                 </TableCell>
                                 <TableCell align="left">
-                                    <Typography sx={task.completed !== true ? { color: 'red' } : { color: '#4bb543' }} variant="p">
+                                    <Typography sx={task.completed !== true ? { color: 'red' } : { color: '#4bb543' }}>
                                         {task.completed !== true ? 'Uncompleted' : 'Completed'}
                                     </Typography>
                                 </TableCell>

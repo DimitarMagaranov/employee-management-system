@@ -1,38 +1,45 @@
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 
 import { auth, db } from '../utils/firebase';
+import { IFirestoreUserData, ITask, ITaskConverted } from '../interfaces';
+import { User } from 'firebase/auth';
 
-export const getAllEmployees = async () => {
-    const data = (await getDocs(collection(db, 'users'))).docs.map((doc) => doc.data());
+export const getAllEmployees = async (): Promise<IFirestoreUserData[]> => {
+    const data = (await getDocs(collection(db, 'users'))).docs.map((doc) => doc.data()) as IFirestoreUserData[];
     return data.filter((x) => x.role != 'taskManager').sort((a, b) => a.firstName.localeCompare(b.firstName));
 };
 
-export const createEmployee = async (email, password, userToDb) => {
+export const createEmployee = async (email: string, password: string, userToDb: IFirestoreUserData): Promise<void> => {
     const res = await auth.createUserWithEmailAndPassword(email, password);
-    const user = res.user;
+    const user = res.user as User;
 
-    await setDoc(doc(db, 'users', user.uid), { id: user.uid, ...userToDb });
+    const data = {
+        id: user.uid,
+        ...userToDb
+    };
+
+    await setDoc(doc(db, 'users', user.uid), data);
 };
 
-export const getOneEmployee = async (employeeId) => {
+export const getOneEmployee = async (employeeId: string): Promise<IFirestoreUserData> => {
     const ref = doc(db, 'users', employeeId);
     const docSnap = await getDoc(ref);
-    return docSnap.data();
+    return docSnap.data() as IFirestoreUserData;
 };
 
-export const updateEmployee = async (employeeId, data) => {
+export const updateEmployee = async (employeeId: string, data: any): Promise<void> => {
     const ref = doc(db, 'users', employeeId);
     await updateDoc(ref, data);
 };
 
-export const getAllTasks = async () => {
-    let tasks = [];
+export const getAllTasks = async (): Promise<ITaskConverted[]> => {
+    let tasks = [] as ITaskConverted[];
 
-    getAllEmployees().then((data) => {
+    getAllEmployees().then((data: IFirestoreUserData[]) => {
         data.filter((x) => x.role !== 'taskManager').forEach((employee) => {
             employee.tasks.forEach((task) => {
                 tasks.push({
-                    employeeId: employee.id,
+                    employeeId: employee.id!,
                     employeeFullName: `${employee.firstName} ${employee.lastName}`,
                     taskName: task.taskName,
                     taskDescription: task.description,

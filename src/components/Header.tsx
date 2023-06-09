@@ -1,7 +1,9 @@
 import { NavLink } from 'react-router-dom';
 
-import { AppBar, Box, Toolbar, Typography, styled, useTheme } from '@mui/material';
+import { AppBar, Box, Toolbar, Typography, styled } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
+
+import { IFirestoreUserData } from '../interfaces';
 
 const SAppBar = styled(AppBar)({
     position: 'sticky',
@@ -30,7 +32,7 @@ const SBox = styled(Box)(({theme}) => ({
     fontWeight: '500',
 }));
 
-const Header = ({userData}) => {
+const Header = ({userData}: {userData: IFirestoreUserData | null}) => {
     return (
         <SAppBar>
             <SToolbar className="toolbar">
@@ -39,7 +41,7 @@ const Header = ({userData}) => {
                         <Typography>Welcome, {userData.email}!</Typography>
                         <NavLink to="/logout" style={{ textDecoration: 'none' }}>
                             <Typography display="flex" alignItems="center" fontSize="16px">
-                                <LogoutIcon sx={{ marginRight: '5px' }} fontSize="16px" /> Log Out
+                                <LogoutIcon sx={{ marginRight: '5px' }} /> Log Out
                             </Typography>
                         </NavLink>
                     </SBox>

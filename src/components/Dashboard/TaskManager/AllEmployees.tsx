@@ -1,24 +1,19 @@
-import { useState } from 'react';
-
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 
-import EditEmployee from './EditEmployee';
-import TableTitle from '../../../styled/components/TableTitle';
 import DashboardInfoContainer from '../../../styled/components/layout/DashboardInfoContainer';
+import TableTitle from '../../../styled/components/TableTitle';
 import useEmployees from '../../../hooks/useEmployees';
 
-const NewEmployees = () => {
-    const [employees, , , , , updateEmployee] = useEmployees();
-    const employeesToEdit = employees?.filter((x) => x.isNew === true);
-    const [employeeToEdit, setEmployeeToEdit] = useState(null);
+const AllEmployees = ({ title }: {title: string}) => {
+    const [employees, , isLoading, sortTop5Employees] = useEmployees();
+
+    const filteredEmps = title === 'Top 5 Employees' ? sortTop5Employees() : employees;
 
     return (
         <DashboardInfoContainer>
-            {employees.length > 0 ? (
+            {!isLoading ? (
                 <>
-                    {employeesToEdit.length > 0 && employeeToEdit && <EditEmployee employeeToEdit={employeeToEdit} updateEmployee={updateEmployee} />}
-                    <TableTitle title="New Employees" />
+                    <TableTitle title={title} />
                     <TableContainer component={Paper}>
                         <Table aria-label="simple table" stickyHeader>
                             <TableHead>
@@ -28,11 +23,13 @@ const NewEmployees = () => {
                                     <TableCell align="left">Email</TableCell>
                                     <TableCell align="left">Phone Number</TableCell>
                                     <TableCell align="left">Date of Birth</TableCell>
-                                    <TableCell align="left"></TableCell>
+                                    <TableCell align="left">Salary</TableCell>
+                                    <TableCell align="center">Completed Tasks</TableCell>
+                                    <TableCell align="center">Uncompleted Tasks</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {employeesToEdit?.map((employee, index) => (
+                                {filteredEmps.map((employee, index) => (
                                     <TableRow key={employee.id}>
                                         <TableCell component="th" scope="row">
                                             {index + 1}
@@ -43,11 +40,9 @@ const NewEmployees = () => {
                                         <TableCell align="left">{employee.email}</TableCell>
                                         <TableCell align="left">{employee.phoneNumber}</TableCell>
                                         <TableCell align="left">{employee.dateOfBirth}</TableCell>
-                                        <TableCell align="left">
-                                            <Button onClick={() => setEmployeeToEdit(employee)}>
-                                                <BorderColorIcon />
-                                            </Button>
-                                        </TableCell>
+                                        <TableCell align="left">{employee.salary}</TableCell>
+                                        <TableCell align="center">{employee.tasks.filter((t) => t.completed === true).length}</TableCell>
+                                        <TableCell align="center">{employee.tasks.filter((t) => t.completed !== true).length}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -55,10 +50,10 @@ const NewEmployees = () => {
                     </TableContainer>
                 </>
             ) : (
-                'Loading'
+                'Loading...'
             )}
         </DashboardInfoContainer>
     );
 };
 
-export default NewEmployees;
+export default AllEmployees;

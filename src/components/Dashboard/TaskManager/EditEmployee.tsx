@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
 import { Button, TextField, Box, Alert, Collapse, IconButton, styled } from '@mui/material';
+import useEmployees from '../../../hooks/useEmployees';
+import { IFirestoreUserData } from '../../../interfaces';
 
 const StyledTextField = styled(TextField)(() => ({
     width: '40%',
@@ -9,13 +11,21 @@ const StyledTextField = styled(TextField)(() => ({
     boxShadow: '0px 10px 18px -11px white',
 }));
 
-const EditEmployee = ({ employeeToEdit, updateEmployee }) => {
+const EditEmployee = ({ employeeToEdit }: { employeeToEdit: IFirestoreUserData }) => {
     const [salary, setSalary] = useState(0);
     const [open, setOpen] = useState(false);
+    const [alertVariant, setAlerVariant] = useState('error');
+    const [, , , , , updateEmployee] = useEmployees();
 
-    const onEditEmployeeHandler = (e) => {
+    const onEditEmployeeHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        salary > 0 ? updateEmployee(employeeToEdit.id, { salary: salary, isNew: false }) : setOpen(true);
+        if (salary > 0) {
+            updateEmployee(employeeToEdit.id!, { salary: salary, isNew: false });
+            setAlerVariant('success');
+        } else {
+            setAlerVariant('error');
+        }
+        setOpen(true);
     };
 
     return (
@@ -31,7 +41,7 @@ const EditEmployee = ({ employeeToEdit, updateEmployee }) => {
                 label="Salary"
                 variant="outlined"
                 defaultValue={employeeToEdit.salary}
-                onChange={(e) => setSalary(() => e.target.value)}
+                onChange={(e) => setSalary(Number(e.target.value))}
             />
             <Box
                 sx={{
@@ -43,7 +53,7 @@ const EditEmployee = ({ employeeToEdit, updateEmployee }) => {
                 <Box sx={{ width: '50%' }}>
                     <Collapse in={open}>
                         <Alert
-                            severity="error"
+                            severity={alertVariant === 'error' ? 'error' : 'success'}
                             action={
                                 <IconButton
                                     aria-label="close"
@@ -58,7 +68,7 @@ const EditEmployee = ({ employeeToEdit, updateEmployee }) => {
                             }
                             sx={{ mb: 2 }}
                         >
-                            {`You have to set salary first!`}
+                            {alertVariant === 'error' ? 'You have to set salary first!' : 'You have successfully changed the user\'s data!'}
                         </Alert>
                     </Collapse>
                 </Box>

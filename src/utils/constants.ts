@@ -1,17 +1,17 @@
-export const routingPaths = {
+export const routingPaths: {[key: string]: any} = {
     'CREATE TASK': 'create',
-    UNCOMPLETED: 'uncompleted',
-    COMPLETED: 'completed',
+    'UNCOMPLETED': 'uncompleted',
+    "COMPLETED": 'completed',
     'COMPLETED IN THE PAST WEEK': 'completedPastWeek',
     'COMPLETED IN THE PAST MONTH': 'completedPastMonth',
-    taskManager: {
+    'taskManager': {
         'New Employees': "newEmployees",
         'All Employees': 'allEmployees',
         'Top 5 Employees': 'top5Employees',
-        Tasks: 'tasks',
+        'Tasks': 'tasks',
     },
-    employee: {
+    'employee': {
         'Personal Information': 'personalInfo',
-        Tasks: 'tasks',
+        'Tasks': 'tasks',
     },
 };
